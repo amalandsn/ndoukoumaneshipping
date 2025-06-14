@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
@@ -26,22 +27,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 
 const Index = () => {
   const { language } = useLanguage();
-
-  // Hero carousel slides data - Updated with new African logistics images
-  const heroSlides = [
-    {
-      src: "/hero-port-dakar.webp",
-      alt: "Container terminal in Dakar"
-    },
-    {
-      src: "/hero-forklift.webp", 
-      alt: "Forklift stacking containers"
-    },
-    {
-      src: "/hero-african-port.webp",
-      alt: "Crane loading ship in African port"
-    }
-  ];
 
   // Services content
   const servicesContent = {
@@ -131,7 +116,7 @@ const Index = () => {
       <Navigation />
 
       {/* Hero Carousel Section */}
-      <HeroCarousel slides={heroSlides} />
+      <HeroCarousel />
 
       {/* Stats Section */}
       <section className="py-20 bg-blue-900 text-white">
