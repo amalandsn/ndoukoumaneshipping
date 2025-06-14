@@ -41,7 +41,7 @@ const fx = {
   center:              { opacity: 1, scale: 1.05, x: 0 },
   exit:  (d: number) => ({ opacity: 0, scale: 1.1, x: d > 0 ? -60 : 60 }),
 };
-const TRANS = { duration: 1, ease: [0.4, 0, 0.2, 1] };
+const TRANS = { duration: 1, ease: "easeOut" };
 
 export default function HeroCarousel() {
   const [[idx, dir], set] = useState<[number, number]>([0, 0]);
