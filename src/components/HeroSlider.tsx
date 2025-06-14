@@ -103,7 +103,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
       scale: 1,
       transition: {
         opacity: { duration: 0.8 },
-        scale: { duration: reducedMotion ? 0 : 6, ease: 'easeOut' }
+        scale: { duration: reducedMotion ? 0 : 6, ease: "easeOut" }
       }
     },
     exit: {
@@ -155,7 +155,6 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
               alt={slides[currentSlide].alt}
               className={`w-full h-full object-cover ${reducedMotion ? '' : 'kenburns'}`}
               loading={currentSlide === 0 ? 'eager' : 'lazy'}
-              priority={currentSlide === 0}
             />
           </motion.div>
         </AnimatePresence>
