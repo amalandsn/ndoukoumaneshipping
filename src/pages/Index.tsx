@@ -18,7 +18,7 @@ import {
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ChatAssistant from '@/components/ChatAssistant';
-import HeroSlider from '@/components/HeroSlider';
+import HeroCarousel from '@/components/HeroCarousel';
 import StatsCounter from '@/components/StatsCounter';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import TestimonialsSlider from '@/components/TestimonialsSlider';
@@ -27,19 +27,19 @@ import { useLanguage } from '@/hooks/useLanguage';
 const Index = () => {
   const { language } = useLanguage();
 
-  // Hero slides data - Updated with African logistics images
+  // Hero carousel slides data - Updated with new African logistics images
   const heroSlides = [
     {
-      src: "/hero-dakar.webp",
-      alt: "Container ship docked in an African port"
+      src: "/hero-port-dakar.webp",
+      alt: "Container terminal in Dakar"
     },
     {
-      src: "/hero-africa-trucks.webp", 
-      alt: "Ndoukoumane trucks on West African highway"
+      src: "/hero-forklift.webp", 
+      alt: "Forklift stacking containers"
     },
     {
-      src: "/hero-abidjan.webp",
-      alt: "Aerial of busy container terminal"
+      src: "/hero-african-port.webp",
+      alt: "Crane loading ship in African port"
     }
   ];
 
@@ -130,8 +130,8 @@ const Index = () => {
       {/* Navigation */}
       <Navigation />
 
-      {/* Hero Slider Section */}
-      <HeroSlider slides={heroSlides} />
+      {/* Hero Carousel Section */}
+      <HeroCarousel slides={heroSlides} />
 
       {/* Stats Section */}
       <section className="py-20 bg-blue-900 text-white">
