@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,13 +30,13 @@ const Index = () => {
   // Hero section content
   const heroContent = {
     fr: {
-      title: "Ndoukoumane Shipping",
+      title: "Ndoukoumane Shipping & Services",
       subtitle: "Services portuaires rapides, sécurisés et transparents au Sénégal",
       description: "Leader en consignation maritime, manutention et transit douanier avec plus de 20 ans d'expérience dans le port de Dakar.",
       cta: "Demander un devis"
     },
     en: {
-      title: "Ndoukoumane Shipping",
+      title: "Ndoukoumane Shipping & Services",
       subtitle: "Fast, secure and transparent port handling & transit services in Senegal",
       description: "Leading maritime consignment, cargo handling and customs transit services with over 20 years of experience in Dakar port.",
       cta: "Request a quote"

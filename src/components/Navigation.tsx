@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -45,7 +44,7 @@ const Navigation = () => {
             </div>
             <div>
               <div className="text-xl font-bold text-blue-900 font-serif">
-                Ndoukoumane Shipping
+                Ndoukoumane Shipping & Services
               </div>
               <div className="text-xs text-gray-600">
                 {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}

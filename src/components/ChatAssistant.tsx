@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -62,40 +61,37 @@ const ChatAssistant = () => {
 
   // Simulated FAQ responses
   const getFAQResponse = (question: string): string => {
-    const faqResponses = {
-      fr: {
-        "tarifs": "Nos tarifs de consignation démarrent à partir de 150 000 FCFA selon le tonnage du navire. Contactez-nous pour un devis personnalisé.",
-        "délais": "Les opérations de manutention prennent généralement 24-48h selon le type de marchandise et les conditions météorologiques.",
-        "douane": "Nous nous occupons de toutes les formalités douanières. Le délai moyen de dédouanement est de 2-4 jours ouvrables.",
-        "contact": "Pour les urgences 24/7, appelez le +221 77 XXX XX XX ou écrivez à urgence@ndoukoumane-shipping.sn",
-        "default": "Merci pour votre question. Un de nos experts vous répondra sous peu. Pour une réponse immédiate, contactez-nous au +221 33 XXX XX XX."
-      },
-      en: {
-        "rates": "Our consignment rates start from 150,000 FCFA depending on vessel tonnage. Contact us for a personalized quote.",
-        "timeframes": "Handling operations typically take 24-48h depending on cargo type and weather conditions.", 
-        "customs": "We handle all customs formalities. Average customs clearance time is 2-4 business days.",
-        "emergency": "For 24/7 emergencies, call +221 77 XXX XX XX or write to urgence@ndoukoumane-shipping.sn",
-        "default": "Thank you for your question. One of our experts will respond shortly. For immediate response, contact us at +221 33 XXX XX XX."
-      }
-    };
-
-    const responses = faqResponses[language];
     const lowerQuestion = question.toLowerCase();
     
-    if (lowerQuestion.includes('tarif') || lowerQuestion.includes('rate') || lowerQuestion.includes('prix') || lowerQuestion.includes('price')) {
-      return responses.tarifs || responses.rates;
+    if (language === 'fr') {
+      if (lowerQuestion.includes('tarif') || lowerQuestion.includes('prix')) {
+        return "Nos tarifs de consignation démarrent à partir de 150 000 FCFA selon le tonnage du navire. Contactez-nous pour un devis personnalisé.";
+      }
+      if (lowerQuestion.includes('délai') || lowerQuestion.includes('temps')) {
+        return "Les opérations de manutention prennent généralement 24-48h selon le type de marchandise et les conditions météorologiques.";
+      }
+      if (lowerQuestion.includes('douane') || lowerQuestion.includes('dédouanement')) {
+        return "Nous nous occupons de toutes les formalités douanières. Le délai moyen de dédouanement est de 2-4 jours ouvrables.";
+      }
+      if (lowerQuestion.includes('urgence') || lowerQuestion.includes('contact')) {
+        return "Pour les urgences 24/7, appelez le +221 77 XXX XX XX ou écrivez à urgence@ndoukoumane-services.sn";
+      }
+      return "Merci pour votre question. Un de nos experts vous répondra sous peu. Pour une réponse immédiate, contactez-nous au +221 33 XXX XX XX.";
+    } else {
+      if (lowerQuestion.includes('rate') || lowerQuestion.includes('price')) {
+        return "Our consignment rates start from 150,000 FCFA depending on vessel tonnage. Contact us for a personalized quote.";
+      }
+      if (lowerQuestion.includes('timeframe') || lowerQuestion.includes('time')) {
+        return "Handling operations typically take 24-48h depending on cargo type and weather conditions.";
+      }
+      if (lowerQuestion.includes('customs')) {
+        return "We handle all customs formalities. Average customs clearance time is 2-4 business days.";
+      }
+      if (lowerQuestion.includes('emergency') || lowerQuestion.includes('contact')) {
+        return "For 24/7 emergencies, call +221 77 XXX XX XX or write to urgence@ndoukoumane-services.sn";
+      }
+      return "Thank you for your question. One of our experts will respond shortly. For immediate response, contact us at +221 33 XXX XX XX.";
     }
-    if (lowerQuestion.includes('délai') || lowerQuestion.includes('timeframe') || lowerQuestion.includes('temps') || lowerQuestion.includes('time')) {
-      return responses.délais || responses.timeframes;
-    }
-    if (lowerQuestion.includes('douane') || lowerQuestion.includes('customs') || lowerQuestion.includes('dédouanement')) {
-      return responses.douane || responses.customs;
-    }
-    if (lowerQuestion.includes('urgence') || lowerQuestion.includes('emergency') || lowerQuestion.includes('contact')) {
-      return responses.contact || responses.emergency;
-    }
-    
-    return responses.default;
   };
 
   const handleSendMessage = async () => {

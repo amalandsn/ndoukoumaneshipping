@@ -24,7 +24,7 @@ const Footer = () => {
         description: "Leader en services maritimes au Sénégal avec plus de 20 ans d'expérience dans la consignation, manutention et transit douanier.",
         address: "Zone Portuaire de Dakar, Sénégal",
         phone: "+221 33 XXX XX XX",
-        email: "contact@ndoukoumane-shipping.sn"
+        email: "contact@ndoukoumane-services.sn"
       },
       services: {
         title: "Nos Services",
@@ -48,14 +48,14 @@ const Footer = () => {
         title: "Contact",
         hours: "Lun-Ven: 8h00-18h00\nSam: 8h00-12h00"
       },
-      copyright: "© 2024 Ndoukoumane Shipping. Tous droits réservés."
+      copyright: "© 2024 Ndoukoumane Shipping & Services. Tous droits réservés."
     },
     en: {
       company: {
         description: "Leading maritime services in Senegal with over 20 years of experience in consignment, handling and customs transit.",
         address: "Dakar Port Zone, Senegal",
         phone: "+221 33 XXX XX XX",
-        email: "contact@ndoukoumane-shipping.sn"
+        email: "contact@ndoukoumane-services.sn"
       },
       services: {
         title: "Our Services",
@@ -79,7 +79,7 @@ const Footer = () => {
         title: "Contact",
         hours: "Mon-Fri: 8:00-18:00\nSat: 8:00-12:00"
       },
-      copyright: "© 2024 Ndoukoumane Shipping. All rights reserved."
+      copyright: "© 2024 Ndoukoumane Shipping & Services. All rights reserved."
     }
   };
 
@@ -98,7 +98,7 @@ const Footer = () => {
               </div>
               <div>
                 <div className="text-xl font-bold font-serif">
-                  Ndoukoumane Shipping
+                  Ndoukoumane Shipping & Services
                 </div>
                 <div className="text-blue-300 text-sm">
                   {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}
