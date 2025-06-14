@@ -27,19 +27,19 @@ import { useLanguage } from '@/hooks/useLanguage';
 const Index = () => {
   const { language } = useLanguage();
 
-  // Hero slides data
+  // Hero slides data - Updated with African logistics images
   const heroSlides = [
     {
-      src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070&auto=format&fit=crop",
-      alt: "Port of Dakar at dusk with cranes and containers"
+      src: "/hero-dakar.webp",
+      alt: "Container ship docked in an African port"
     },
     {
-      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2069&auto=format&fit=crop",
-      alt: "Trans-West African highway with convoy of trucks"
+      src: "/hero-africa-trucks.webp", 
+      alt: "Ndoukoumane trucks on West African highway"
     },
     {
-      src: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=2070&auto=format&fit=crop",
-      alt: "Port of Abidjan aerial view with ships and gantry cranes"
+      src: "/hero-abidjan.webp",
+      alt: "Aerial of busy container terminal"
     }
   ];
 

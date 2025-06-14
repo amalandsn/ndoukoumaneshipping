@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants, Transition } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Pause, Play } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -93,17 +93,23 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
     }
   };
 
-  const slideVariants = {
+  // Fixed Framer Motion variants with proper typing
+  const TRANSITION: Transition = { 
+    duration: reducedMotion ? 0 : 6, 
+    ease: [0.4, 0, 0.2, 1] as const
+  };
+
+  const slideVariants: Variants = {
     enter: {
       opacity: 0,
-      scale: reducedMotion ? 1 : 1.05,
+      scale: reducedMotion ? 1 : 1,
     },
     center: {
       opacity: 1,
-      scale: 1,
+      scale: reducedMotion ? 1 : 1.05,
       transition: {
         opacity: { duration: 0.8 },
-        scale: { duration: reducedMotion ? 0 : 6, ease: [0.4, 0, 0.2, 1] }
+        scale: TRANSITION
       }
     },
     exit: {
@@ -115,7 +121,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
     }
   };
 
-  const overlayVariants = {
+  const overlayVariants: Variants = {
     hidden: {
       opacity: 0,
       y: 20
