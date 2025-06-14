@@ -14,27 +14,25 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    src: "/hero-africa-crane.webp",
-    fallback: "https://images.unsplash.com/photo-1604136262309-bc3b9985f31c?auto=format&fit=crop&w=1920&q=80",
+    src: "https://images.unsplash.com/photo-1604136262309-bc3b9985f31c?auto=format&fit=crop&w=1920&q=80",
     alt: "Grue chargeant des conteneurs – consignation",
     titleFR: "Experts en consigne portuaire",
     titleEN: "World-class vessel agency",
   },
   {
-    src: "/hero-africa-forklift.webp",
-    fallback: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1920&q=80",
-    alt: "Manutention de conteneurs en Afrique de l'Ouest",
+    src: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1920&q=80",
+    alt: "Manutention de conteneurs en Afrique de l’Ouest",
     titleFR: "Manutention rapide & sécurisée",
     titleEN: "Safe & swift cargo handling",
   },
   {
-    src: "/hero-africa-truck.webp",
-    fallback: "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1920&q=80",
+    src: "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1920&q=80",
     alt: "Camions quittant le port – transit",
     titleFR: "Transit & logistique intégrés",
     titleEN: "Seamless transit logistics",
   },
 ];
+
 
 const fx = {
   enter: (d: number) => ({ opacity: 0, scale: 1, x: d > 0 ? 60 : -60 }),
