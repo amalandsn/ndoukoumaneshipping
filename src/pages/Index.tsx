@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
@@ -19,7 +18,7 @@ import {
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ChatAssistant from '@/components/ChatAssistant';
-import HeroVideo from '@/components/HeroVideo';
+import HeroSlider from '@/components/HeroSlider';
 import StatsCounter from '@/components/StatsCounter';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import TestimonialsSlider from '@/components/TestimonialsSlider';
@@ -27,6 +26,22 @@ import { useLanguage } from '@/hooks/useLanguage';
 
 const Index = () => {
   const { language } = useLanguage();
+
+  // Hero slides data
+  const heroSlides = [
+    {
+      src: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=2070&auto=format&fit=crop",
+      alt: "Port of Dakar at dusk with cranes and containers"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2069&auto=format&fit=crop",
+      alt: "Trans-West African highway with convoy of trucks"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=2070&auto=format&fit=crop",
+      alt: "Port of Abidjan aerial view with ships and gantry cranes"
+    }
+  ];
 
   // Services content
   const servicesContent = {
@@ -115,8 +130,8 @@ const Index = () => {
       {/* Navigation */}
       <Navigation />
 
-      {/* Hero Video Section */}
-      <HeroVideo />
+      {/* Hero Slider Section */}
+      <HeroSlider slides={heroSlides} />
 
       {/* Stats Section */}
       <section className="py-20 bg-blue-900 text-white">
