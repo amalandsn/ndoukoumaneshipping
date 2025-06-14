@@ -103,7 +103,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
       scale: 1,
       transition: {
         opacity: { duration: 0.8 },
-        scale: { duration: reducedMotion ? 0 : 6, ease: "easeOut" }
+        scale: { duration: reducedMotion ? 0 : 6, ease: [0.4, 0, 0.2, 1] }
       }
     },
     exit: {
