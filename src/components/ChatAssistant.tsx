@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -83,16 +82,16 @@ const ChatAssistant = () => {
     const lowerQuestion = question.toLowerCase();
     
     if (lowerQuestion.includes('tarif') || lowerQuestion.includes('rate') || lowerQuestion.includes('prix') || lowerQuestion.includes('price')) {
-      return responses.tarifs || responses.rates;
+      return language === 'fr' ? responses.tarifs : responses.rates;
     }
     if (lowerQuestion.includes('délai') || lowerQuestion.includes('timeframe') || lowerQuestion.includes('temps') || lowerQuestion.includes('time')) {
-      return responses.délais || responses.timeframes;
+      return language === 'fr' ? responses.délais : responses.timeframes;
     }
     if (lowerQuestion.includes('douane') || lowerQuestion.includes('customs') || lowerQuestion.includes('dédouanement')) {
-      return responses.douane || responses.customs;
+      return language === 'fr' ? responses.douane : responses.customs;
     }
     if (lowerQuestion.includes('urgence') || lowerQuestion.includes('emergency') || lowerQuestion.includes('contact')) {
-      return responses.contact || responses.emergency;
+      return language === 'fr' ? responses.contact : responses.emergency;
     }
     
     return responses.default;
