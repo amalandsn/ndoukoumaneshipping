@@ -1,47 +1,32 @@
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { 
   Anchor, 
   Ship, 
   Truck, 
   FileText, 
   Users, 
-  Award, 
-  Globe, 
   Phone,
   Mail,
-  MapPin,
-  Clock,
   Shield,
+  Clock,
   Zap
 } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
 import ChatAssistant from '@/components/ChatAssistant';
+import HeroVideo from '@/components/HeroVideo';
+import StatsCounter from '@/components/StatsCounter';
+import ProcessTimeline from '@/components/ProcessTimeline';
+import TestimonialsSlider from '@/components/TestimonialsSlider';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const Index = () => {
-  const { language, t } = useLanguage();
-
-  // Hero section content
-  const heroContent = {
-    fr: {
-      title: "Ndoukoumane Shipping & Services",
-      subtitle: "Services portuaires rapides, sécurisés et transparents au Sénégal",
-      description: "Leader en consignation maritime, manutention et transit douanier avec plus de 20 ans d'expérience dans le port de Dakar.",
-      cta: "Demander un devis"
-    },
-    en: {
-      title: "Ndoukoumane Shipping & Services",
-      subtitle: "Fast, secure and transparent port handling & transit services in Senegal",
-      description: "Leading maritime consignment, cargo handling and customs transit services with over 20 years of experience in Dakar port.",
-      cta: "Request a quote"
-    }
-  };
+  const { language } = useLanguage();
 
   // Services content
   const servicesContent = {
@@ -104,160 +89,156 @@ const Index = () => {
     fr: {
       title: "Notre Excellence en Chiffres",
       stats: [
-        { number: "20+", label: "Années d'expérience" },
-        { number: "500+", label: "Navires traités/an" },
-        { number: "98%", label: "Satisfaction client" },
-        { number: "24/7", label: "Support disponible" }
+        { label: "Années d'expérience", number: 20, suffix: "+" },
+        { label: "TEUs par an", number: 150000, suffix: "+" },
+        { label: "Employés qualifiés", number: 85, suffix: "" },
+        { label: "Ports desservis", number: 12, suffix: "" }
       ]
     },
     en: {
       title: "Our Excellence in Numbers",
       stats: [
-        { number: "20+", label: "Years of experience" },
-        { number: "500+", label: "Vessels handled/year" },
-        { number: "98%", label: "Client satisfaction" },
-        { number: "24/7", label: "Support available" }
+        { label: "Years of experience", number: 20, suffix: "+" },
+        { label: "TEUs per year", number: 150000, suffix: "+" },
+        { label: "Qualified employees", number: 85, suffix: "" },
+        { label: "Ports served", number: 12, suffix: "" }
       ]
     }
   };
 
   const content = language === 'fr' ? 
-    { hero: heroContent.fr, services: servicesContent.fr, stats: statsContent.fr } :
-    { hero: heroContent.en, services: servicesContent.en, stats: statsContent.en };
+    { services: servicesContent.fr, stats: statsContent.fr } :
+    { services: servicesContent.en, stats: statsContent.en };
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-20 lg:py-32 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-11.046-8.954-20-20-20v40c11.046 0 20-8.954 20-20zM0 20c0-11.046 8.954-20 20-20v40c-11.046 0-20-8.954-20-20z'/%3E%3C/g%3E%3C/svg%3E")`,
-          }} />
-        </div>
+      {/* Hero Video Section */}
+      <HeroVideo />
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="secondary" className="mb-6 bg-orange-500 hover:bg-orange-600 text-white">
-              <Ship className="h-4 w-4 mr-2" />
-              {language === 'fr' ? 'Leader Maritime au Sénégal' : 'Maritime Leader in Senegal'}
-            </Badge>
-            
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 font-serif">
-              {content.hero.title}
-            </h1>
-            
-            <p className="text-xl lg:text-2xl mb-8 text-blue-100 font-medium">
-              {content.hero.subtitle}
-            </p>
-            
-            <p className="text-lg mb-10 text-blue-200 max-w-3xl mx-auto leading-relaxed">
-              {content.hero.description}
-            </p>
+      {/* Stats Section */}
+      <section className="py-20 bg-blue-900 text-white">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 font-serif text-white">
+              {content.stats.title}
+            </h2>
+          </motion.div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg">
-                {content.hero.cta}
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-900 px-8 py-4 text-lg">
-                {language === 'fr' ? 'Découvrir nos services' : 'Discover our services'}
-              </Button>
-            </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {content.stats.stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.15, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <StatsCounter
+                  label={stat.label}
+                  targetNumber={stat.number}
+                  suffix={stat.suffix}
+                />
+              </motion.div>
+            ))}
           </div>
-        </div>
-
-        {/* Decorative Ship Icon */}
-        <div className="absolute bottom-0 right-0 opacity-5 pointer-events-none">
-          <Ship className="h-64 w-64" />
         </div>
       </section>
 
       {/* Services Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
               {content.services.title}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               {content.services.subtitle}
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {content.services.services.map((service, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-2">
-                <CardHeader className="text-center pb-4">
-                  <div className="mx-auto mb-4 p-4 bg-blue-50 rounded-full text-blue-600 group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors">
-                    {service.icon}
-                  </div>
-                  <CardTitle className="text-xl font-semibold text-blue-900">
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-gray-600 text-center leading-relaxed">
-                    {service.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.15, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-2">
+                  <CardHeader className="text-center pb-4">
+                    <div className="mx-auto mb-4 p-4 bg-blue-50 rounded-full text-blue-600 group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors">
+                      {service.icon}
+                    </div>
+                    <CardTitle className="text-xl font-semibold text-blue-900">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-gray-600 text-center leading-relaxed">
+                      {service.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-blue-900 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 font-serif">
-              {content.stats.title}
-            </h2>
-          </div>
+      {/* Process Timeline */}
+      <ProcessTimeline />
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.stats.stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl lg:text-5xl font-bold text-orange-400 mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-blue-200 text-sm lg:text-base">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Testimonials Slider */}
+      <TestimonialsSlider />
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-orange-500 to-orange-600 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6 font-serif">
-            {language === 'fr' ? 
-              'Prêt à optimiser vos opérations maritimes ?' : 
-              'Ready to optimize your maritime operations?'
-            }
-          </h2>
-          <p className="text-xl mb-8 text-orange-100 max-w-2xl mx-auto">
-            {language === 'fr' ? 
-              'Contactez notre équipe d\'experts pour un accompagnement personnalisé et des solutions sur mesure.' : 
-              'Contact our team of experts for personalized support and customized solutions.'
-            }
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-4">
-              <Phone className="h-5 w-5 mr-2" />
-              {language === 'fr' ? 'Nous appeler' : 'Call us'}
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600 px-8 py-4">
-              <Mail className="h-5 w-5 mr-2" />
-              {language === 'fr' ? 'Nous écrire' : 'Email us'}
-            </Button>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6 font-serif">
+              {language === 'fr' ? 
+                'Prêt à optimiser vos opérations maritimes ?' : 
+                'Ready to optimize your maritime operations?'
+              }
+            </h2>
+            <p className="text-xl mb-8 text-orange-100 max-w-2xl mx-auto">
+              {language === 'fr' ? 
+                'Contactez notre équipe d\'experts pour un accompagnement personnalisé et des solutions sur mesure.' : 
+                'Contact our team of experts for personalized support and customized solutions.'
+              }
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-4 transform transition-transform hover:scale-105">
+                <Phone className="h-5 w-5 mr-2" />
+                {language === 'fr' ? 'Nous appeler' : 'Call us'}
+              </Button>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600 px-8 py-4 transform transition-transform hover:scale-105">
+                <Mail className="h-5 w-5 mr-2" />
+                {language === 'fr' ? 'Nous écrire' : 'Email us'}
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -265,7 +246,13 @@ const Index = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center">
+            <motion.div 
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <div className="mx-auto mb-4 p-4 bg-green-100 rounded-full text-green-600 w-fit">
                 <Shield className="h-8 w-8" />
               </div>
@@ -278,9 +265,15 @@ const Index = () => {
                   'ISO certifications and international security protocols'
                 }
               </p>
-            </div>
+            </motion.div>
             
-            <div className="text-center">
+            <motion.div 
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <div className="mx-auto mb-4 p-4 bg-blue-100 rounded-full text-blue-600 w-fit">
                 <Clock className="h-8 w-8" />
               </div>
@@ -293,9 +286,15 @@ const Index = () => {
                   'Accelerated processing and deadlines met on all our services'
                 }
               </p>
-            </div>
+            </motion.div>
             
-            <div className="text-center">
+            <motion.div 
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <div className="mx-auto mb-4 p-4 bg-orange-100 rounded-full text-orange-600 w-fit">
                 <Zap className="h-8 w-8" />
               </div>
@@ -308,7 +307,7 @@ const Index = () => {
                   'Cutting-edge technologies and advanced digital solutions'
                 }
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
