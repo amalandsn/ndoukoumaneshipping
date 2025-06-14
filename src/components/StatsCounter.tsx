@@ -17,7 +17,7 @@ const StatsCounter: React.FC<StatsCounterProps> = ({
 }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 0.3 });
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (isInView) {
