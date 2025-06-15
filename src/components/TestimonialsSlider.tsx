@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote, Star } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const TestimonialsSlider = () => {
   const { language } = useLanguage();
@@ -26,7 +27,7 @@ const TestimonialsSlider = () => {
         role: "Responsable Import",
         content: "Un service de consignation maritime de qualité supérieure. La transparence dans les opérations et le suivi en temps réel sont remarquables. Je recommande vivement leurs services.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
+        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face" // <-- Possiblement défectueux
       },
       {
         name: "Jean-Baptiste Sarr",
@@ -52,7 +53,7 @@ const TestimonialsSlider = () => {
         role: "Import Manager",
         content: "Superior quality maritime consignment service. The transparency in operations and real-time tracking are remarkable. I highly recommend their services.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face"
+        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face" // <-- Possibly broken
       },
       {
         name: "Jean-Baptiste Sarr",
@@ -75,6 +76,15 @@ const TestimonialsSlider = () => {
       return () => clearInterval(interval);
     }
   }, [isPaused, currentTestimonials.length]);
+
+  // Utilitaire pour initiales (Marie-Claire Ndiaye → "MC")
+  function getInitials(name: string) {
+    return name
+      .split(" ")
+      .map((n) => n[0]?.toUpperCase() || "")
+      .join("")
+      .slice(0, 2);
+  }
 
   return (
     <section className="py-20 bg-blue-900 text-white overflow-hidden">
@@ -130,14 +140,18 @@ const TestimonialsSlider = () => {
                       <Star key={i} className="h-5 w-5 text-orange-400 fill-current" />
                     ))}
                   </div>
-                  
                   <div className="flex items-center justify-center space-x-4">
-                    <img 
-                      src={currentTestimonials[currentIndex].image}
-                      alt={currentTestimonials[currentIndex].name}
-                      key={`avatar-${currentTestimonials[currentIndex].name}`}
-                      className="w-16 h-16 rounded-full object-cover border-2 border-orange-400"
-                    />
+                    <Avatar className="w-16 h-16 border-2 border-orange-400">
+                      <AvatarImage
+                        src={currentTestimonials[currentIndex].image}
+                        alt={currentTestimonials[currentIndex].name}
+                        key={`avatar-img-${currentTestimonials[currentIndex].name}`}
+                        className="object-cover w-16 h-16"
+                      />
+                      <AvatarFallback className="bg-blue-900 text-white border-2 border-orange-400 text-sm font-semibold w-16 h-16 flex items-center justify-center">
+                        {getInitials(currentTestimonials[currentIndex].name)}
+                      </AvatarFallback>
+                    </Avatar>
                     <div className="text-left">
                       <div className="font-semibold text-lg">
                         {currentTestimonials[currentIndex].name}
