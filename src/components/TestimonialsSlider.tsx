@@ -115,17 +115,16 @@ const TestimonialsSlider = () => {
                   src={currentTestimonials[currentIndex].image}
                   alt=""
                   className="w-full h-full object-cover"
+                  key={`bg-${currentTestimonials[currentIndex].name}`}
                 />
               </motion.div>
 
               <Card className="bg-white/10 backdrop-blur-sm border-0 text-white">
                 <CardContent className="p-8 lg:p-12 text-center">
                   <Quote className="h-12 w-12 text-orange-400 mx-auto mb-6" />
-                  
                   <blockquote className="text-lg lg:text-xl leading-relaxed mb-8 italic">
                     "{currentTestimonials[currentIndex].content}"
                   </blockquote>
-                  
                   <div className="flex items-center justify-center mb-4">
                     {[...Array(currentTestimonials[currentIndex].rating)].map((_, i) => (
                       <Star key={i} className="h-5 w-5 text-orange-400 fill-current" />
@@ -136,6 +135,7 @@ const TestimonialsSlider = () => {
                     <img 
                       src={currentTestimonials[currentIndex].image}
                       alt={currentTestimonials[currentIndex].name}
+                      key={`avatar-${currentTestimonials[currentIndex].name}`}
                       className="w-16 h-16 rounded-full object-cover border-2 border-orange-400"
                     />
                     <div className="text-left">
