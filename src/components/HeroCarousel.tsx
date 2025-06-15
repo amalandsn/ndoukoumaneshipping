@@ -20,26 +20,26 @@ const slides: Slide[] = [
     fallback: "https://images.unsplash.com/photo-1700696724329-6969321da637?auto=format&fit=crop&w=1920&q=80",
     alt: "Grue chargeant des conteneurs – consignation",
     titleFR: "Experts en consigne portuaire",
+    subtitleFR: "Agence maritime de confiance",
     titleEN: "World-class vessel agency",
-    subtitleFR: "Agence maritime de référence",
-    subtitleEN: "Leading maritime agency services",
+    subtitleEN: "Trusted ship-owner representative",
   },
   {
     src: "/hero-manutention.webp",
     fallback: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1920&q=80",
     alt: "Manutention de conteneurs en Afrique de l'Ouest",
     titleFR: "Manutention rapide & sécurisée",
-    titleEN: "Safe & swift cargo handling",
     subtitleFR: "Chargement et déchargement optimisés",
-    subtitleEN: "Optimized loading and unloading operations",
+    titleEN: "Fast & secure cargo handling",
+    subtitleEN: "Optimised loading and unloading",
   },
   {
     src: "/hero-transit.webp",
     fallback: "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1920&q=80",
     alt: "Camions quittant le port – transit",
     titleFR: "Transit & logistique intégrés",
-    titleEN: "Seamless transit logistics",
     subtitleFR: "Acheminement fluide de vos marchandises",
+    titleEN: "Seamless transit logistics",
     subtitleEN: "Smooth transportation of your goods",
   },
 ];
@@ -52,6 +52,8 @@ const fx = {
 const TRANS = { duration: 1, ease: [0.4, 0, 0.2, 1] as const };
 
 export default function HeroCarousel() {
+  const isFR = document.documentElement.lang?.startsWith("fr");
+  
   const [[idx, dir], set] = useState<[number, number]>([0, 0]);
   useEffect(() => {
     const id = setInterval(() => set(([i]) => [(i + 1) % slides.length, 1]), 7000);
@@ -81,19 +83,12 @@ export default function HeroCarousel() {
 
       {/* Overlay : texte spécifique au slide */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-4">
-        {(() => {
-          const isFR = document.documentElement.lang === "fr";
-          return (
-            <>
-              <h1 className="text-white text-3xl md:text-5xl font-bold drop-shadow-md">
-                {isFR ? titleFR : titleEN}
-              </h1>
-              <p className="text-white text-lg md:text-xl mt-2 drop-shadow-md">
-                {isFR ? subtitleFR : subtitleEN}
-              </p>
-            </>
-          );
-        })()}
+        <h1 className="text-white text-3xl md:text-5xl font-bold drop-shadow-md">
+          {isFR ? titleFR : titleEN}
+        </h1>
+        <p className="text-white text-lg md:text-xl mt-2 drop-shadow-md">
+          {isFR ? subtitleFR : subtitleEN}
+        </p>
         <a
           href="#contact"
           className="mt-6 bg-[#FF7A00] text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition"
