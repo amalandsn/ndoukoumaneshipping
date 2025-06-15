@@ -1,15 +1,7 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { 
-  Anchor, 
-  Ship, 
-  Truck, 
-  FileText, 
-  Users, 
+import {
   Phone,
   Mail,
   Shield,
@@ -28,63 +20,39 @@ import { useLanguage } from '@/hooks/useLanguage';
 const Index = () => {
   const { language } = useLanguage();
 
-  // Services content
-  const servicesContent = {
-    fr: {
-      title: "Nos Services",
-      subtitle: "Solutions complètes pour vos opérations maritimes",
-      services: [
-        {
-          icon: <Anchor className="h-8 w-8" />,
-          title: "Consignation Maritime",
-          description: "Représentation complète de vos navires avec suivi en temps réel des escales et formalités portuaires."
-        },
-        {
-          icon: <Truck className="h-8 w-8" />,
-          title: "Manutention Portuaire",
-          description: "Operations de chargement/déchargement avec équipements modernes et équipes expérimentées."
-        },
-        {
-          icon: <FileText className="h-8 w-8" />,
-          title: "Transit Douanier",
-          description: "Dédouanement accéléré et suivi des marchandises avec expertise réglementaire complète."
-        },
-        {
-          icon: <Users className="h-8 w-8" />,
-          title: "Conseil Maritime",
-          description: "Expertise stratégique et accompagnement personnalisé pour optimiser vos opérations."
-        }
-      ]
+  // Services content (now image cards)
+  const services = [
+    {
+      img: "/hero-consignation.webp",
+      title: language === 'fr' ? "Consignation Maritime" : "Maritime Consignment",
+      desc: language === 'fr'
+        ? "Représentation complète de vos navires avec suivi en temps réel des escales et formalités portuaires."
+        : "Complete vessel representation with real-time call & port formalities tracking."
     },
-    en: {
-      title: "Our Services",
-      subtitle: "Complete solutions for your maritime operations",
-      services: [
-        {
-          icon: <Anchor className="h-8 w-8" />,
-          title: "Maritime Consignment",
-          description: "Complete representation of your vessels with real-time tracking of calls and port formalities."
-        },
-        {
-          icon: <Truck className="h-8 w-8" />,
-          title: "Port Handling",
-          description: "Loading/unloading operations with modern equipment and experienced teams."
-        },
-        {
-          icon: <FileText className="h-8 w-8" />,
-          title: "Customs Transit",
-          description: "Expedited customs clearance and cargo tracking with complete regulatory expertise."
-        },
-        {
-          icon: <Users className="h-8 w-8" />,
-          title: "Maritime Advisory",
-          description: "Strategic expertise and personalized support to optimize your operations."
-        }
-      ]
-    }
-  };
+    {
+      img: "/hero-manutention.webp",
+      title: language === 'fr' ? "Manutention Portuaire" : "Port Handling",
+      desc: language === 'fr'
+        ? "Opérations de chargement / déchargement optimisés avec équipements modernes et équipes expérimentées."
+        : "Optimized loading/unloading operations with advanced equipment and teams."
+    },
+    {
+      img: "/hero-transit.webp",
+      title: language === 'fr' ? "Transit Douanier" : "Customs Transit",
+      desc: language === 'fr'
+        ? "Dédouanement accéléré et suivi réglementaire complet de vos marchandises."
+        : "Accelerated customs clearance and full regulatory tracking of your cargo."
+    },
+    {
+      img: "/hero-conseil.webp",
+      title: language === 'fr' ? "Conseil Maritime" : "Maritime Advisory",
+      desc: language === 'fr'
+        ? "Expertise stratégique et accompagnement pour optimiser vos opérations."
+        : "Strategic expertise and support to optimize your operations."
+    },
+  ];
 
-  // Stats content
+  // Stats content unchanged
   const statsContent = {
     fr: {
       title: "Notre Excellence en Chiffres",
@@ -106,9 +74,9 @@ const Index = () => {
     }
   };
 
-  const content = language === 'fr' ? 
-    { services: servicesContent.fr, stats: statsContent.fr } :
-    { services: servicesContent.en, stats: statsContent.en };
+  const content = language === 'fr'
+    ? { stats: statsContent.fr }
+    : { stats: statsContent.en };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -121,7 +89,7 @@ const Index = () => {
       {/* Stats Section */}
       <section className="py-20 bg-blue-900 text-white">
         <div className="container mx-auto px-4">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -132,7 +100,6 @@ const Index = () => {
               {content.stats.title}
             </h2>
           </motion.div>
-
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {content.stats.stats.map((stat, index) => (
               <motion.div
@@ -156,7 +123,7 @@ const Index = () => {
       {/* Services Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div 
+          <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -164,37 +131,39 @@ const Index = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
-              {content.services.title}
+              {language === 'fr' ? "Nos Services" : "Our Services"}
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {content.services.subtitle}
+              {language === 'fr'
+                ? "Solutions complètes pour vos opérations maritimes"
+                : "Complete solutions for your maritime operations"}
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {content.services.services.map((service, index) => (
+            {services.map((s, idx) => (
               <motion.div
-                key={index}
+                key={s.title}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15, duration: 0.6 }}
+                transition={{ delay: idx * 0.15, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-lg hover:-translate-y-2">
-                  <CardHeader className="text-center pb-4">
-                    <div className="mx-auto mb-4 p-4 bg-blue-50 rounded-full text-blue-600 group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors">
-                      {service.icon}
-                    </div>
-                    <CardTitle className="text-xl font-semibold text-blue-900">
-                      {service.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600 text-center leading-relaxed">
-                      {service.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
+                <div className="rounded-xl shadow-lg hover:scale-[1.02] transition bg-white overflow-hidden">
+                  <div className="relative h-48 w-full">
+                    <img
+                      src={s.img}
+                      alt={s.title}
+                      className="h-full w-full object-cover rounded-t-xl"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#002A5Ccc] via-transparent rounded-t-xl" />
+                  </div>
+                  <div className="p-6 text-center">
+                    <h3 className="text-lg font-semibold text-[#002A5C]">{s.title}</h3>
+                    <p className="mt-2 text-sm text-gray-600">{s.desc}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
