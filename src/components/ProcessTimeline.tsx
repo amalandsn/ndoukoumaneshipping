@@ -12,6 +12,13 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 
+const processImages = [
+  "/hero-arrivee.webp",     // 1. step: vessel arrival
+  "/hero-formalites.webp",  // 2. step: port formalities
+  "/hero-amarre.webp",      // 3. step: mooring
+  "/hero-manut-step.webp"   // 4. step: cargo handling
+];
+
 const ProcessTimeline = () => {
   const { language } = useLanguage();
   const containerRef = useRef(null);
@@ -118,13 +125,13 @@ const ProcessTimeline = () => {
                 viewport={{ once: true }}
               >
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                  {/* Première étape : image header */}
-                  {index === 0 ? (
+                  {/* Étapes 1 à 4 : image header immersive */}
+                  {index < 4 ? (
                     <div className="relative h-40 w-full rounded-t-xl overflow-hidden">
                       <img
-                        src="/hero-arrivee.webp"
+                        src={processImages[index]}
                         alt={step.title}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover rounded-t-xl"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#002A5Ccc] via-transparent rounded-t-xl" />
@@ -140,11 +147,10 @@ const ProcessTimeline = () => {
                       {step.icon}
                     </div>
                   )}
-                  <CardContent className={`p-8 text-center ${index === 0 ? "pt-4" : ""}`}>
-                    {/* Pour la première étape, décalage du titre pour sous l'image */}
+                  <CardContent className={`p-8 text-center ${index < 4 ? "pt-4" : ""}`}>
                     {index !== 0 && (
                       <div className="mb-2 px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium inline-block">
-                        {/* badge déplacé pour 1ère étape */}
+                        {/* badge déplacé pour étapes hors n°1 */}
                       </div>
                     )}
                     <h3 className="text-xl font-semibold text-blue-900 mb-4">{step.title}</h3>
@@ -168,13 +174,13 @@ const ProcessTimeline = () => {
                 viewport={{ once: true }}
               >
                 <Card className="border-0 shadow-lg">
-                  {/* Première étape : image header */}
-                  {index === 0 ? (
+                  {/* Étapes 1 à 4 : image header immersive */}
+                  {index < 4 ? (
                     <div className="relative h-40 w-full rounded-t-xl overflow-hidden">
                       <img
-                        src="/hero-arrivee.webp"
+                        src={processImages[index]}
                         alt={step.title}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover rounded-t-xl"
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#002A5Ccc] via-transparent rounded-t-xl" />
@@ -200,7 +206,7 @@ const ProcessTimeline = () => {
                       </div>
                     </CardContent>
                   )}
-                  {index === 0 && (
+                  {index < 4 && (
                     <CardContent className="p-6 text-center pt-3">
                       <h3 className="text-lg font-semibold text-blue-900 mb-2">
                         {step.title}
@@ -219,4 +225,3 @@ const ProcessTimeline = () => {
 };
 
 export default ProcessTimeline;
-
