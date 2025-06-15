@@ -1,6 +1,6 @@
 
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Ship, 
@@ -118,19 +118,37 @@ const ProcessTimeline = () => {
                 viewport={{ once: true }}
               >
                 <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                  <CardContent className="p-8 text-center">
-                    <div className="mb-6 p-4 bg-blue-50 rounded-full text-blue-600 group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors w-fit mx-auto">
+                  {/* Première étape : image header */}
+                  {index === 0 ? (
+                    <div className="relative h-40 w-full rounded-t-xl overflow-hidden">
+                      <img
+                        src="/hero-arrivee.webp"
+                        alt={step.title}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#002A5Ccc] via-transparent rounded-t-xl" />
+                      <div className="absolute left-3 top-3 bg-[#FF7A00] text-white w-8 h-8 flex items-center justify-center rounded-full text-sm font-bold shadow">
+                        {String(index + 1).padStart(2, '0')}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="mb-6 p-4 bg-blue-50 rounded-full text-blue-600 group-hover:bg-orange-50 group-hover:text-orange-600 transition-colors w-fit mx-auto relative">
+                      <span className="absolute left-[-14px] top-[-14px] bg-[#FF7A00] text-white w-8 h-8 flex items-center justify-center rounded-full text-sm font-bold shadow">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
                       {step.icon}
                     </div>
-                    <div className="mb-2 px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium inline-block">
-                      {String(index + 1).padStart(2, '0')}
-                    </div>
-                    <h3 className="text-xl font-semibold text-blue-900 mb-4">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {step.description}
-                    </p>
+                  )}
+                  <CardContent className={`p-8 text-center ${index === 0 ? "pt-4" : ""}`}>
+                    {/* Pour la première étape, décalage du titre pour sous l'image */}
+                    {index !== 0 && (
+                      <div className="mb-2 px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-medium inline-block">
+                        {/* badge déplacé pour 1ère étape */}
+                      </div>
+                    )}
+                    <h3 className="text-xl font-semibold text-blue-900 mb-4">{step.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{step.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -150,22 +168,46 @@ const ProcessTimeline = () => {
                 viewport={{ once: true }}
               >
                 <Card className="border-0 shadow-lg">
-                  <CardContent className="p-6 flex items-start space-x-4">
-                    <div className="p-3 bg-blue-50 rounded-full text-blue-600 flex-shrink-0">
-                      {step.icon}
-                    </div>
-                    <div>
-                      <div className="mb-2 px-2 py-1 bg-orange-100 text-orange-600 rounded text-xs font-medium inline-block">
+                  {/* Première étape : image header */}
+                  {index === 0 ? (
+                    <div className="relative h-40 w-full rounded-t-xl overflow-hidden">
+                      <img
+                        src="/hero-arrivee.webp"
+                        alt={step.title}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#002A5Ccc] via-transparent rounded-t-xl" />
+                      <div className="absolute left-3 top-3 bg-[#FF7A00] text-white w-8 h-8 flex items-center justify-center rounded-full text-sm font-bold shadow">
                         {String(index + 1).padStart(2, '0')}
                       </div>
+                    </div>
+                  ) : (
+                    <CardContent className="p-6 flex items-start space-x-4">
+                      <div className="p-3 bg-blue-50 rounded-full text-blue-600 flex-shrink-0">
+                        {step.icon}
+                      </div>
+                      <div>
+                        <div className="mb-2 px-2 py-1 bg-orange-100 text-orange-600 rounded text-xs font-medium inline-block">
+                          {String(index + 1).padStart(2, '0')}
+                        </div>
+                        <h3 className="text-lg font-semibold text-blue-900 mb-2">
+                          {step.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm">
+                          {step.description}
+                        </p>
+                      </div>
+                    </CardContent>
+                  )}
+                  {index === 0 && (
+                    <CardContent className="p-6 text-center pt-3">
                       <h3 className="text-lg font-semibold text-blue-900 mb-2">
                         {step.title}
                       </h3>
-                      <p className="text-gray-600 text-sm">
-                        {step.description}
-                      </p>
-                    </div>
-                  </CardContent>
+                      <p className="text-gray-600 text-sm">{step.description}</p>
+                    </CardContent>
+                  )}
                 </Card>
               </motion.div>
             ))}
@@ -177,3 +219,4 @@ const ProcessTimeline = () => {
 };
 
 export default ProcessTimeline;
+
