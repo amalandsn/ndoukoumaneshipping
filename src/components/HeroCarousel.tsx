@@ -10,6 +10,8 @@ type Slide = {
   alt: string;
   titleFR: string;
   titleEN: string;
+  subtitleFR: string;
+  subtitleEN: string;
 };
 
 const slides: Slide[] = [
@@ -19,6 +21,8 @@ const slides: Slide[] = [
     alt: "Grue chargeant des conteneurs – consignation",
     titleFR: "Experts en consigne portuaire",
     titleEN: "World-class vessel agency",
+    subtitleFR: "Agence maritime de référence",
+    subtitleEN: "Leading maritime agency services",
   },
   {
     src: "/hero-manutention.webp",
@@ -26,6 +30,8 @@ const slides: Slide[] = [
     alt: "Manutention de conteneurs en Afrique de l'Ouest",
     titleFR: "Manutention rapide & sécurisée",
     titleEN: "Safe & swift cargo handling",
+    subtitleFR: "Chargement et déchargement optimisés",
+    subtitleEN: "Optimized loading and unloading operations",
   },
   {
     src: "/hero-transit.webp",
@@ -33,9 +39,10 @@ const slides: Slide[] = [
     alt: "Camions quittant le port – transit",
     titleFR: "Transit & logistique intégrés",
     titleEN: "Seamless transit logistics",
+    subtitleFR: "Acheminement fluide de vos marchandises",
+    subtitleEN: "Smooth transportation of your goods",
   },
 ];
-
 
 const fx = {
   enter: (d: number) => ({ opacity: 0, scale: 1, x: d > 0 ? 60 : -60 }),
@@ -52,7 +59,7 @@ export default function HeroCarousel() {
   }, []);
   const paginate = (d: number) => set(([i]) => [(i + d + slides.length) % slides.length, d]);
 
-  const { src, fallback, alt, titleFR, titleEN } = slides[idx];
+  const { src, fallback, alt, titleFR, titleEN, subtitleFR, subtitleEN } = slides[idx];
 
   return (
     <section className="relative w-screen h-screen overflow-hidden">
@@ -74,11 +81,19 @@ export default function HeroCarousel() {
 
       {/* Overlay : texte spécifique au slide */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-4">
-        <h1 className="text-white text-3xl md:text-5xl font-bold drop-shadow-md leading-snug">
-          {titleFR}
-          <br />
-          <span className="text-base md:text-xl font-light">{titleEN}</span>
-        </h1>
+        {(() => {
+          const isFR = document.documentElement.lang === "fr";
+          return (
+            <>
+              <h1 className="text-white text-3xl md:text-5xl font-bold drop-shadow-md">
+                {isFR ? titleFR : titleEN}
+              </h1>
+              <p className="text-white text-lg md:text-xl mt-2 drop-shadow-md">
+                {isFR ? subtitleFR : subtitleEN}
+              </p>
+            </>
+          );
+        })()}
         <a
           href="#contact"
           className="mt-6 bg-[#FF7A00] text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition"
