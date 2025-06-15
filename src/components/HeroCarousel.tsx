@@ -1,4 +1,3 @@
-
 /* eslint-disable jsx-a11y/alt-text */
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -52,8 +51,15 @@ const fx = {
 const TRANS = { duration: 1, ease: [0.4, 0, 0.2, 1] as const };
 
 export default function HeroCarousel() {
-  const isFR = document.documentElement.lang?.startsWith("fr");
-  
+  const [lang, setLang] = useState(document.documentElement.lang);
+
+  useEffect(() => {
+    const handler = () => setLang(document.documentElement.lang);
+    window.addEventListener("lang-change", handler);
+    return () => window.removeEventListener("lang-change", handler);
+  }, []);
+  const isFR = lang.startsWith("fr");
+
   const [[idx, dir], set] = useState<[number, number]>([0, 0]);
   useEffect(() => {
     const id = setInterval(() => set(([i]) => [(i + 1) % slides.length, 1]), 7000);
