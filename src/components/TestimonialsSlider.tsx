@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card";
@@ -18,7 +19,8 @@ const TestimonialsSlider = () => {
         role: "Directeur Logistique",
         content: "Ndoukoumane Shipping & Services nous accompagne depuis 5 ans avec un professionnalisme exemplaire. Leurs équipes réactives et leur maîtrise des procédures douanières nous font gagner un temps précieux.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=400&h=400&fit=crop&crop=faces" // Personne africaine
+        // Corporate, jeune professionnel africain
+        image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&fit=crop&crop=faces"
       },
       {
         name: "Marie-Claire Ndiaye",
@@ -26,7 +28,7 @@ const TestimonialsSlider = () => {
         role: "Responsable Import",
         content: "Un service de consignation maritime de qualité supérieure. La transparence dans les opérations et le suivi en temps réel sont remarquables. Je recommande vivement leurs services.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop&crop=faces" // Personne/femme africaine
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=faces" // Femme africaine professionnelle
       },
       {
         name: "Jean-Baptiste Sarr",
@@ -34,7 +36,8 @@ const TestimonialsSlider = () => {
         role: "CEO",
         content: "Partenaire de confiance pour nos opérations portuaires. Leur expertise et leur réactivité nous permettent d'optimiser nos délais de livraison. Un service client exceptionnel.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3?w=400&h=400&fit=crop&crop=faces" // Personne africaine ou scène africaine
+        // Cadre/manager africain
+        image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=400&fit=crop&crop=faces"
       }
     ],
     en: [
@@ -44,7 +47,7 @@ const TestimonialsSlider = () => {
         role: "Logistics Director",
         content: "Ndoukoumane Shipping & Services has been supporting us for 5 years with exemplary professionalism. Their responsive teams and mastery of customs procedures save us precious time.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=400&h=400&fit=crop&crop=faces"
+        image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&fit=crop&crop=faces"
       },
       {
         name: "Marie-Claire Ndiaye",
@@ -52,7 +55,7 @@ const TestimonialsSlider = () => {
         role: "Import Manager",
         content: "Superior quality maritime consignment service. The transparency in operations and real-time tracking are remarkable. I highly recommend their services.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop&crop=faces"
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=faces"
       },
       {
         name: "Jean-Baptiste Sarr",
@@ -60,7 +63,7 @@ const TestimonialsSlider = () => {
         role: "CEO",
         content: "Trusted partner for our port operations. Their expertise and responsiveness allow us to optimize our delivery times. Exceptional customer service.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3?w=400&h=400&fit=crop&crop=faces"
+        image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=400&fit=crop&crop=faces"
       }
     ]
   };
@@ -93,14 +96,14 @@ const TestimonialsSlider = () => {
             {language === 'fr' ? 'Témoignages Clients' : 'Client Testimonials'}
           </h2>
           <p className="text-lg text-blue-200 max-w-2xl mx-auto">
-            {language === 'fr' 
+            {language === 'fr'
               ? 'La satisfaction de nos clients est notre priorité absolue'
-              : 'Our clients\' satisfaction is our absolute priority'
+              : "Our clients' satisfaction is our absolute priority"
             }
           </p>
         </div>
 
-        <div 
+        <div
           className="relative max-w-4xl mx-auto"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -120,7 +123,7 @@ const TestimonialsSlider = () => {
                 animate={{ scale: [1, 1.05] }}
                 transition={{ duration: 6, ease: "linear" }}
               >
-                <img 
+                <img
                   src={currentTestimonials[currentIndex].image}
                   alt=""
                   className="w-full h-full object-cover"
