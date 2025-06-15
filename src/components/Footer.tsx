@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -22,9 +21,9 @@ const Footer = () => {
     fr: {
       company: {
         description: "Leader en services maritimes au Sénégal avec plus de 20 ans d'expérience dans la consignation, manutention et transit douanier.",
-        address: "Zone Portuaire de Dakar, Sénégal",
-        phone: "+221 33 XXX XX XX",
-        email: "contact@ndoukoumane-services.sn"
+        address: "Centrale Park ex 4C N°219, Dakar, Sénégal",
+        phone: "+221 33 822 29 80",
+        email: "contact@ndoukoumaneshipping.sn"
       },
       services: {
         title: "Nos Services",
@@ -53,9 +52,9 @@ const Footer = () => {
     en: {
       company: {
         description: "Leading maritime services in Senegal with over 20 years of experience in consignment, handling and customs transit.",
-        address: "Dakar Port Zone, Senegal",
-        phone: "+221 33 XXX XX XX",
-        email: "contact@ndoukoumane-services.sn"
+        address: "Centrale Park ex 4C N°219, Dakar, Senegal",
+        phone: "+221 33 822 29 80",
+        email: "contact@ndoukoumaneshipping.sn"
       },
       services: {
         title: "Our Services",
