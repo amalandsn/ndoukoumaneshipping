@@ -224,7 +224,7 @@ const Index = () => {
             </h2>
             <p className="text-xl mb-8 text-orange-100 max-w-2xl mx-auto">
               {language === 'fr' ? 
-                'Contactez notre équipe d\'experts pour un accompagnement personnalisé et des solutions sur mesure.' : 
+                "Contactez notre équipe d'experts pour un accompagnement personnalisé et des solutions sur mesure." : 
                 'Contact our team of experts for personalized support and customized solutions.'
               }
             </p>
@@ -233,7 +233,11 @@ const Index = () => {
                 <Phone className="h-5 w-5 mr-2" />
                 {language === 'fr' ? 'Nous appeler' : 'Call us'}
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600 px-8 py-4 transform transition-transform hover:scale-105">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-orange-600 hover:bg-white hover:text-orange-700 px-8 py-4 transform transition-transform hover:scale-105"
+              >
                 <Mail className="h-5 w-5 mr-2" />
                 {language === 'fr' ? 'Nous écrire' : 'Email us'}
               </Button>
