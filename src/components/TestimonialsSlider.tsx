@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card";
@@ -19,7 +18,7 @@ const TestimonialsSlider = () => {
         role: "Directeur Logistique",
         content: "Ndoukoumane Shipping & Services nous accompagne depuis 5 ans avec un professionnalisme exemplaire. Leurs équipes réactives et leur maîtrise des procédures douanières nous font gagner un temps précieux.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
+        image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=400&h=400&fit=crop&crop=faces" // Personne africaine
       },
       {
         name: "Marie-Claire Ndiaye",
@@ -27,7 +26,7 @@ const TestimonialsSlider = () => {
         role: "Responsable Import",
         content: "Un service de consignation maritime de qualité supérieure. La transparence dans les opérations et le suivi en temps réel sont remarquables. Je recommande vivement leurs services.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face" // <-- Possiblement défectueux
+        image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop&crop=faces" // Personne/femme africaine
       },
       {
         name: "Jean-Baptiste Sarr",
@@ -35,7 +34,7 @@ const TestimonialsSlider = () => {
         role: "CEO",
         content: "Partenaire de confiance pour nos opérations portuaires. Leur expertise et leur réactivité nous permettent d'optimiser nos délais de livraison. Un service client exceptionnel.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face"
+        image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3?w=400&h=400&fit=crop&crop=faces" // Personne africaine ou scène africaine
       }
     ],
     en: [
@@ -45,7 +44,7 @@ const TestimonialsSlider = () => {
         role: "Logistics Director",
         content: "Ndoukoumane Shipping & Services has been supporting us for 5 years with exemplary professionalism. Their responsive teams and mastery of customs procedures save us precious time.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face"
+        image: "https://images.unsplash.com/photo-1466721591366-2d5fba72006d?w=400&h=400&fit=crop&crop=faces"
       },
       {
         name: "Marie-Claire Ndiaye",
@@ -53,7 +52,7 @@ const TestimonialsSlider = () => {
         role: "Import Manager",
         content: "Superior quality maritime consignment service. The transparency in operations and real-time tracking are remarkable. I highly recommend their services.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face" // <-- Possibly broken
+        image: "https://images.unsplash.com/photo-1493962853295-0fd70327578a?w=400&h=400&fit=crop&crop=faces"
       },
       {
         name: "Jean-Baptiste Sarr",
@@ -61,7 +60,7 @@ const TestimonialsSlider = () => {
         role: "CEO",
         content: "Trusted partner for our port operations. Their expertise and responsiveness allow us to optimize our delivery times. Exceptional customer service.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face"
+        image: "https://images.unsplash.com/photo-1469041797191-50ace28483c3?w=400&h=400&fit=crop&crop=faces"
       }
     ]
   };
