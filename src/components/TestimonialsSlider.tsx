@@ -6,6 +6,13 @@ import { Quote, Star } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
+// On utilise les images locales du dossier public
+const imageMap: Record<string, string> = {
+  "Amadou Diallo": "/Amadou-Diallo.webp",
+  "Bousso Cisse": "/Bousso-Cisse.webp",
+  "Abdoulaye Sow": "/Abdoulaye-Sow.webp"
+};
+
 const TestimonialsSlider = () => {
   const { language } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,25 +26,23 @@ const TestimonialsSlider = () => {
         role: "Directeur Logistique",
         content: "Ndoukoumane Shipping & Services nous accompagne depuis 5 ans avec un professionnalisme exemplaire. Leurs équipes réactives et leur maîtrise des procédures douanières nous font gagner un temps précieux.",
         rating: 5,
-        // Corporate, jeune professionnel africain
-        image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&fit=crop&crop=faces"
+        image: imageMap["Amadou Diallo"]
       },
       {
-        name: "Marie-Claire Ndiaye",
+        name: "Bousso Cisse",
         company: "West Africa Trading",
         role: "Responsable Import",
         content: "Un service de consignation maritime de qualité supérieure. La transparence dans les opérations et le suivi en temps réel sont remarquables. Je recommande vivement leurs services.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=faces" // Femme africaine professionnelle
+        image: imageMap["Bousso Cisse"]
       },
       {
-        name: "Jean-Baptiste Sarr",
+        name: "Abdoulaye Sow",
         company: "Atlantic Freight Solutions",
         role: "CEO",
         content: "Partenaire de confiance pour nos opérations portuaires. Leur expertise et leur réactivité nous permettent d'optimiser nos délais de livraison. Un service client exceptionnel.",
         rating: 5,
-        // Cadre/manager africain
-        image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=400&fit=crop&crop=faces"
+        image: imageMap["Abdoulaye Sow"]
       }
     ],
     en: [
@@ -47,23 +52,23 @@ const TestimonialsSlider = () => {
         role: "Logistics Director",
         content: "Ndoukoumane Shipping & Services has been supporting us for 5 years with exemplary professionalism. Their responsive teams and mastery of customs procedures save us precious time.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=400&fit=crop&crop=faces"
+        image: imageMap["Amadou Diallo"]
       },
       {
-        name: "Marie-Claire Ndiaye",
+        name: "Bousso Cisse",
         company: "West Africa Trading",
         role: "Import Manager",
         content: "Superior quality maritime consignment service. The transparency in operations and real-time tracking are remarkable. I highly recommend their services.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=faces"
+        image: imageMap["Bousso Cisse"]
       },
       {
-        name: "Jean-Baptiste Sarr",
+        name: "Abdoulaye Sow",
         company: "Atlantic Freight Solutions",
         role: "CEO",
         content: "Trusted partner for our port operations. Their expertise and responsiveness allow us to optimize our delivery times. Exceptional customer service.",
         rating: 5,
-        image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&h=400&fit=crop&crop=faces"
+        image: imageMap["Abdoulaye Sow"]
       }
     ]
   };
