@@ -2,18 +2,45 @@
 import React, { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Globe } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 const LanguageSwitcher = () => {
-  // On initial load, before render, set the saved lang if present
-  if (typeof window !== "undefined") {
-    const saved = localStorage.getItem("lang");
-    if (saved && document.documentElement.lang !== saved) {
-      document.documentElement.lang = saved;
-    }
-  }
+  const { language, setLanguage } = useLanguage();
 
-  // lang may not be in state, so recompute on each render
-  const isFR = typeof document !== "undefined" && document.documentElement.lang.startsWith("fr");
+  // Sync with DOM on mount and listen for lang-change events
+  useEffect(() => {
+    const syncWithDOM = () => {
+      const domLang = document.documentElement.lang;
+      const currentLang = domLang.startsWith("fr") ? "fr" : "en";
+      if (currentLang !== language) {
+        setLanguage(currentLang);
+      }
+    };
+
+    // Initial sync
+    syncWithDOM();
+
+    // Listen for lang-change events
+    window.addEventListener("lang-change", syncWithDOM);
+    
+    return () => {
+      window.removeEventListener("lang-change", syncWithDOM);
+    };
+  }, [language, setLanguage]);
+
+  const handleLanguageSwitch = () => {
+    const nextLang = language === "fr" ? "en" : "fr";
+    
+    // Update DOM
+    document.documentElement.lang = nextLang;
+    localStorage.setItem("lang", nextLang);
+    
+    // Update Zustand store
+    setLanguage(nextLang);
+    
+    // Dispatch event for other components
+    window.dispatchEvent(new Event("lang-change"));
+  };
 
   return (
     <div className="flex items-center space-x-1">
@@ -21,19 +48,13 @@ const LanguageSwitcher = () => {
       <Button
         variant="ghost"
         size="sm"
-        onClick={() => {
-          const next = document.documentElement.lang.startsWith("fr") ? "en" : "fr";
-          document.documentElement.lang = next;
-          localStorage.setItem("lang", next);  // remember choice
-          window.dispatchEvent(new Event("lang-change"));
-        }}
+        onClick={handleLanguageSwitch}
         className="text-sm font-medium"
       >
-        {isFR ? 'EN' : 'FR'}
+        {language === 'fr' ? 'EN' : 'FR'}
       </Button>
     </div>
   );
 };
 
 export default LanguageSwitcher;
-

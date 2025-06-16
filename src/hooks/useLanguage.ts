@@ -17,8 +17,21 @@ const translations = {
   }
 };
 
+// Initialize with DOM language or fallback to French
+const getInitialLanguage = (): 'fr' | 'en' => {
+  if (typeof window !== 'undefined') {
+    const saved = localStorage.getItem("lang");
+    if (saved) {
+      return saved.startsWith("fr") ? "fr" : "en";
+    }
+    const domLang = document.documentElement.lang;
+    return domLang.startsWith("fr") ? "fr" : "en";
+  }
+  return 'fr';
+};
+
 export const useLanguage = create<LanguageStore>((set, get) => ({
-  language: 'fr', // Default to French
+  language: getInitialLanguage(),
   setLanguage: (lang) => set({ language: lang }),
   t: (key) => {
     const { language } = get();
