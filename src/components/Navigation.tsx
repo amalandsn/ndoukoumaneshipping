@@ -16,7 +16,7 @@ const Navigation = () => {
       { label: 'À propos', href: '/about' },
       { label: 'Services', href: '/services' },
       { label: 'Références', href: '/references' },
-      { label: 'Actualités', href: '/news' },
+      { label: 'Actualités', href: '/actualites' },
       { label: 'Carrières', href: '/careers' },
       { label: 'Contact', href: '/contact' }
     ],
@@ -25,7 +25,7 @@ const Navigation = () => {
       { label: 'About', href: '/about' },
       { label: 'Services', href: '/services' },
       { label: 'References', href: '/references' },
-      { label: 'News', href: '/news' },
+      { label: 'Blog', href: '/blog' },
       { label: 'Careers', href: '/careers' },
       { label: 'Contact', href: '/contact' }
     ]
