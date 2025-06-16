@@ -30,25 +30,45 @@ const PAD_PROXY = "https://r.jina.ai/http://www.portdakar.sn/espace-media/actual
 async function scrapePAD() {
   try {
     console.log('Fetching PAD news via Jina.ai proxy...');
-    const txt = await (await fetch(PAD_PROXY)).text();
-    const re = /^\d+\.\s+([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s+-\s+(https?:\/\/\S+)/;
-    const items: any[] = [];
+    const response = await fetch(PAD_PROXY);
+    const txt = await response.text();
+    console.log('PAD response length:', txt.length);
+    console.log('PAD response sample:', txt.substring(0, 500));
     
-    txt.split("\n").forEach(line => {
-      const m = line.match(re);
-      if (m) {
-        const title = m[1].trim();
-        const url = m[2].trim();
-        items.push({
-          source: "Port Autonome de Dakar",
-          title_fr: title,
-          title_en: title,
-          url: url,
-          slug: createSlug(title) + '-pad',
-          excerpt_fr: "",
-          excerpt_en: "",
-          published_at: new Date().toISOString(),
-        });
+    // Try multiple regex patterns for PAD
+    const patterns = [
+      /^\d+\.\s+([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s+-\s+(https?:\/\/\S+)/,
+      /([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s*-\s*(https?:\/\/[^\s]+)/,
+      /•\s*([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s*-\s*(https?:\/\/[^\s]+)/,
+      /\*\s*([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s*-\s*(https?:\/\/[^\s]+)/
+    ];
+    
+    const items: any[] = [];
+    const lines = txt.split("\n");
+    console.log('Total lines to process:', lines.length);
+    
+    lines.forEach((line, index) => {
+      if (index < 10) console.log(`Line ${index}:`, line); // Log first 10 lines for debugging
+      
+      for (const pattern of patterns) {
+        const m = line.match(pattern);
+        if (m) {
+          const title = m[1].trim();
+          const url = m[2].trim();
+          console.log('Found PAD article:', title, url);
+          
+          items.push({
+            source: "Port Autonome de Dakar",
+            title_fr: title,
+            title_en: title,
+            url: url,
+            slug: createSlug(title) + '-pad-' + Date.now(), // Add timestamp to ensure uniqueness
+            excerpt_fr: "",
+            excerpt_en: "",
+            published_at: new Date().toISOString(),
+          });
+          break; // Stop trying other patterns once we find a match
+        }
       }
     });
     
@@ -82,7 +102,7 @@ async function scrapePTI() {
         title_fr: title,
         title_en: title,
         url: it.link || "",
-        slug: createSlug(title) + '-pti',
+        slug: createSlug(title) + '-pti-' + Date.now(), // Add timestamp to ensure uniqueness
         excerpt_fr: cleanDescription,
         excerpt_en: cleanDescription,
         published_at: new Date(it.pubDate || Date.now()).toISOString(),

@@ -28,7 +28,8 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
-          <Route path="/actualites" element={<Blog />} />
+          {/* Change: Actualités now shows IndustryNews instead of Blog */}
+          <Route path="/actualites" element={<IndustryNews />} />
           <Route path="/actualites/:slug" element={<BlogPostPage />} />
           <Route path="/actualites-secteur" element={<IndustryNews />} />
           <Route path="/industry-news" element={<IndustryNews />} />
