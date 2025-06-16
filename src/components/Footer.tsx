@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -21,62 +22,68 @@ const Footer = () => {
     fr: {
       company: {
         description: "Leader en services maritimes au Sénégal avec plus de 20 ans d'expérience dans la consignation, manutention et transit douanier.",
-        address: "Centrale Park ex 4C N°219, Dakar, Sénégal",
+        address: "Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar",
         phone: "+221 33 822 29 80",
-        email: "contact@ndoukoumaneshipping.sn"
+        urgent: "+221 77 402 18 25",
+        email: "info@ndoukoumane-shipping.sn"
       },
       services: {
         title: "Nos Services",
         items: [
-          "Consignation Maritime",
-          "Manutention Portuaire", 
-          "Transit Douanier",
-          "Conseil Maritime"
+          "Fret Maritime & Routier",
+          "Fret Aérien (Agent IATA)", 
+          "Transit & Douane",
+          "Entrepôts & Stockage"
         ]
       },
       quickLinks: {
         title: "Liens Rapides",
         items: [
           { label: "À propos", href: "/about" },
-          { label: "Références", href: "/references" },
-          { label: "Carrières", href: "/careers" },
+          { label: "Services", href: "/services" },
+          { label: "Contact", href: "/contact" },
           { label: "Mentions légales", href: "/legal" }
         ]
       },
       contact: {
         title: "Contact",
-        hours: "Lun-Ven: 8h00-18h00\nSam: 8h00-12h00"
+        hours: "Lun-Ven: 8h00-18h00\nSam: 8h00-12h00",
+        office: "Bureau",
+        urgent: "Urgence 24/7"
       },
       copyright: "© 2024 Ndoukoumane Shipping & Services. Tous droits réservés."
     },
     en: {
       company: {
         description: "Leading maritime services in Senegal with over 20 years of experience in consignment, handling and customs transit.",
-        address: "Centrale Park ex 4C N°219, Dakar, Senegal",
+        address: "Central Park, opposite the National Fire Brigade HQ, Dakar",
         phone: "+221 33 822 29 80",
-        email: "contact@ndoukoumaneshipping.sn"
+        urgent: "+221 77 402 18 25",
+        email: "info@ndoukoumane-shipping.sn"
       },
       services: {
         title: "Our Services",
         items: [
-          "Maritime Consignment",
-          "Port Handling",
-          "Customs Transit", 
-          "Maritime Advisory"
+          "Sea & Road Freight",
+          "Air Freight (IATA Agent)",
+          "Customs Brokerage & Transit", 
+          "Warehousing"
         ]
       },
       quickLinks: {
         title: "Quick Links",
         items: [
           { label: "About", href: "/about" },
-          { label: "References", href: "/references" },
-          { label: "Careers", href: "/careers" },
+          { label: "Services", href: "/services" },
+          { label: "Contact", href: "/contact" },
           { label: "Legal", href: "/legal" }
         ]
       },
       contact: {
         title: "Contact",
-        hours: "Mon-Fri: 8:00-18:00\nSat: 8:00-12:00"
+        hours: "Mon-Fri: 8:00-18:00\nSat: 8:00-12:00",
+        office: "Office",
+        urgent: "24/7 Emergency"
       },
       copyright: "© 2024 Ndoukoumane Shipping & Services. All rights reserved."
     }
@@ -118,9 +125,10 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-orange-400 flex-shrink-0" />
-                <span className="text-blue-200 text-sm">
-                  {content.company.phone}
-                </span>
+                <div className="text-blue-200 text-sm">
+                  <div>{content.contact.office}: {content.company.phone}</div>
+                  <div className="text-orange-300">{content.contact.urgent}: {content.company.urgent}</div>
+                </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-orange-400 flex-shrink-0" />

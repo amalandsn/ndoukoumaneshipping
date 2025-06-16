@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Ship, X } from 'lucide-react';
+import { Menu, Ship, X, Phone } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/hooks/useLanguage';
 
@@ -25,7 +26,7 @@ const Navigation = () => {
       { label: 'About', href: '/about' },
       { label: 'Services', href: '/services' },
       { label: 'References', href: '/references' },
-      { label: 'Blog', href: '/blog' },
+      { label: 'News', href: '/blog' },
       { label: 'Careers', href: '/careers' },
       { label: 'Contact', href: '/contact' }
     ]
@@ -67,8 +68,11 @@ const Navigation = () => {
             
             <LanguageSwitcher />
             
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-              {language === 'fr' ? 'Devis Gratuit' : 'Free Quote'}
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
+              <a href="tel:+221774021825">
+                <Phone className="h-4 w-4 mr-2" />
+                {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
+              </a>
             </Button>
           </div>
 
@@ -109,8 +113,11 @@ const Navigation = () => {
                     </Link>
                   ))}
                   
-                  <Button className="bg-orange-500 hover:bg-orange-600 text-white mt-6">
-                    {language === 'fr' ? 'Devis Gratuit' : 'Free Quote'}
+                  <Button className="bg-orange-500 hover:bg-orange-600 text-white mt-6" asChild>
+                    <a href="tel:+221774021825">
+                      <Phone className="h-4 w-4 mr-2" />
+                      {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
+                    </a>
                   </Button>
                 </div>
               </SheetContent>

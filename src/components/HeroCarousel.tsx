@@ -1,7 +1,8 @@
+
 /* eslint-disable jsx-a11y/alt-text */
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Phone } from "lucide-react";
 
 type Slide = {
   src: string;
@@ -18,10 +19,10 @@ const slides: Slide[] = [
     src: "/hero-consignation.webp",
     fallback: "https://images.unsplash.com/photo-1700696724329-6969321da637?auto=format&fit=crop&w=1920&q=80",
     alt: "Grue chargeant des conteneurs – consignation",
-    titleFR: "Experts en consigne portuaire",
-    subtitleFR: "Agence maritime de confiance",
-    titleEN: "World-class vessel agency",
-    subtitleEN: "Trusted ship-owner representative",
+    titleFR: "Votre partenaire logistique 360°",
+    subtitleFR: "Maritime, aérien, routier",
+    titleEN: "Your 360° Logistics Partner",
+    subtitleEN: "Sea, Air & Road",
   },
   {
     src: "/hero-manutention.webp",
@@ -89,18 +90,27 @@ export default function HeroCarousel() {
 
       {/* Overlay : texte spécifique au slide */}
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 text-center px-4">
-        <h1 className="text-white text-3xl md:text-5xl font-bold drop-shadow-md">
+        <h1 className="text-white text-3xl md:text-5xl font-bold drop-shadow-md mb-2">
           {isFR ? titleFR : titleEN}
         </h1>
-        <p className="text-white text-lg md:text-xl mt-2 drop-shadow-md">
+        <p className="text-white text-lg md:text-xl mb-6 drop-shadow-md">
           {isFR ? subtitleFR : subtitleEN}
         </p>
-        <a
-          href="#contact"
-          className="mt-6 bg-[#FF7A00] text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition"
-        >
-          Demander un devis
-        </a>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a
+            href="#contact"
+            className="bg-[#FF7A00] text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition"
+          >
+            {isFR ? "Demander un devis" : "Request a quote"}
+          </a>
+          <a
+            href="tel:+221774021825"
+            className="bg-white/20 backdrop-blur-sm text-white py-3 px-6 rounded-lg shadow-lg hover:bg-white/30 transition flex items-center gap-2"
+          >
+            <Phone className="h-4 w-4" />
+            {isFR ? "Appelez 24/7" : "Call Us 24/7"}
+          </a>
+        </div>
       </div>
 
       {/* Flèches à 10 % */}
