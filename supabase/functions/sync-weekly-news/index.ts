@@ -1,7 +1,9 @@
 
+/****************************************************************
+ * sync-weekly-news.ts – Deno-compatible, no external XML module
+ ****************************************************************/
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { parse } from "https://deno.land/x/xml_parser@v0.2.0/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -21,21 +23,17 @@ function createSlug(text: string): string {
     .substring(0, 100);
 }
 
-/* ----------- 1. PAD scraping via jina.ai proxy (HTML → JSON) ----------- */
-const PAD_PROXY = "https://r.jina.ai/http://www.portdakar.sn/espace-media/actualites";
+/* ---------- 1. PAD via jina.ai proxy ---------- */
+const PAD_URL = "https://r.jina.ai/http://www.portdakar.sn/espace-media/actualites";
 
-async function fetchPad() {
+async function scrapePAD() {
   try {
     console.log('Fetching PAD news via Jina.ai proxy...');
-    const res = await fetch(PAD_PROXY);
-    if (!res.ok) throw new Error(`PAD proxy fetch failed: ${res.status}`);
-    
-    const txt = await res.text();
+    const txt = await (await fetch(PAD_URL)).text();
     const items: any[] = [];
     
-    // Parse the structured text from jina.ai
-    txt.split("\n").slice(0, 10).forEach((line) => {
-      const m = line.match(/^\d+\.\s+(.+?)\s+-\s+(https?:\/\/\S+)/);
+    txt.split("\n").forEach((l) => {
+      const m = l.match(/^\d+\.\s+(.+?)\s+-\s+(https?:\/\/\S+)/);
       if (m) {
         const title = m[1].trim();
         const url = m[2].trim();
@@ -60,42 +58,34 @@ async function fetchPad() {
   }
 }
 
-/* ----------- 2. Port Technology RSS via fetch + XML parser ----------- */
+/* ---------- 2. Port-Technology RSS ---------- */
 const PTI_RSS = "https://www.porttechnology.org/feed/";
 
-async function fetchPTI() {
+async function scrapePTI() {
   try {
     console.log('Fetching PTI RSS...');
-    const response = await fetch(PTI_RSS);
-    if (!response.ok) throw new Error(`PTI RSS fetch failed: ${response.status}`);
-    
-    const xml = await response.text();
-    const doc = parse(xml);
+    const xml = await (await fetch(PTI_RSS)).text();
+    const doc = new DOMParser().parseFromString(xml, "application/xml");
     const items: any[] = [];
     
-    // Handle both single item and array of items
-    const rssItems = Array.isArray(doc.rss.channel.item) 
-      ? doc.rss.channel.item 
-      : [doc.rss.channel.item];
-    
-    for (const item of rssItems.slice(0, 3)) {
-      if (item && item.title && item.link) {
-        const title = item.title.toString();
-        const description = item.description ? item.description.toString() : '';
+    doc.querySelectorAll("item").forEach((it, idx) => {
+      if (idx < 3) {
+        const title = it.querySelector("title")?.textContent ?? "";
+        const description = it.querySelector("description")?.textContent ?? "";
         const cleanDescription = description.replace(/<[^>]+>/g, "").slice(0, 160);
         
         items.push({
           source: "Port Technology International",
           title_fr: title,
           title_en: title,
-          url: item.link.toString(),
+          url: it.querySelector("link")?.textContent ?? "",
           slug: createSlug(title) + '-pti',
           excerpt_fr: cleanDescription,
           excerpt_en: cleanDescription,
-          published_at: item.pubDate ? new Date(item.pubDate.toString()).toISOString() : new Date().toISOString(),
+          published_at: new Date(it.querySelector("pubDate")?.textContent ?? Date.now()).toISOString(),
         });
       }
-    }
+    });
     
     console.log(`Found ${items.length} PTI articles`);
     return items;
@@ -105,6 +95,7 @@ async function fetchPTI() {
   }
 }
 
+/* ---------------- MAIN HANDLER ---------------- */
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -114,24 +105,14 @@ serve(async (req) => {
   try {
     console.log('Starting news sync...');
     
-    // Fetch news from both sources
-    const [padArticles, ptiArticles] = await Promise.all([
-      fetchPad(),
-      fetchPTI()
-    ]);
+    const data = [...await scrapePAD(), ...await scrapePTI()];
+    console.log("Total articles to sync:", data.length);
 
-    const allArticles = [...padArticles, ...ptiArticles];
-    console.log(`Total articles to sync: ${allArticles.length}`);
-
-    // Insert or update articles
-    if (allArticles.length > 0) {
-      const { error } = await sb
-        .from('news')
-        .upsert(allArticles, { 
-          onConflict: 'slug',
-          ignoreDuplicates: false 
-        });
-      
+    if (data.length) {
+      const { error } = await sb.from("news").upsert(data, { 
+        onConflict: "slug",
+        ignoreDuplicates: false 
+      });
       if (error) {
         console.error('Error inserting articles:', error);
         throw error;
@@ -139,29 +120,29 @@ serve(async (req) => {
     }
 
     console.log('News sync completed successfully');
-    
+
     return new Response(
       JSON.stringify({ 
         success: true, 
-        synced: allArticles.length,
+        synced: data.length,
         message: 'News sync completed successfully' 
       }),
-      { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 200 
+      {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       }
     );
-  } catch (error) {
-    console.error('News sync failed:', error);
+  } catch (err) {
+    console.error('News sync failed:', err);
     
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: error.message 
+        error: err.message 
       }),
       { 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        status: 500 
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
       }
     );
   }
