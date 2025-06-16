@@ -48,6 +48,7 @@ async function scrapePAD() {
             url,
             slug: `${url.split("/").pop()}-pad-${Date.now()}`,
             published_at: new Date().toISOString(),
+            display_order: 1, // PAD articles come first
           });
           console.log(`Successfully scraped PAD article: ${title}`);
         }
@@ -90,7 +91,8 @@ async function scrapePTI() {
           excerpt_en: descriptionClean.slice(0,160),
           url: it.link,
           slug: `${it.link.split("/").filter(Boolean).pop()}-pti-${Date.now()}`,
-          published_at: new Date(it.pubDate || Date.now()).toISOString()
+          published_at: new Date(it.pubDate || Date.now()).toISOString(),
+          display_order: 2, // PTI articles come second
         });
         console.log(`Successfully processed PTI article: ${it.title}`);
       } catch (error) {
@@ -142,8 +144,9 @@ serve(async (req) => {
       scrapePTI()
     ]);
     
+    // Order: PAD first (display_order: 1), then PTI (display_order: 2)
     const rows = [...pad, ...pti];
-    console.log(`Total articles to sync: ${rows.length}`);
+    console.log(`Total articles to sync: ${rows.length} (${pad.length} PAD + ${pti.length} PTI)`);
     
     if (rows.length) {
       const { error } = await sb.from("news").upsert(rows, { 
@@ -154,13 +157,15 @@ serve(async (req) => {
         console.error('Database upsert error:', error);
         throw error;
       }
-      console.log(`Successfully synced ${rows.length} articles`);
+      console.log(`Successfully synced ${rows.length} articles (PAD: ${pad.length}, PTI: ${pti.length})`);
     }
     
     return new Response(
       JSON.stringify({ 
         success: true, 
         synced: rows.length,
+        pad_articles: pad.length,
+        pti_articles: pti.length,
         message: 'News sync completed successfully'
       }),
       {

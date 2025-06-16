@@ -18,6 +18,7 @@ interface NewsItem {
   excerpt_en: string;
   published_at: string;
   fetched_at: string;
+  display_order?: number;
 }
 
 interface NewsGridProps {
@@ -62,10 +63,25 @@ const NewsGrid: React.FC<NewsGridProps> = ({ news, isLoading }) => {
     );
   }
 
+  // Sort articles: PAD first (display_order: 1), then PTI (display_order: 2), 
+  // and within each group, sort by published date (most recent first)
+  const sortedNews = [...news].sort((a, b) => {
+    // First sort by display_order (PAD=1, PTI=2)
+    const orderA = a.display_order || (a.source.includes('Port Autonome') ? 1 : 2);
+    const orderB = b.display_order || (b.source.includes('Port Autonome') ? 1 : 2);
+    
+    if (orderA !== orderB) {
+      return orderA - orderB;
+    }
+    
+    // Then sort by published date (most recent first)
+    return new Date(b.published_at).getTime() - new Date(a.published_at).getTime();
+  });
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {news.map((item) => {
-        // Utilise toujours le français par défaut, sauf si explicitement en anglais
+      {sortedNews.map((item) => {
+        // Display French by default, English only if explicitly requested and available
         const displayTitle = language === 'en' && item.title_en ? item.title_en : (item.title_fr || item.title_en);
         const displayExcerpt = language === 'en' && item.excerpt_en ? item.excerpt_en : (item.excerpt_fr || item.excerpt_en);
         
@@ -73,7 +89,14 @@ const NewsGrid: React.FC<NewsGridProps> = ({ news, isLoading }) => {
           <Card key={item.id} className="hover:shadow-lg transition-shadow duration-200">
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between gap-2 mb-2">
-                <Badge variant="secondary" className="text-xs">
+                <Badge 
+                  variant="secondary" 
+                  className={`text-xs ${
+                    item.source.includes('Port Autonome') 
+                      ? 'bg-blue-100 text-blue-800' 
+                      : 'bg-green-100 text-green-800'
+                  }`}
+                >
                   {item.source}
                 </Badge>
                 <div className="flex items-center text-xs text-gray-500">

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -21,12 +20,15 @@ const IndustryNews = () => {
     queryFn: async () => {
       let query = supabase
         .from('news')
-        .select('*')
-        .order('published_at', { ascending: false });
+        .select('*');
 
       if (selectedSource) {
         query = query.eq('source', selectedSource);
       }
+
+      // Order by source priority (PAD first) then by published date
+      query = query.order('source', { ascending: true })
+                   .order('published_at', { ascending: false });
 
       const { data, error } = await query;
       
