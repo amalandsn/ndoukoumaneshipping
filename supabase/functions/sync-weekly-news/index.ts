@@ -1,7 +1,4 @@
 
-/****************************************************************
- * sync-weekly-news.ts – Deno Edge, 100% working
- ****************************************************************/
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import { XMLParser } from "https://esm.sh/fast-xml-parser@4.3.5";
@@ -11,191 +8,126 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
-const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
-const SERVICE_ROLE = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-const sb = createClient(SUPABASE_URL, SERVICE_ROLE, { auth: { persistSession: false } });
+/* ENV ------------------------------------------------------------------ */
+const sb = createClient(
+  Deno.env.get("SUPABASE_URL")!,
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
+  { auth: { persistSession: false } },
+);
 
-// Helper function to create slug from text
-function createSlug(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
-    .substring(0, 100);
-}
-
-/* ---------- 1. PAD via jina.ai proxy ---------- */
-const PAD_PROXY = "https://r.jina.ai/http://www.portdakar.sn/espace-media/actualites";
+/* ---------- 1. PAD : scrape each article page ------------------------- */
+const PAD_INDEX = "https://www.portdakar.sn/espace-media/actualites";
 
 async function scrapePAD() {
   try {
-    console.log('Fetching PAD news via Jina.ai proxy...');
-    const response = await fetch(PAD_PROXY);
-    const txt = await response.text();
-    console.log('PAD response length:', txt.length);
-    console.log('PAD response sample:', txt.substring(0, 500));
+    console.log('Fetching PAD articles...');
+    const html = await (await fetch(PAD_INDEX)).text();
+    const linkRx = /href="(\/actualites\/[^"]+)"/g;
+    const links = [...html.matchAll(linkRx)].slice(0, 3).map(m => `https://www.portdakar.sn${m[1]}`);
+    console.log(`Found ${links.length} PAD article links`);
     
-    // Try multiple regex patterns for PAD
-    const patterns = [
-      /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, // Markdown links [title](url)
-      /^\d+\.\s+([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s+-\s+(https?:\/\/\S+)/,
-      /([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s*-\s*(https?:\/\/[^\s]+)/,
-      /•\s*([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s*-\s*(https?:\/\/[^\s]+)/,
-      /\*\s*([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s*-\s*(https?:\/\/[^\s]+)/
-    ];
-    
-    const items: any[] = [];
-    const lines = txt.split("\n");
-    console.log('Total lines to process:', lines.length);
-    
-    lines.forEach((line, index) => {
-      if (index < 10) console.log(`Line ${index}:`, line); // Log first 10 lines for debugging
-      
-      // Try markdown links first
-      const markdownPattern = /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g;
-      let match;
-      while ((match = markdownPattern.exec(line)) !== null) {
-        const title = match[1].trim();
-        const url = match[2].trim();
+    const items = [];
+
+    for (const url of links) {
+      try {
+        console.log(`Scraping PAD article: ${url}`);
+        const page = await (await fetch(url)).text();
+        const title = (page.match(/<h1[^>]*>(.*?)<\/h1>/i)?.[1] || "").replace(/<[^>]+>/g,"").trim();
+        const para = (page.match(/<p[^>]*>(.*?)<\/p>/i)?.[1] || "").replace(/<[^>]+>/g,"").trim();
         
-        // Only include URLs from portdakar.sn
-        if (url.includes('portdakar.sn')) {
-          console.log('Found PAD article via markdown:', title, url);
+        if (title) {
+          const titleEn = await translate(title, "en");
+          const excerptEn = para ? await translate(para.slice(0,160), "en") : "";
           
           items.push({
             source: "Port Autonome de Dakar",
             title_fr: title,
-            title_en: title,
-            url: url,
-            slug: createSlug(title) + '-pad-' + Date.now(),
-            excerpt_fr: "",
-            excerpt_en: "",
+            title_en: titleEn,
+            excerpt_fr: para.slice(0,160),
+            excerpt_en: excerptEn,
+            url,
+            slug: `${url.split("/").pop()}-pad-${Date.now()}`,
             published_at: new Date().toISOString(),
           });
+          console.log(`Successfully scraped PAD article: ${title}`);
         }
+      } catch (error) {
+        console.error(`Error scraping PAD article ${url}:`, error);
       }
-      
-      // Try other patterns if no markdown links found
-      if (!line.includes('[') && !line.includes(']')) {
-        for (const pattern of patterns.slice(1)) {
-          const m = line.match(pattern);
-          if (m) {
-            const title = m[1].trim();
-            const url = m[2].trim();
-            
-            if (url.includes('portdakar.sn')) {
-              console.log('Found PAD article:', title, url);
-              
-              items.push({
-                source: "Port Autonome de Dakar",
-                title_fr: title,
-                title_en: title,
-                url: url,
-                slug: createSlug(title) + '-pad-' + Date.now(),
-                excerpt_fr: "",
-                excerpt_en: "",
-                published_at: new Date().toISOString(),
-              });
-              break;
-            }
-          }
-        }
-      }
-    });
+    }
     
-    console.log(`Found ${items.length} PAD articles`);
-    return items.slice(0, 3);
+    console.log(`PAD scraping completed: ${items.length} articles`);
+    return items;
   } catch (error) {
-    console.error('Error fetching PAD:', error);
+    console.error('Error in scrapePAD:', error);
     return [];
   }
 }
 
-/* ---------- 2. Direct Port Dakar scraping ---------- */
-const PORT_DAKAR_DIRECT = "https://r.jina.ai/https://www.portdakar.sn/";
-
-async function scrapePortDakarDirect() {
-  try {
-    console.log('Fetching Port Dakar direct via Jina.ai proxy...');
-    const response = await fetch(PORT_DAKAR_DIRECT);
-    const txt = await response.text();
-    console.log('Port Dakar direct response length:', txt.length);
-    
-    const items: any[] = [];
-    const lines = txt.split("\n");
-    
-    // Look for news links and titles in the main page
-    lines.forEach((line) => {
-      const markdownPattern = /\[([^\]]+)\]\((https?:\/\/[^\)]+actualites[^\)]*)\)/g;
-      let match;
-      while ((match = markdownPattern.exec(line)) !== null) {
-        const title = match[1].trim();
-        const url = match[2].trim();
-        
-        // Skip if it's just navigation or generic text
-        if (title.length > 10 && !title.toLowerCase().includes('actualité') && !title.toLowerCase().includes('menu')) {
-          console.log('Found Port Dakar direct article:', title, url);
-          
-          items.push({
-            source: "Port Autonome de Dakar",
-            title_fr: title,
-            title_en: title,
-            url: url,
-            slug: createSlug(title) + '-pad-direct-' + Date.now(),
-            excerpt_fr: "",
-            excerpt_en: "",
-            published_at: new Date().toISOString(),
-          });
-        }
-      }
-    });
-    
-    console.log(`Found ${items.length} Port Dakar direct articles`);
-    return items.slice(0, 2);
-  } catch (error) {
-    console.error('Error fetching Port Dakar direct:', error);
-    return [];
-  }
-}
-
-/* ---------- 3. Port Technology RSS ---------- */
+/* ---------- 2. PTI : RSS in English, auto-translate to French --------- */
 const PTI_RSS = "https://www.porttechnology.org/feed/";
 
 async function scrapePTI() {
   try {
     console.log('Fetching PTI RSS...');
     const xml = await (await fetch(PTI_RSS)).text();
-    const parser = new XMLParser();
-    const rss = parser.parse(xml);
-    const ch = rss.rss.channel;
-    const items: any[] = [];
+    const rss = new XMLParser().parse(xml).rss.channel.item;
+    const items = Array.isArray(rss) ? rss.slice(0, 3) : [rss].slice(0, 3);
     
-    (Array.isArray(ch.item) ? ch.item : [ch.item]).slice(0, 3).forEach((it: any) => {
-      const title = it.title || "";
-      const description = it.description || "";
-      const cleanDescription = description.replace(/<[^>]+>/g, "").slice(0, 160);
-      
-      items.push({
-        source: "Port Technology International",
-        title_fr: title, // Garde le titre original en anglais pour PTI
-        title_en: title,
-        url: it.link || "",
-        slug: createSlug(title) + '-pti-' + Date.now(),
-        excerpt_fr: cleanDescription,
-        excerpt_en: cleanDescription,
-        published_at: new Date(it.pubDate || Date.now()).toISOString(),
-      });
-    });
+    const results = [];
     
-    console.log(`Found ${items.length} PTI articles`);
-    return items;
+    for (const it of items) {
+      try {
+        const titleFr = await translate(it.title, "fr");
+        const descriptionClean = strip(it.description);
+        const excerptFr = await translate(descriptionClean.slice(0,160), "fr");
+        
+        results.push({
+          source: "Port Technology International",
+          title_fr: titleFr,
+          title_en: it.title,
+          excerpt_fr: excerptFr,
+          excerpt_en: descriptionClean.slice(0,160),
+          url: it.link,
+          slug: `${it.link.split("/").filter(Boolean).pop()}-pti-${Date.now()}`,
+          published_at: new Date(it.pubDate || Date.now()).toISOString()
+        });
+        console.log(`Successfully processed PTI article: ${it.title}`);
+      } catch (error) {
+        console.error(`Error processing PTI article:`, error);
+      }
+    }
+    
+    console.log(`PTI scraping completed: ${results.length} articles`);
+    return results;
   } catch (error) {
-    console.error('Error fetching PTI:', error);
+    console.error('Error in scrapePTI:', error);
     return [];
   }
 }
 
-/* ---------------- MAIN HANDLER ---------------- */
+/* ---------- 3. Helpers ------------------------------------------------ */
+function strip(html: string) { 
+  return html.replace(/<[^>]+>/g,"").trim(); 
+}
+
+async function translate(text: string, target: "en"|"fr") {
+  if (!text || text.trim().length === 0) return "";
+  
+  try {
+    const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${target}&dt=t&q=${encodeURIComponent(text)}`);
+    if (!res.ok) return text;
+    
+    const json = await res.json();
+    const translated = json[0].map((seg: any) => seg[0]).join("");
+    return translated || text;
+  } catch (error) {
+    console.error(`Translation error for "${text}":`, error);
+    return text;
+  }
+}
+
+/* ---------------- MAIN HANDLER --------------------------------------- */
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -205,44 +137,43 @@ serve(async (req) => {
   try {
     console.log('Starting news sync...');
     
-    const data = [
-      ...await scrapePAD(), 
-      ...await scrapePortDakarDirect(),
-      ...await scrapePTI()
-    ];
-    console.log("Total articles to sync:", data.length);
-
-    if (data.length) {
-      const { error } = await sb.from("news").upsert(data, { 
+    const [pad, pti] = await Promise.all([
+      scrapePAD(),
+      scrapePTI()
+    ]);
+    
+    const rows = [...pad, ...pti];
+    console.log(`Total articles to sync: ${rows.length}`);
+    
+    if (rows.length) {
+      const { error } = await sb.from("news").upsert(rows, { 
         onConflict: "slug",
         ignoreDuplicates: false 
       });
       if (error) {
-        console.error('Error inserting articles:', error);
+        console.error('Database upsert error:', error);
         throw error;
       }
+      console.log(`Successfully synced ${rows.length} articles`);
     }
-
-    console.log('News sync completed successfully');
-
+    
     return new Response(
       JSON.stringify({ 
         success: true, 
-        synced: data.length,
-        message: 'News sync completed successfully' 
+        synced: rows.length,
+        message: 'News sync completed successfully'
       }),
       {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       }
     );
-  } catch (err) {
-    console.error('News sync failed:', err);
-    
+  } catch (e) {
+    console.error('News sync failed:', e);
     return new Response(
       JSON.stringify({ 
         success: false, 
-        error: err.message 
+        message: e.message 
       }),
       { 
         status: 500,
