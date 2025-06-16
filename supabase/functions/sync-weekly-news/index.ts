@@ -37,6 +37,7 @@ async function scrapePAD() {
     
     // Try multiple regex patterns for PAD
     const patterns = [
+      /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, // Markdown links [title](url)
       /^\d+\.\s+([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s+-\s+(https?:\/\/\S+)/,
       /([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s*-\s*(https?:\/\/[^\s]+)/,
       /•\s*([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s*-\s*(https?:\/\/[^\s]+)/,
@@ -50,24 +51,54 @@ async function scrapePAD() {
     lines.forEach((line, index) => {
       if (index < 10) console.log(`Line ${index}:`, line); // Log first 10 lines for debugging
       
-      for (const pattern of patterns) {
-        const m = line.match(pattern);
-        if (m) {
-          const title = m[1].trim();
-          const url = m[2].trim();
-          console.log('Found PAD article:', title, url);
+      // Try markdown links first
+      const markdownPattern = /\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g;
+      let match;
+      while ((match = markdownPattern.exec(line)) !== null) {
+        const title = match[1].trim();
+        const url = match[2].trim();
+        
+        // Only include URLs from portdakar.sn
+        if (url.includes('portdakar.sn')) {
+          console.log('Found PAD article via markdown:', title, url);
           
           items.push({
             source: "Port Autonome de Dakar",
             title_fr: title,
             title_en: title,
             url: url,
-            slug: createSlug(title) + '-pad-' + Date.now(), // Add timestamp to ensure uniqueness
+            slug: createSlug(title) + '-pad-' + Date.now(),
             excerpt_fr: "",
             excerpt_en: "",
             published_at: new Date().toISOString(),
           });
-          break; // Stop trying other patterns once we find a match
+        }
+      }
+      
+      // Try other patterns if no markdown links found
+      if (!line.includes('[') && !line.includes(']')) {
+        for (const pattern of patterns.slice(1)) {
+          const m = line.match(pattern);
+          if (m) {
+            const title = m[1].trim();
+            const url = m[2].trim();
+            
+            if (url.includes('portdakar.sn')) {
+              console.log('Found PAD article:', title, url);
+              
+              items.push({
+                source: "Port Autonome de Dakar",
+                title_fr: title,
+                title_en: title,
+                url: url,
+                slug: createSlug(title) + '-pad-' + Date.now(),
+                excerpt_fr: "",
+                excerpt_en: "",
+                published_at: new Date().toISOString(),
+              });
+              break;
+            }
+          }
         }
       }
     });
@@ -80,7 +111,54 @@ async function scrapePAD() {
   }
 }
 
-/* ---------- 2. Port Technology RSS ---------- */
+/* ---------- 2. Direct Port Dakar scraping ---------- */
+const PORT_DAKAR_DIRECT = "https://r.jina.ai/https://www.portdakar.sn/";
+
+async function scrapePortDakarDirect() {
+  try {
+    console.log('Fetching Port Dakar direct via Jina.ai proxy...');
+    const response = await fetch(PORT_DAKAR_DIRECT);
+    const txt = await response.text();
+    console.log('Port Dakar direct response length:', txt.length);
+    
+    const items: any[] = [];
+    const lines = txt.split("\n");
+    
+    // Look for news links and titles in the main page
+    lines.forEach((line) => {
+      const markdownPattern = /\[([^\]]+)\]\((https?:\/\/[^\)]+actualites[^\)]*)\)/g;
+      let match;
+      while ((match = markdownPattern.exec(line)) !== null) {
+        const title = match[1].trim();
+        const url = match[2].trim();
+        
+        // Skip if it's just navigation or generic text
+        if (title.length > 10 && !title.toLowerCase().includes('actualité') && !title.toLowerCase().includes('menu')) {
+          console.log('Found Port Dakar direct article:', title, url);
+          
+          items.push({
+            source: "Port Autonome de Dakar",
+            title_fr: title,
+            title_en: title,
+            url: url,
+            slug: createSlug(title) + '-pad-direct-' + Date.now(),
+            excerpt_fr: "",
+            excerpt_en: "",
+            published_at: new Date().toISOString(),
+          });
+        }
+      }
+    });
+    
+    console.log(`Found ${items.length} Port Dakar direct articles`);
+    return items.slice(0, 2);
+  } catch (error) {
+    console.error('Error fetching Port Dakar direct:', error);
+    return [];
+  }
+}
+
+/* ---------- 3. Port Technology RSS ---------- */
 const PTI_RSS = "https://www.porttechnology.org/feed/";
 
 async function scrapePTI() {
@@ -99,10 +177,10 @@ async function scrapePTI() {
       
       items.push({
         source: "Port Technology International",
-        title_fr: title,
+        title_fr: title, // Garde le titre original en anglais pour PTI
         title_en: title,
         url: it.link || "",
-        slug: createSlug(title) + '-pti-' + Date.now(), // Add timestamp to ensure uniqueness
+        slug: createSlug(title) + '-pti-' + Date.now(),
         excerpt_fr: cleanDescription,
         excerpt_en: cleanDescription,
         published_at: new Date(it.pubDate || Date.now()).toISOString(),
@@ -127,7 +205,11 @@ serve(async (req) => {
   try {
     console.log('Starting news sync...');
     
-    const data = [...await scrapePAD(), ...await scrapePTI()];
+    const data = [
+      ...await scrapePAD(), 
+      ...await scrapePortDakarDirect(),
+      ...await scrapePTI()
+    ];
     console.log("Total articles to sync:", data.length);
 
     if (data.length) {

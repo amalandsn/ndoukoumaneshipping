@@ -64,42 +64,50 @@ const NewsGrid: React.FC<NewsGridProps> = ({ news, isLoading }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {news.map((item) => (
-        <Card key={item.id} className="hover:shadow-lg transition-shadow duration-200">
-          <CardHeader className="pb-3">
-            <div className="flex items-start justify-between gap-2 mb-2">
-              <Badge variant="secondary" className="text-xs">
-                {item.source}
-              </Badge>
-              <div className="flex items-center text-xs text-gray-500">
-                <Clock className="w-3 h-3 mr-1" />
-                {format(
-                  new Date(item.published_at), 
-                  'dd MMM yyyy',
-                  { locale: language === 'fr' ? fr : enUS }
-                )}
+      {news.map((item) => {
+        // Utilise toujours le français par défaut, sauf si explicitement en anglais
+        const displayTitle = language === 'en' && item.title_en ? item.title_en : (item.title_fr || item.title_en);
+        const displayExcerpt = language === 'en' && item.excerpt_en ? item.excerpt_en : (item.excerpt_fr || item.excerpt_en);
+        
+        return (
+          <Card key={item.id} className="hover:shadow-lg transition-shadow duration-200">
+            <CardHeader className="pb-3">
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <Badge variant="secondary" className="text-xs">
+                  {item.source}
+                </Badge>
+                <div className="flex items-center text-xs text-gray-500">
+                  <Clock className="w-3 h-3 mr-1" />
+                  {format(
+                    new Date(item.published_at), 
+                    'dd MMM yyyy',
+                    { locale: language === 'fr' ? fr : enUS }
+                  )}
+                </div>
               </div>
-            </div>
-            <CardTitle className="text-base leading-tight">
-              {language === 'fr' ? item.title_fr : item.title_en}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <p className="text-sm text-gray-600 mb-4 line-clamp-3">
-              {language === 'fr' ? item.excerpt_fr : item.excerpt_en}
-            </p>
-            <a
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors"
-            >
-              {language === 'fr' ? 'Lire la suite' : 'Read more'}
-              <ExternalLink className="w-3 h-3 ml-1" />
-            </a>
-          </CardContent>
-        </Card>
-      ))}
+              <CardTitle className="text-base leading-tight">
+                {displayTitle}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="pt-0">
+              {displayExcerpt && (
+                <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                  {displayExcerpt}
+                </p>
+              )}
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors"
+              >
+                {language === 'fr' ? 'Lire la suite' : 'Read more'}
+                <ExternalLink className="w-3 h-3 ml-1" />
+              </a>
+            </CardContent>
+          </Card>
+        );
+      })}
     </div>
   );
 };
