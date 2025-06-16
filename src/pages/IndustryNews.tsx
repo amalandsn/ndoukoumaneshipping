@@ -8,11 +8,13 @@ import Footer from '@/components/Footer';
 import NewsGrid from '@/components/news/NewsGrid';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { RefreshCw, Newspaper } from 'lucide-react';
+import { RefreshCw, Newspaper, Download } from 'lucide-react';
+import { toast } from 'sonner';
 
 const IndustryNews = () => {
   const { language } = useLanguage();
   const [selectedSource, setSelectedSource] = useState<string | null>(null);
+  const [isSyncing, setIsSyncing] = useState(false);
 
   const { data: news, isLoading, error, refetch } = useQuery({
     queryKey: ['news', 'all', selectedSource],
@@ -56,6 +58,30 @@ const IndustryNews = () => {
 
   const handleRefresh = () => {
     refetch();
+  };
+
+  const handleSyncNews = async () => {
+    setIsSyncing(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('sync-weekly-news', {
+        body: {}
+      });
+      
+      if (error) {
+        console.error('Sync error:', error);
+        toast.error(language === 'fr' ? 'Erreur lors de la synchronisation' : 'Sync error occurred');
+      } else {
+        console.log('Sync result:', data);
+        toast.success(language === 'fr' ? 'Synchronisation réussie!' : 'Sync completed successfully!');
+        // Refresh the news data
+        refetch();
+      }
+    } catch (error) {
+      console.error('Sync failed:', error);
+      toast.error(language === 'fr' ? 'Échec de la synchronisation' : 'Sync failed');
+    } finally {
+      setIsSyncing(false);
+    }
   };
 
   if (error) {
@@ -120,15 +146,29 @@ const IndustryNews = () => {
             ))}
           </div>
           
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleRefresh}
-            disabled={isLoading}
-          >
-            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-            {language === 'fr' ? 'Actualiser' : 'Refresh'}
-          </Button>
+          <div className="flex gap-2">
+            {/* Temporary Sync Button - Remove after first successful sync */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleSyncNews}
+              disabled={isSyncing}
+              className="bg-orange-50 border-orange-200 text-orange-700 hover:bg-orange-100"
+            >
+              <Download className={`h-4 w-4 mr-2 ${isSyncing ? 'animate-spin' : ''}`} />
+              {language === 'fr' ? 'Sync Initial' : 'Initial Sync'}
+            </Button>
+            
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={isLoading}
+            >
+              <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+              {language === 'fr' ? 'Actualiser' : 'Refresh'}
+            </Button>
+          </div>
         </div>
 
         {/* News Grid */}
@@ -141,6 +181,17 @@ const IndustryNews = () => {
               {language === 'fr' 
                 ? `${news.length} article${news.length > 1 ? 's' : ''} trouvé${news.length > 1 ? 's' : ''}${selectedSource ? ` pour ${selectedSource}` : ''}`
                 : `${news.length} article${news.length > 1 ? 's' : ''} found${selectedSource ? ` for ${selectedSource}` : ''}`}
+            </p>
+          </div>
+        )}
+
+        {/* Empty state with sync suggestion */}
+        {(!news || news.length === 0) && !isLoading && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 mb-4">
+              {language === 'fr' 
+                ? 'Aucune actualité disponible. Cliquez sur "Sync Initial" pour charger les actualités.' 
+                : 'No news available. Click "Initial Sync" to load news articles.'}
             </p>
           </div>
         )}
