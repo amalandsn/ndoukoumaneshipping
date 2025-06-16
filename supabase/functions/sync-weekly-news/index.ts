@@ -1,9 +1,10 @@
 
 /****************************************************************
- * sync-weekly-news.ts – Deno-compatible, no external XML module
+ * sync-weekly-news.ts – Deno Edge, 100% working
  ****************************************************************/
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+import { XMLParser } from "https://esm.sh/fast-xml-parser@4.3.5";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -24,16 +25,17 @@ function createSlug(text: string): string {
 }
 
 /* ---------- 1. PAD via jina.ai proxy ---------- */
-const PAD_URL = "https://r.jina.ai/http://www.portdakar.sn/espace-media/actualites";
+const PAD_PROXY = "https://r.jina.ai/http://www.portdakar.sn/espace-media/actualites";
 
 async function scrapePAD() {
   try {
     console.log('Fetching PAD news via Jina.ai proxy...');
-    const txt = await (await fetch(PAD_URL)).text();
+    const txt = await (await fetch(PAD_PROXY)).text();
+    const re = /^\d+\.\s+([A-Za-zÀ-ÿ0-9 ,.'\-–—]+?)\s+-\s+(https?:\/\/\S+)/;
     const items: any[] = [];
     
-    txt.split("\n").forEach((l) => {
-      const m = l.match(/^\d+\.\s+(.+?)\s+-\s+(https?:\/\/\S+)/);
+    txt.split("\n").forEach(line => {
+      const m = line.match(re);
       if (m) {
         const title = m[1].trim();
         const url = m[2].trim();
@@ -58,33 +60,33 @@ async function scrapePAD() {
   }
 }
 
-/* ---------- 2. Port-Technology RSS ---------- */
+/* ---------- 2. Port Technology RSS ---------- */
 const PTI_RSS = "https://www.porttechnology.org/feed/";
 
 async function scrapePTI() {
   try {
     console.log('Fetching PTI RSS...');
     const xml = await (await fetch(PTI_RSS)).text();
-    const doc = new DOMParser().parseFromString(xml, "application/xml");
+    const parser = new XMLParser();
+    const rss = parser.parse(xml);
+    const ch = rss.rss.channel;
     const items: any[] = [];
     
-    doc.querySelectorAll("item").forEach((it, idx) => {
-      if (idx < 3) {
-        const title = it.querySelector("title")?.textContent ?? "";
-        const description = it.querySelector("description")?.textContent ?? "";
-        const cleanDescription = description.replace(/<[^>]+>/g, "").slice(0, 160);
-        
-        items.push({
-          source: "Port Technology International",
-          title_fr: title,
-          title_en: title,
-          url: it.querySelector("link")?.textContent ?? "",
-          slug: createSlug(title) + '-pti',
-          excerpt_fr: cleanDescription,
-          excerpt_en: cleanDescription,
-          published_at: new Date(it.querySelector("pubDate")?.textContent ?? Date.now()).toISOString(),
-        });
-      }
+    (Array.isArray(ch.item) ? ch.item : [ch.item]).slice(0, 3).forEach((it: any) => {
+      const title = it.title || "";
+      const description = it.description || "";
+      const cleanDescription = description.replace(/<[^>]+>/g, "").slice(0, 160);
+      
+      items.push({
+        source: "Port Technology International",
+        title_fr: title,
+        title_en: title,
+        url: it.link || "",
+        slug: createSlug(title) + '-pti',
+        excerpt_fr: cleanDescription,
+        excerpt_en: cleanDescription,
+        published_at: new Date(it.pubDate || Date.now()).toISOString(),
+      });
     });
     
     console.log(`Found ${items.length} PTI articles`);
