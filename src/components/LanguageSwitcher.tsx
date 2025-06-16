@@ -7,10 +7,15 @@ import { useLanguage } from '@/hooks/useLanguage';
 const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
 
-  // Sync with DOM on mount and listen for lang-change events
+  // Initialize DOM with French default on mount
   useEffect(() => {
+    // Set initial DOM language if not already set
+    if (!document.documentElement.lang) {
+      document.documentElement.lang = 'fr';
+    }
+
     const syncWithDOM = () => {
-      const domLang = document.documentElement.lang;
+      const domLang = document.documentElement.lang || 'fr';
       const currentLang = domLang.startsWith("fr") ? "fr" : "en";
       if (currentLang !== language) {
         setLanguage(currentLang);
