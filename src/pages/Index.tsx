@@ -6,7 +6,6 @@ import ChatAssistant from '@/components/ChatAssistant';
 import HeroCarousel from '@/components/HeroCarousel';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import TestimonialsSlider from '@/components/TestimonialsSlider';
-import NewsSection from '@/components/news/NewsSection';
 import ServicesSection from '@/components/ServicesSection';
 import StatsSection from '@/components/StatsSection';
 import CTASection from '@/components/CTASection';
@@ -20,7 +19,6 @@ const Index = () => {
       <StatsSection />
       <ServicesSection />
       <ProcessTimeline />
-      <NewsSection />
       <TestimonialsSlider />
       <CTASection />
       <TrustIndicators />
