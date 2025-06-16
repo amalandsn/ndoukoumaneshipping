@@ -9,14 +9,15 @@ const LanguageSwitcher = () => {
 
   // Initialize DOM with French default on mount
   useEffect(() => {
-    // Set initial DOM language if not already set
-    if (!document.documentElement.lang) {
+    // Force French as default if no language is set
+    if (!document.documentElement.lang || document.documentElement.lang === '') {
       document.documentElement.lang = 'fr';
+      setLanguage('fr');
     }
 
     const syncWithDOM = () => {
       const domLang = document.documentElement.lang || 'fr';
-      const currentLang = domLang.startsWith("fr") ? "fr" : "en";
+      const currentLang = domLang.startsWith("en") ? "en" : "fr";
       if (currentLang !== language) {
         setLanguage(currentLang);
       }

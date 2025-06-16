@@ -17,30 +17,29 @@ const translations = {
   }
 };
 
-// Initialize with French as default, check saved preference, then DOM language
+// Force French as default language
 const getInitialLanguage = (): 'fr' | 'en' => {
+  // Always start with French as default
+  let initialLang: 'fr' | 'en' = 'fr';
+  
   if (typeof window !== 'undefined') {
-    // First check if there's a saved preference
+    // Only check saved preference if it exists
     const saved = localStorage.getItem("lang");
-    if (saved) {
-      return saved.startsWith("fr") ? "fr" : "en";
+    if (saved === 'en') {
+      initialLang = 'en';
     }
     
-    // If no saved preference, check DOM language but default to French
-    const domLang = document.documentElement.lang;
-    if (domLang && domLang.startsWith("en")) {
-      return "en";
-    }
+    // Set DOM to match our choice
+    document.documentElement.lang = initialLang;
   }
   
-  // Always default to French
-  return 'fr';
+  return initialLang;
 };
 
 export const useLanguage = create<LanguageStore>((set, get) => ({
   language: getInitialLanguage(),
   setLanguage: (lang) => {
-    // Update localStorage when language changes
+    // Update localStorage and DOM when language changes
     if (typeof window !== 'undefined') {
       localStorage.setItem("lang", lang);
       document.documentElement.lang = lang;
