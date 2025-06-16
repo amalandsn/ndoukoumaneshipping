@@ -12,6 +12,7 @@ export type Database = {
       news: {
         Row: {
           created_at: string
+          display_order: number | null
           excerpt_en: string | null
           excerpt_fr: string | null
           fetched_at: string
@@ -25,6 +26,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          display_order?: number | null
           excerpt_en?: string | null
           excerpt_fr?: string | null
           fetched_at?: string
@@ -38,6 +40,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          display_order?: number | null
           excerpt_en?: string | null
           excerpt_fr?: string | null
           fetched_at?: string
