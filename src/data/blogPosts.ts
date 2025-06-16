@@ -1,4 +1,3 @@
-
 export interface BlogPost {
   id: string;
   slug: string;
@@ -153,7 +152,7 @@ Notre service spécialisé pour les PME permet de :
 
 ### Cas pratique : Export d'arachides
 
-Une coopérative de Kaolack a réduit ses coûts de 25% en utilisant notre service de groupage pour ses exports vers l'Europe, passant d'un coût unitaire de 0,45€/kg à 0,34€/kg.
+Une coopérative de Kaolack a réduit ses coûts de 25% en utilisant notre service de groupage pour ses exports vers l'Europe, passant d'un coût unitaire de 295 F CFA/kg à 223 F CFA/kg.
 
 ## Formation et accompagnement
 
@@ -193,7 +192,7 @@ Our specialized SME service allows to:
 
 ### Case Study: Groundnut Export
 
-A Kaolack cooperative reduced costs by 25% using our consolidation service for Europe exports, dropping from €0.45/kg to €0.34/kg unit cost.
+A Kaolack cooperative reduced costs by 25% using our consolidation service for Europe exports, dropping from 295 CFA/kg to 223 CFA/kg unit cost.
 
 ## Training and Support
 
