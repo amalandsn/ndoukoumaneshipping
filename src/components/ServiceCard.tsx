@@ -17,12 +17,16 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
   return (
     <div className="flex flex-col rounded-xl shadow-lg overflow-hidden bg-white">
-      {/* Hero */}
+      {/* Hero - optimized smaller image */}
       <div className="relative">
-        <img src={img} alt={titleFr} className="h-40 w-full object-cover" />
+        <img
+          src={img}
+          alt={titleFr}
+          className="h-28 md:h-36 w-full object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20" />
-        <div className="absolute top-3 left-3 text-white text-xl">
-          <Icon className="h-6 w-6" />
+        <div className="absolute top-2 left-2 text-white text-lg md:text-xl">
+          <Icon className="h-5 w-5 md:h-6 md:w-6" />
         </div>
       </div>
 
