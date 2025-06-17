@@ -24,6 +24,14 @@ const About = () => {
         title: "Notre Localisation Stratégique",
         text: "Basés à Dakar, au cœur de l'Afrique de l'Ouest, nous bénéficions d'une position géographique privilégiée pour servir les corridors commerciaux entre l'Afrique, l'Europe et les Amériques."
       },
+      credo: {
+        title: "Notre Credo",
+        values: [
+          "Professionnalisme",
+          "Innovation",
+          "Conformité aux normes"
+        ]
+      },
       keyNumbers: "Chiffres Clés"
     },
     en: {
@@ -39,6 +47,14 @@ const About = () => {
       location: {
         title: "Our Strategic Location",
         text: "Based in Dakar, at the heart of West Africa, we benefit from a privileged geographical position to serve trade corridors between Africa, Europe and the Americas."
+      },
+      credo: {
+        title: "Our Credo",
+        values: [
+          "Professionalism",
+          "Innovation",
+          "Standards Compliance"
+        ]
       },
       keyNumbers: "Key Numbers"
     }
@@ -181,6 +197,43 @@ const About = () => {
                 {currentContent.location.text}
               </p>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Credo Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
+              {currentContent.credo.title}
+            </h2>
+          </motion.div>
+
+          <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
+            {currentContent.credo.values.map((value, index) => (
+              <motion.div
+                key={index}
+                className="bg-gray-50 p-8 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <span className="text-5xl font-extrabold text-orange-500 block mb-4">
+                  {index + 1}
+                </span>
+                <p className="text-lg font-semibold text-blue-900">
+                  {value}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

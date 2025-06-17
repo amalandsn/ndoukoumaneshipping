@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Ship, X, Phone } from 'lucide-react';
@@ -10,6 +10,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language } = useLanguage();
+  const location = useLocation();
 
   const navigationItems = {
     fr: [
@@ -26,13 +27,17 @@ const Navigation = () => {
       { label: 'About', href: '/about' },
       { label: 'Services', href: '/services' },
       { label: 'References', href: '/references' },
-      { label: 'News', href: '/blog' },
+      { label: 'News', href: '/actualites' },
       { label: 'Careers', href: '/careers' },
       { label: 'Contact', href: '/contact' }
     ]
   };
 
   const items = navigationItems[language];
+
+  const isActiveLink = (href: string) => {
+    return location.pathname === href;
+  };
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -55,16 +60,25 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {items.map((item) => (
-              <Link
-                key={item.href}
-                to={item.href}
-                className="text-gray-700 hover:text-blue-900 font-medium transition-colors duration-200 relative group"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
-              </Link>
-            ))}
+            {items.map((item) => {
+              const isActive = isActiveLink(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 ${
+                    isActive
+                      ? 'text-blue-900 border-orange-500'
+                      : 'text-gray-700 border-transparent hover:text-blue-900'
+                  }`}
+                >
+                  {item.label}
+                  {!isActive && (
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
+                  )}
+                </Link>
+              );
+            })}
             
             <LanguageSwitcher />
             
@@ -102,16 +116,23 @@ const Navigation = () => {
                     </Button>
                   </div>
                   
-                  {items.map((item) => (
-                    <Link
-                      key={item.href}
-                      to={item.href}
-                      className="text-lg font-medium text-gray-700 hover:text-blue-900 py-2 border-b border-gray-100 transition-colors"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
+                  {items.map((item) => {
+                    const isActive = isActiveLink(item.href);
+                    return (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        className={`text-lg font-medium py-2 border-b border-gray-100 transition-colors ${
+                          isActive
+                            ? 'text-blue-900 border-orange-500'
+                            : 'text-gray-700 hover:text-blue-900'
+                        }`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    );
+                  })}
                   
                   <Button className="bg-orange-500 hover:bg-orange-600 text-white mt-6" asChild>
                     <a href="tel:+221774021825">
