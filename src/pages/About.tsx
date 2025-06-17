@@ -4,7 +4,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/useLanguage';
-import { Building2, Target, TrendingUp, MapPin } from 'lucide-react';
+import { Building2, Target, TrendingUp, MapPin, Eye } from 'lucide-react';
 
 const About = () => {
   const { language } = useLanguage();
@@ -14,15 +14,27 @@ const About = () => {
       title: "Ndoukouman Shipping Services : Intelligence maritime au service de l'Afrique",
       mission: {
         title: "Notre Mission",
-        text: "Ndoukouman Shipping & Services s'est imposé comme un acteur majeur de la logistique au Sénégal depuis sa création en août 2018. Avec un investissement initial de 4 milliards de FCFA, nous avons développé une expertise reconnue dans le transport maritime, aérien et routier, générant aujourd'hui un chiffre d'affaires de plus de 10 milliards de FCFA."
+        bullets: [
+          "Solutions logistiques 360° – maritime, aérien, routier",
+          "Ponctualité & traçabilité en temps réel",
+          "Excellence opérationnelle et qualité certifiée"
+        ]
       },
       vision: {
         title: "Notre Vision",
-        text: "Nous aspirons à devenir le leader incontournable de la logistique en Afrique de l'Ouest, en portant notre part de marché à 20% au Sénégal et 5,5% dans la zone CEDEAO. Notre projet ambitieux de port sec sur 2 hectares témoigne de notre engagement vers l'excellence opérationnelle."
+        bullets: [
+          "Hub maritime multi-modal de l'Afrique de l'Ouest",
+          "20% de part de marché nationale d'ici 2028",
+          "Innovation & développement durable"
+        ]
       },
       location: {
-        title: "Notre Localisation Stratégique",
-        text: "Basés à Dakar, au cœur de l'Afrique de l'Ouest, nous bénéficions d'une position géographique privilégiée pour servir les corridors commerciaux entre l'Afrique, l'Europe et les Amériques."
+        title: "Notre Localisation",
+        bullets: [
+          "Central Park, face Brigade Nationale des Sapeurs-Pompiers",
+          "2 ha de terre-plein stratégique – Dakar",
+          "Connexion Autoroute Dakar-Bamako & Port de Ndayane"
+        ]
       },
       credo: {
         title: "Notre Credo",
@@ -38,15 +50,27 @@ const About = () => {
       title: "Ndoukouman Shipping Services: Maritime Intelligence Serving Africa",
       mission: {
         title: "Our Mission",
-        text: "Ndoukouman Shipping & Services has established itself as a major logistics player in Senegal since its founding in August 2018. With an initial investment of 4 billion FCFA, we have developed recognized expertise in maritime, air and road transport, now generating revenue of over 10 billion FCFA."
+        bullets: [
+          "360° logistics – sea, air & road",
+          "On-time delivery & real-time tracking",
+          "Operational excellence & certified quality"
+        ]
       },
       vision: {
         title: "Our Vision",
-        text: "We aspire to become the undisputed leader in West African logistics, growing our market share to 20% in Senegal and 5.5% in the ECOWAS region. Our ambitious 2-hectare dry port project demonstrates our commitment to operational excellence."
+        bullets: [
+          "West Africa's leading multi-modal hub",
+          "20% national market share by 2028",
+          "Innovation & sustainable growth"
+        ]
       },
       location: {
-        title: "Our Strategic Location",
-        text: "Based in Dakar, at the heart of West Africa, we benefit from a privileged geographical position to serve trade corridors between Africa, Europe and the Americas."
+        title: "Our Location",
+        bullets: [
+          "Central Park, opposite National Fire Brigade HQ",
+          "2-ha strategic platform – Dakar",
+          "Direct link to Dakar-Bamako highway & Ndayane port"
+        ]
       },
       credo: {
         title: "Our Credo",
@@ -149,54 +173,99 @@ const About = () => {
         </div>
       </section>
 
-      {/* Content Sections */}
+      {/* Mission, Vision, Location Cards */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto space-y-16">
-            {/* Mission */}
+          <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
+            
+            {/* Mission Card */}
             <motion.div
+              className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 font-serif">
-                {currentContent.mission.title}
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                {currentContent.mission.text}
-              </p>
+              <div className="flex items-center gap-3">
+                <Target className="text-orange-500 text-2xl h-6 w-6" />
+                <h3 className="text-lg font-semibold text-blue-900">{currentContent.mission.title}</h3>
+              </div>
+              <ul className="list-disc list-inside leading-relaxed text-sm text-gray-700">
+                {currentContent.mission.bullets.map((bullet, index) => (
+                  <li key={index}>{bullet}</li>
+                ))}
+              </ul>
+              {language === 'en' && (
+                <ul className="list-disc list-inside leading-relaxed text-xs text-gray-400 mt-3">
+                  {content.fr.mission.bullets.map((bullet, index) => (
+                    <li key={index}>{bullet}</li>
+                  ))}
+                </ul>
+              )}
             </motion.div>
 
-            {/* Vision */}
+            {/* Vision Card */}
             <motion.div
+              className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 font-serif">
-                {currentContent.vision.title}
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                {currentContent.vision.text}
-              </p>
+              <div className="flex items-center gap-3">
+                <Eye className="text-orange-500 text-2xl h-6 w-6" />
+                <h3 className="text-lg font-semibold text-blue-900">{currentContent.vision.title}</h3>
+              </div>
+              <ul className="list-disc list-inside leading-relaxed text-sm text-gray-700">
+                {currentContent.vision.bullets.map((bullet, index) => (
+                  <li key={index}>{bullet}</li>
+                ))}
+              </ul>
+              {language === 'en' && (
+                <ul className="list-disc list-inside leading-relaxed text-xs text-gray-400 mt-3">
+                  {content.fr.vision.bullets.map((bullet, index) => (
+                    <li key={index}>{bullet}</li>
+                  ))}
+                </ul>
+              )}
             </motion.div>
 
-            {/* Location */}
+            {/* Location Card with Map */}
             <motion.div
+              className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl lg:text-3xl font-bold text-blue-900 mb-6 font-serif">
-                {currentContent.location.title}
-              </h3>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                {currentContent.location.text}
-              </p>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1550.6807077226875!2d-17.4455!3d14.6825!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDQwJzU2LjEiTiAxN8KwMjYnNDMuOCJX!5e0!3m2!1sfr!2ssn!4v1718555555"
+                loading="lazy"
+                className="w-full h-40 md:h-[180px]"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Carte Ndoukoumane"
+              />
+              
+              <div className="p-6 flex-1 flex flex-col gap-4">
+                <div className="flex items-center gap-3">
+                  <MapPin className="text-orange-500 text-2xl h-6 w-6" />
+                  <h3 className="text-lg font-semibold text-blue-900">{currentContent.location.title}</h3>
+                </div>
+                <ul className="list-disc list-inside leading-relaxed text-sm text-gray-700">
+                  {currentContent.location.bullets.map((bullet, index) => (
+                    <li key={index}>{bullet}</li>
+                  ))}
+                </ul>
+                {language === 'en' && (
+                  <ul className="list-disc list-inside leading-relaxed text-xs text-gray-400 mt-3">
+                    {content.fr.location.bullets.map((bullet, index) => (
+                      <li key={index}>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </motion.div>
+
           </div>
         </div>
       </section>
