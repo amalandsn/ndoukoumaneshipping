@@ -196,8 +196,8 @@ const Contact = () => {
               </div>
               <h3 className="text-lg font-semibold text-gray-900">{currentContent.email}</h3>
             </div>
-            <a href="mailto:info@ndoukoumane-shipping.sn" className="text-blue-600 hover:text-blue-700 font-medium">
-              info@ndoukoumane-shipping.sn
+            <a href="mailto:info@ndoukoumaneshipping.sn" className="text-blue-600 hover:text-blue-700 font-medium">
+              info@ndoukoumaneshipping.sn
             </a>
           </motion.div>
 
