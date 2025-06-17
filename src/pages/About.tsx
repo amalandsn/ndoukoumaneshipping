@@ -225,9 +225,10 @@ const About = () => {
               viewport={{ once: true }}
             >
               <iframe
-                src="https://www.google.com/maps/place/Central+Park+Dakar/@14.6825046,-17.4404026,21z/data=!4m14!1m7!3m6!1s0xec17295e1775ef1:0x1ee2e80b10007d39!2sCentral+Park+Dakar!8m2!3d14.6825705!4d-17.4403087!16s%2Fg%2F1th7zq39!3m5!1s0xec17295e1775ef1:0x1ee2e80b10007d39!8m2!3d14.6825705!4d-17.4403087!16s%2Fg%2F1th7zq39?entry=ttu&g_ep=EgoyMDI1MDYxMS4wIKXMDSoASAFQAw%3D%3D"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.155446!2d-17.4425914!3d14.6825705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec17295e1775ef1%3A0x1ee2e80b10007d39!2sCentral%20Park%20Dakar!5e0!3m2!1sfr!2ssn!4v1703069584000!5m2!1sfr!2ssn"
                 loading="lazy"
                 className="w-full h-40 md:h-[180px]"
+                allowFullScreen
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Carte Central Park Dakar"
               />
