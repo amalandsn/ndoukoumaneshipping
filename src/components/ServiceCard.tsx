@@ -33,20 +33,20 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       {/* Content */}
       <div className="p-6 flex-1 flex flex-col gap-4">
         <div>
-          <h3 className="text-lg font-semibold text-blue-900">{titleFr}</h3>
-          <p className="text-sm text-gray-500">{titleEn}</p>
+          <h3 className="text-lg font-semibold text-blue-900">
+            {language === 'en' ? titleEn : titleFr}
+          </h3>
         </div>
 
-        <ul className="list-disc list-inside space-y-1 text-sm leading-relaxed text-gray-700">
-          {bulletsFr.map((bullet, index) => (
-            <li key={index}>{bullet}</li>
-          ))}
-        </ul>
-        
-        <ul className="list-disc list-inside space-y-1 text-xs leading-relaxed text-gray-400 mt-2">
-          {bulletsEn.map((bullet, index) => (
-            <li key={index}>{bullet}</li>
-          ))}
+        <ul className="list-disc list-inside marker:text-orange-500 space-y-1 text-sm leading-relaxed text-gray-700">
+          {language === 'en' 
+            ? bulletsEn.map((bullet, index) => (
+                <li key={index}>{bullet}</li>
+              ))
+            : bulletsFr.map((bullet, index) => (
+                <li key={index}>{bullet}</li>
+              ))
+          }
         </ul>
       </div>
     </div>
