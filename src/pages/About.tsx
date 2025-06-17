@@ -17,7 +17,7 @@ const About = () => {
         bullets: [
           "Solutions logistiques 360° – maritime, aérien, routier",
           "Ponctualité & traçabilité en temps réel",
-          "Excellence opérationnelle et qualité certifiée"
+          "Excellence opérationnelle certifiée"
         ]
       },
       vision: {
@@ -32,8 +32,8 @@ const About = () => {
         title: "Notre Localisation",
         bullets: [
           "Central Park, face Brigade Nationale des Sapeurs-Pompiers",
-          "2 ha de terre-plein stratégique – Dakar",
-          "Connexion Autoroute Dakar-Bamako & Port de Ndayane"
+          "Plate-forme stratégique de 2 ha – Dakar",
+          "Accès Autoroute Dakar-Bamako & Port de Ndayane"
         ]
       },
       credo: {
@@ -53,7 +53,7 @@ const About = () => {
         bullets: [
           "360° logistics – sea, air & road",
           "On-time delivery & real-time tracking",
-          "Operational excellence & certified quality"
+          "Certified operational excellence"
         ]
       },
       vision: {
@@ -69,7 +69,7 @@ const About = () => {
         bullets: [
           "Central Park, opposite National Fire Brigade HQ",
           "2-ha strategic platform – Dakar",
-          "Direct link to Dakar-Bamako highway & Ndayane port"
+          "Direct link to Dakar-Bamako Highway & Ndayane Port"
         ]
       },
       credo: {
@@ -180,54 +180,40 @@ const About = () => {
             
             {/* Mission Card */}
             <motion.div
-              className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4"
+              className="bg-white rounded-xl shadow-lg p-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-4">
                 <Target className="text-orange-500 text-2xl h-6 w-6" />
                 <h3 className="text-lg font-semibold text-blue-900">{currentContent.mission.title}</h3>
               </div>
-              <ul className="list-disc list-inside leading-relaxed text-sm text-gray-700">
+              <ul className="list-disc list-inside marker:text-orange-500 space-y-1 text-sm leading-relaxed text-gray-700">
                 {currentContent.mission.bullets.map((bullet, index) => (
                   <li key={index}>{bullet}</li>
                 ))}
               </ul>
-              {language === 'en' && (
-                <ul className="list-disc list-inside leading-relaxed text-xs text-gray-400 mt-3">
-                  {content.fr.mission.bullets.map((bullet, index) => (
-                    <li key={index}>{bullet}</li>
-                  ))}
-                </ul>
-              )}
             </motion.div>
 
             {/* Vision Card */}
             <motion.div
-              className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4"
+              className="bg-white rounded-xl shadow-lg p-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-4">
                 <Eye className="text-orange-500 text-2xl h-6 w-6" />
                 <h3 className="text-lg font-semibold text-blue-900">{currentContent.vision.title}</h3>
               </div>
-              <ul className="list-disc list-inside leading-relaxed text-sm text-gray-700">
+              <ul className="list-disc list-inside marker:text-orange-500 space-y-1 text-sm leading-relaxed text-gray-700">
                 {currentContent.vision.bullets.map((bullet, index) => (
                   <li key={index}>{bullet}</li>
                 ))}
               </ul>
-              {language === 'en' && (
-                <ul className="list-disc list-inside leading-relaxed text-xs text-gray-400 mt-3">
-                  {content.fr.vision.bullets.map((bullet, index) => (
-                    <li key={index}>{bullet}</li>
-                  ))}
-                </ul>
-              )}
             </motion.div>
 
             {/* Location Card with Map */}
@@ -239,30 +225,23 @@ const About = () => {
               viewport={{ once: true }}
             >
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1550.6807077226875!2d-17.4455!3d14.6825!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTTCsDQwJzU2LjEiTiAxN8KwMjYnNDMuOCJX!5e0!3m2!1sfr!2ssn!4v1718555555"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1550.68!2d-17.4455!3d14.6825"
                 loading="lazy"
                 className="w-full h-40 md:h-[180px]"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Carte Ndoukoumane"
               />
               
-              <div className="p-6 flex-1 flex flex-col gap-4">
-                <div className="flex items-center gap-3">
+              <div className="p-6 flex-1">
+                <div className="flex items-center gap-3 mb-4">
                   <MapPin className="text-orange-500 text-2xl h-6 w-6" />
                   <h3 className="text-lg font-semibold text-blue-900">{currentContent.location.title}</h3>
                 </div>
-                <ul className="list-disc list-inside leading-relaxed text-sm text-gray-700">
+                <ul className="list-disc list-inside marker:text-orange-500 space-y-1 text-sm leading-relaxed text-gray-700">
                   {currentContent.location.bullets.map((bullet, index) => (
                     <li key={index}>{bullet}</li>
                   ))}
                 </ul>
-                {language === 'en' && (
-                  <ul className="list-disc list-inside leading-relaxed text-xs text-gray-400 mt-3">
-                    {content.fr.location.bullets.map((bullet, index) => (
-                      <li key={index}>{bullet}</li>
-                    ))}
-                  </ul>
-                )}
               </div>
             </motion.div>
 
