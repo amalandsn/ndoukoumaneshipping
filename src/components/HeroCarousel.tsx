@@ -1,8 +1,9 @@
-
 /* eslint-disable jsx-a11y/alt-text */
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Phone } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
+import { getQuoteRoute } from '@/lib/routes';
 
 type Slide = {
   src: string;
@@ -53,6 +54,7 @@ const TRANS = { duration: 1, ease: [0.4, 0, 0.2, 1] as const };
 
 export default function HeroCarousel() {
   const [lang, setLang] = useState(document.documentElement.lang);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handler = () => setLang(document.documentElement.lang);
@@ -70,8 +72,9 @@ export default function HeroCarousel() {
 
   const { src, fallback, alt, titleFR, titleEN, subtitleFR, subtitleEN } = slides[idx];
 
-  const scrollToContact = () => {
-    window.location.href = '/contact';
+  const handleQuoteClick = () => {
+    const locale = isFR ? 'fr' : 'en';
+    navigate(getQuoteRoute(locale));
   };
 
   return (
@@ -102,7 +105,7 @@ export default function HeroCarousel() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <button
-            onClick={scrollToContact}
+            onClick={handleQuoteClick}
             className="bg-[#FF7A00] text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition"
           >
             {isFR ? "Demander un devis" : "Request a quote"}
