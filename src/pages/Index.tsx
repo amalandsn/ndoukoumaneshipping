@@ -8,6 +8,7 @@ import StatsSection from '@/components/StatsSection';
 import TestimonialsSlider from '@/components/TestimonialsSlider';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
+import ChatAssistant from '@/components/ChatAssistant';
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <TestimonialsSlider />
       <CTASection />
       <Footer />
+      <ChatAssistant />
     </div>
   );
 };
