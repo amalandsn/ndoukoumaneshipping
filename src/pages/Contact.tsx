@@ -114,7 +114,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50" id="contact">
       <Navigation />
       
       {/* Hero Section */}
@@ -237,8 +237,8 @@ const Contact = () => {
               </div>
               <div className="text-sm">
                 <p className="font-semibold text-gray-900">{currentContent.email}</p>
-                <a href="mailto:info@ndoukoumaneshipping.sn" className="text-blue-600 hover:text-blue-700 underline">
-                  info@ndoukoumaneshipping.sn
+                <a href="mailto:contact@ndoukoumaneshipping.sn" className="text-blue-600 hover:text-blue-700 underline">
+                  contact@ndoukoumaneshipping.sn
                 </a>
               </div>
             </div>

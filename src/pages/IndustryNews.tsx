@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -6,31 +7,21 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import NewsGrid from '@/components/news/NewsGrid';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { RefreshCw, Newspaper, Download } from 'lucide-react';
 import { toast } from 'sonner';
 
 const IndustryNews = () => {
   const { language } = useLanguage();
-  const [selectedSource, setSelectedSource] = useState<string | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
 
   const { data: news, isLoading, error, refetch } = useQuery({
-    queryKey: ['news', 'all', selectedSource],
+    queryKey: ['news', 'port-autonome'],
     queryFn: async () => {
-      let query = supabase
+      const { data, error } = await supabase
         .from('news')
-        .select('*');
-
-      if (selectedSource) {
-        query = query.eq('source', selectedSource);
-      }
-
-      // Order by source priority (PAD first) then by published date
-      query = query.order('source', { ascending: true })
-                   .order('published_at', { ascending: false });
-
-      const { data, error } = await query;
+        .select('*')
+        .ilike('source', '%port autonome%')
+        .order('published_at', { ascending: false });
       
       if (error) {
         console.error('Error fetching news:', error);
@@ -40,22 +31,6 @@ const IndustryNews = () => {
       return data;
     },
     staleTime: 5 * 60 * 1000, // 5 minutes
-  });
-
-  const { data: sources } = useQuery({
-    queryKey: ['news', 'sources'],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from('news')
-        .select('source')
-        .order('source');
-      
-      if (error) throw error;
-      
-      // Get unique sources
-      const uniqueSources = [...new Set(data.map(item => item.source))];
-      return uniqueSources;
-    },
   });
 
   const handleRefresh = () => {
@@ -111,43 +86,20 @@ const IndustryNews = () => {
           <div className="flex items-center justify-center mb-6">
             <Newspaper className="h-12 w-12 mr-4" />
             <h1 className="text-4xl font-bold">
-              {language === 'fr' ? 'Actualités du Secteur' : 'Industry News'}
+              {language === 'fr' ? 'Actualités du Port Autonome de Dakar' : 'Port Autonome de Dakar News'}
             </h1>
           </div>
           <p className="text-xl text-center max-w-3xl mx-auto text-blue-100">
             {language === 'fr' 
-              ? 'Découvrez les dernières actualités du transport maritime, des ports et de la logistique en Afrique de l\'Ouest et dans le monde'
-              : 'Discover the latest news in maritime transport, ports and logistics in West Africa and worldwide'}
+              ? 'Découvrez les dernières actualités du Port Autonome de Dakar'
+              : 'Discover the latest news from Port Autonome de Dakar'}
           </p>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        {/* Filters and Actions */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="text-sm font-medium text-gray-700">
-              {language === 'fr' ? 'Filtrer par source:' : 'Filter by source:'}
-            </span>
-            <Button
-              variant={selectedSource === null ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedSource(null)}
-            >
-              {language === 'fr' ? 'Toutes' : 'All'}
-            </Button>
-            {sources?.map((source) => (
-              <Badge
-                key={source}
-                variant={selectedSource === source ? "default" : "secondary"}
-                className="cursor-pointer hover:bg-blue-100"
-                onClick={() => setSelectedSource(selectedSource === source ? null : source)}
-              >
-                {source}
-              </Badge>
-            ))}
-          </div>
-          
+        {/* Actions */}
+        <div className="flex flex-wrap items-center justify-end gap-4 mb-8">
           <div className="flex gap-2">
             {/* Temporary Sync Button - Remove after first successful sync */}
             <Button
@@ -181,8 +133,8 @@ const IndustryNews = () => {
           <div className="mt-12 text-center">
             <p className="text-gray-600">
               {language === 'fr' 
-                ? `${news.length} article${news.length > 1 ? 's' : ''} trouvé${news.length > 1 ? 's' : ''}${selectedSource ? ` pour ${selectedSource}` : ''}`
-                : `${news.length} article${news.length > 1 ? 's' : ''} found${selectedSource ? ` for ${selectedSource}` : ''}`}
+                ? `${news.length} article${news.length > 1 ? 's' : ''} trouvé${news.length > 1 ? 's' : ''} du Port Autonome de Dakar`
+                : `${news.length} article${news.length > 1 ? 's' : ''} found from Port Autonome de Dakar`}
             </p>
           </div>
         )}
@@ -192,8 +144,8 @@ const IndustryNews = () => {
           <div className="text-center py-12">
             <p className="text-gray-500 mb-4">
               {language === 'fr' 
-                ? 'Aucune actualité disponible. Cliquez sur "Sync Initial" pour charger les actualités.' 
-                : 'No news available. Click "Initial Sync" to load news articles.'}
+                ? 'Aucune actualité disponible du Port Autonome de Dakar. Cliquez sur "Sync Initial" pour charger les actualités.' 
+                : 'No news available from Port Autonome de Dakar. Click "Initial Sync" to load news articles.'}
             </p>
           </div>
         )}

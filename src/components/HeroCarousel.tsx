@@ -70,6 +70,13 @@ export default function HeroCarousel() {
 
   const { src, fallback, alt, titleFR, titleEN, subtitleFR, subtitleEN } = slides[idx];
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative w-screen h-screen overflow-hidden">
       <AnimatePresence initial={false} custom={dir}>
@@ -97,15 +104,15 @@ export default function HeroCarousel() {
           {isFR ? subtitleFR : subtitleEN}
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
-          <a
-            href="#contact"
+          <button
+            onClick={scrollToContact}
             className="bg-[#FF7A00] text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition"
           >
             {isFR ? "Demander un devis" : "Request a quote"}
-          </a>
+          </button>
           <a
             href="tel:+221774021825"
-            className="bg-white/20 backdrop-blur-sm text-white py-3 px-6 rounded-lg shadow-lg hover:bg-white/30 transition flex items-center gap-2"
+            className="bg-white/90 backdrop-blur-sm text-blue-900 py-3 px-6 rounded-lg shadow-lg hover:bg-white transition flex items-center gap-2 font-semibold"
           >
             <Phone className="h-4 w-4" />
             {isFR ? "Appelez 24/7" : "Call Us 24/7"}

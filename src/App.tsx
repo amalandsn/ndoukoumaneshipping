@@ -11,6 +11,8 @@ import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import BlogPostPage from "./pages/BlogPost";
 import IndustryNews from "./pages/IndustryNews";
+import References from "./pages/References";
+import Careers from "./pages/Careers";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,12 +32,13 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           {/* Change: Actualités now shows IndustryNews instead of Blog */}
           <Route path="/actualites" element={<IndustryNews />} />
-          <Route path="/actualites/:slug" element={<BlogPostPage />} />
+          <Route path="/actualites/:slug" element={<Blog PostPage />} />
           <Route path="/actualites-secteur" element={<IndustryNews />} />
           <Route path="/industry-news" element={<IndustryNews />} />
-          {/* Placeholder routes for future pages */}
-          <Route path="/references" element={<NotFound />} />
-          <Route path="/careers" element={<NotFound />} />
+          {/* New pages */}
+          <Route path="/references" element={<References />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/carrieres" element={<Careers />} />
           <Route path="/legal" element={<NotFound />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

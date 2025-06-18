@@ -30,7 +30,7 @@ const handler = async (req: Request): Promise<Response> => {
     // Send email to company using verified domain
     const emailResponse = await resend.emails.send({
       from: "Contact Form <contact@ndoukoumaneshipping.sn>",
-      to: ["info@ndoukoumaneshipping.sn"],
+      to: ["contact@ndoukoumaneshipping.sn"],
       subject: `Nouveau message de contact - ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -81,7 +81,7 @@ const handler = async (req: Request): Promise<Response> => {
             <h3 style="color: #1e40af; margin-top: 0;">Nos coordonnées :</h3>
             <p><strong>Téléphone bureau :</strong> +221 33 822 29 80</p>
             <p><strong>Urgence 24/7 :</strong> +221 77 402 18 25</p>
-            <p><strong>Email :</strong> info@ndoukoumaneshipping.sn</p>
+            <p><strong>Email :</strong> contact@ndoukoumaneshipping.sn</p>
             <p><strong>Adresse :</strong> Central Park, face BNSP, Dakar</p>
           </div>
           

@@ -8,6 +8,7 @@ import StatsSection from '@/components/StatsSection';
 import TestimonialsSlider from '@/components/TestimonialsSlider';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
+import NewsSection from '@/components/news/NewsSection';
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <ProcessTimeline />
       <StatsSection />
       <TestimonialsSlider />
+      <NewsSection />
       <CTASection />
       <Footer />
     </div>
