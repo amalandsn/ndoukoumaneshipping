@@ -6,11 +6,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Ship, X, Phone, FileText } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useNavigate } from 'react-router-dom';
+import { getQuoteRoute } from '@/lib/routes';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { language } = useLanguage();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navigationItems = {
     fr: [
@@ -37,6 +40,14 @@ const Navigation = () => {
 
   const isActiveLink = (href: string) => {
     return location.pathname === href;
+  };
+
+  const handleQuoteClick = () => {
+    navigate(getQuoteRoute(language));
+  };
+
+  const handleCallClick = () => {
+    window.location.href = 'tel:+221774021825';
   };
 
   return (
@@ -82,18 +93,14 @@ const Navigation = () => {
             
             <LanguageSwitcher />
             
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
-              <Link to={language === 'fr' ? '/devis' : '/quote'}>
-                <FileText className="h-4 w-4 mr-2" />
-                {language === 'fr' ? 'Demande de devis' : 'Quote request'}
-              </Link>
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white" onClick={handleQuoteClick}>
+              <FileText className="h-4 w-4 mr-2" />
+              {language === 'fr' ? 'Demande de devis' : 'Quote request'}
             </Button>
             
-            <Button className="bg-blue-900 hover:bg-blue-800 text-white" asChild>
-              <a href="tel:+221774021825">
-                <Phone className="h-4 w-4 mr-2" />
-                {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
-              </a>
+            <Button className="bg-blue-900 hover:bg-blue-800 text-white" onClick={handleCallClick}>
+              <Phone className="h-4 w-4 mr-2" />
+              {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
             </Button>
           </div>
 
@@ -141,18 +148,20 @@ const Navigation = () => {
                     );
                   })}
                   
-                  <Button className="bg-orange-500 hover:bg-orange-600 text-white mt-6" asChild>
-                    <Link to={language === 'fr' ? '/devis' : '/quote'} onClick={() => setIsOpen(false)}>
-                      <FileText className="h-4 w-4 mr-2" />
-                      {language === 'fr' ? 'Demande de devis' : 'Quote request'}
-                    </Link>
+                  <Button 
+                    className="bg-orange-500 hover:bg-orange-600 text-white mt-6" 
+                    onClick={() => {
+                      handleQuoteClick();
+                      setIsOpen(false);
+                    }}
+                  >
+                    <FileText className="h-4 w-4 mr-2" />
+                    {language === 'fr' ? 'Demande de devis' : 'Quote request'}
                   </Button>
                   
-                  <Button className="bg-blue-900 hover:bg-blue-800 text-white" asChild>
-                    <a href="tel:+221774021825">
-                      <Phone className="h-4 w-4 mr-2" />
-                      {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
-                    </a>
+                  <Button className="bg-blue-900 hover:bg-blue-800 text-white" onClick={handleCallClick}>
+                    <Phone className="h-4 w-4 mr-2" />
+                    {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
                   </Button>
                 </div>
               </SheetContent>

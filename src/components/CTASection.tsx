@@ -5,13 +5,22 @@ import { Phone, Mail, FileText } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNavigate } from 'react-router-dom';
+import { getQuoteRoute } from '@/lib/routes';
 
 const CTASection = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();
 
   const handleQuoteClick = () => {
-    navigate(language === 'fr' ? '/devis' : '/quote');
+    navigate(getQuoteRoute(language));
+  };
+
+  const handleCallClick = () => {
+    window.location.href = 'tel:+221774021825';
+  };
+
+  const handleEmailClick = () => {
+    navigate('/contact');
   };
 
   return (
@@ -47,7 +56,7 @@ const CTASection = () => {
             <Button 
               size="lg" 
               className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-4 transform transition-transform hover:scale-105"
-              onClick={() => window.location.href = 'tel:+221774021825'}
+              onClick={handleCallClick}
             >
               <Phone className="h-5 w-5 mr-2" />
               {language === 'fr' ? 'Nous appeler' : 'Call us'}
@@ -55,7 +64,7 @@ const CTASection = () => {
             <Button
               size="lg"
               className="bg-transparent text-white hover:bg-white/10 border-2 border-white px-8 py-4 transform transition-transform hover:scale-105"
-              onClick={() => navigate('/contact')}
+              onClick={handleEmailClick}
             >
               <Mail className="h-5 w-5 mr-2" />
               {language === 'fr' ? 'Nous écrire' : 'Email us'}

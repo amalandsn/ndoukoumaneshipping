@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { 
@@ -14,9 +13,11 @@ import {
   Twitter
 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { getQuoteRoute } from '@/lib/routes';
 
 const Footer = () => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
 
   const footerContent = {
     fr: {
@@ -98,6 +99,10 @@ const Footer = () => {
     }
   };
 
+  const handleQuoteClick = () => {
+    navigate(getQuoteRoute(language));
+  };
+
   return (
     <footer className="bg-blue-900 text-white">
       {/* Main Footer Content */}
@@ -143,6 +148,16 @@ const Footer = () => {
                   {content.company.email}
                 </span>
               </div>
+            </div>
+
+            {/* Quote Button in Footer */}
+            <div className="mt-6">
+              <Button 
+                className="bg-orange-500 hover:bg-orange-600 text-white w-full"
+                onClick={handleQuoteClick}
+              >
+                {language === 'fr' ? 'Demander un devis' : 'Request a quote'}
+              </Button>
             </div>
           </div>
 
