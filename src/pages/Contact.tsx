@@ -8,14 +8,18 @@ import { Phone, Mail, MapPin, Calendar, Linkedin, MessageCircle } from 'lucide-r
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
   const { language } = useLanguage();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const content = {
     fr: {
@@ -26,13 +30,18 @@ const Contact = () => {
       emailPlaceholder: "E-mail*",
       messagePlaceholder: "Votre message*",
       sendButton: "Envoyer",
+      sendingButton: "Envoi en cours...",
       office: "Bureau",
       emergency: "Urgence 24/7",
       email: "E-mail",
       address: "Adresse",
       hours: "Horaires",
       hoursText: "Lun–Ven : 8h–18h • Sam–Dim : 8h–12h",
-      addressText: "Central Park, face BNSP, Dakar"
+      addressText: "Central Park, face BNSP, Dakar",
+      successMessage: "Message envoyé avec succès !",
+      successDescription: "Nous vous répondrons dans les plus brefs délais.",
+      errorMessage: "Erreur lors de l'envoi",
+      errorDescription: "Veuillez réessayer ou nous contacter directement."
     },
     en: {
       title: "Get in touch!",
@@ -42,22 +51,62 @@ const Contact = () => {
       emailPlaceholder: "E-mail*",
       messagePlaceholder: "Your message*",
       sendButton: "Send",
+      sendingButton: "Sending...",
       office: "Office",
       emergency: "Emergency 24/7",
       email: "E-mail",
       address: "Address",
       hours: "Hours",
       hoursText: "Mon–Fri : 8 am–6 pm • Sat–Sun : 8 am–12 pm",
-      addressText: "Central Park, opposite BNSP, Dakar"
+      addressText: "Central Park, opposite BNSP, Dakar",
+      successMessage: "Message sent successfully!",
+      successDescription: "We will get back to you as soon as possible.",
+      errorMessage: "Error sending message",
+      errorDescription: "Please try again or contact us directly."
     }
   };
 
   const currentContent = content[language];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Supabase insert or email
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    
+    try {
+      console.log('Submitting contact form:', formData);
+      
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        }
+      });
+
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
+      }
+
+      console.log('Contact form submitted successfully:', data);
+      
+      toast({
+        title: currentContent.successMessage,
+        description: currentContent.successDescription,
+      });
+
+      // Reset form
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      toast({
+        title: currentContent.errorMessage,
+        description: currentContent.errorDescription,
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -115,6 +164,7 @@ const Contact = () => {
                 onChange={(e) => handleInputChange('name', e.target.value)}
                 className="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition"
                 required
+                disabled={isSubmitting}
               />
               
               <Input
@@ -124,6 +174,7 @@ const Contact = () => {
                 onChange={(e) => handleInputChange('email', e.target.value)}
                 className="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition"
                 required
+                disabled={isSubmitting}
               />
               
               <Textarea
@@ -132,13 +183,15 @@ const Contact = () => {
                 onChange={(e) => handleInputChange('message', e.target.value)}
                 className="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition h-32"
                 required
+                disabled={isSubmitting}
               />
               
               <Button 
                 type="submit" 
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
+                disabled={isSubmitting}
               >
-                {currentContent.sendButton}
+                {isSubmitting ? currentContent.sendingButton : currentContent.sendButton}
               </Button>
             </form>
           </motion.div>
