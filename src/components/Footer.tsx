@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -221,10 +222,10 @@ const Footer = () => {
           </div>
           
           <div className="flex space-x-6 text-sm">
-            <Link to="/legal" className="text-blue-300 hover:text-white transition-colors">
+            <Link to="/legal#politique-confidentialite" className="text-blue-300 hover:text-white transition-colors">
               {language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
             </Link>
-            <Link to="/legal" className="text-blue-300 hover:text-white transition-colors">
+            <Link to="/legal#conditions-utilisation" className="text-blue-300 hover:text-white transition-colors">
               {language === 'fr' ? 'Conditions d\'utilisation' : 'Terms of Service'}
             </Link>
           </div>

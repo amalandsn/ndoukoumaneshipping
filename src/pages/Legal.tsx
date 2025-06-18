@@ -1,4 +1,6 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ChatAssistant from '@/components/ChatAssistant';
@@ -7,6 +9,19 @@ import { useLanguage } from '@/hooks/useLanguage';
 
 const Legal = () => {
   const { language } = useLanguage();
+  const location = useLocation();
+
+  // Scroll to section based on hash in URL
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, [location.hash]);
 
   const content = {
     fr: {
@@ -136,11 +151,12 @@ const Legal = () => {
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Legal Notices */}
           <motion.div
+            id="mentions-legales"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white rounded-lg shadow-lg p-8 mb-8"
+            className="bg-white rounded-lg shadow-lg p-8 mb-8 scroll-mt-24"
           >
             <h2 className="text-2xl font-bold mb-6 text-blue-900">{currentContent.legalNotices.title}</h2>
             <div 
@@ -151,11 +167,12 @@ const Legal = () => {
 
           {/* Privacy Policy */}
           <motion.div
+            id="politique-confidentialite"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white rounded-lg shadow-lg p-8 mb-8"
+            className="bg-white rounded-lg shadow-lg p-8 mb-8 scroll-mt-24"
           >
             <h2 className="text-2xl font-bold mb-6 text-blue-900">{currentContent.privacy.title}</h2>
             <div 
@@ -166,11 +183,12 @@ const Legal = () => {
 
           {/* Terms of Use */}
           <motion.div
+            id="conditions-utilisation"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white rounded-lg shadow-lg p-8"
+            className="bg-white rounded-lg shadow-lg p-8 scroll-mt-24"
           >
             <h2 className="text-2xl font-bold mb-6 text-blue-900">{currentContent.terms.title}</h2>
             <div 
