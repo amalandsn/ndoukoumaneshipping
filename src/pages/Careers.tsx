@@ -17,8 +17,8 @@ const Careers = () => {
       whyJoinTitle: "Pourquoi nous rejoindre ?",
       openPositionsTitle: "Postes Ouverts",
       benefitsTitle: "Avantages & Bénéfices",
-      contactText: "Intéressé(e) ? Envoyez-nous votre candidature spontanée à",
-      noPositons: "Aucun poste ouvert actuellement. Envoyez-nous votre candidature spontanée !",
+      noPositions: "Aucun poste ouvert actuellement",
+      talentSearch: "Mais nous sommes toujours à la recherche de talents ! Envoyez-nous votre candidature spontanée à",
       benefits: {
         training: "Formation Continue",
         insurance: "Assurance Santé",
@@ -32,8 +32,8 @@ const Careers = () => {
       whyJoinTitle: "Why Join Us?",
       openPositionsTitle: "Open Positions",
       benefitsTitle: "Benefits & Perks",
-      contactText: "Interested? Send us your spontaneous application at",
-      noPositions: "No open positions currently. Send us your spontaneous application!",
+      noPositions: "No open positions currently",
+      talentSearch: "But we are always looking for talent! Send us your spontaneous application to",
       benefits: {
         training: "Continuous Training",
         insurance: "Health Insurance",
@@ -159,42 +159,19 @@ const Careers = () => {
             >
               <div className="text-6xl mb-6">📋</div>
               <h3 className="text-xl font-semibold mb-4">
-                {language === 'fr' ? 'Aucun poste ouvert actuellement' : 'No open positions currently'}
+                {currentContent.noPositions}
               </h3>
               <p className="text-gray-600 mb-6">
-                {language === 'fr' 
-                  ? 'Mais nous sommes toujours à la recherche de talents ! Envoyez-nous votre candidature spontanée.'
-                  : 'But we are always looking for talent! Send us your spontaneous application.'
-                }
+                {currentContent.talentSearch}
               </p>
-              <Button 
-                onClick={() => window.location.href = 'mailto:contact@ndoukoumaneshipping.com?subject=Candidature spontanée'}
-                className="bg-blue-600 hover:bg-blue-700"
+              <a 
+                href="mailto:recrutement@ndoukoumaneshipping.com" 
+                className="text-blue-600 hover:text-blue-700 font-semibold text-lg"
               >
-                <Send className="h-4 w-4 mr-2" />
-                {language === 'fr' ? 'Envoyer ma candidature' : 'Send my application'}
-              </Button>
+                recrutement@ndoukoumaneshipping.com
+              </a>
             </motion.div>
           </div>
-
-          {/* Contact for applications */}
-          <motion.div 
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-gray-600 mb-4">
-              {currentContent.contactText}
-            </p>
-            <a 
-              href="mailto:contact@ndoukoumaneshipping.com" 
-              className="text-blue-600 hover:text-blue-700 font-semibold text-lg"
-            >
-              contact@ndoukoumaneshipping.com
-            </a>
-          </motion.div>
         </div>
       </section>
 

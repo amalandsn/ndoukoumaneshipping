@@ -71,10 +71,7 @@ export default function HeroCarousel() {
   const { src, fallback, alt, titleFR, titleEN, subtitleFR, subtitleEN } = slides[idx];
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.location.href = '/contact';
   };
 
   return (
@@ -112,7 +109,7 @@ export default function HeroCarousel() {
           </button>
           <a
             href="tel:+221774021825"
-            className="bg-white/90 backdrop-blur-sm text-blue-900 py-3 px-6 rounded-lg shadow-lg hover:bg-white transition flex items-center gap-2 font-semibold"
+            className="bg-white text-blue-900 py-3 px-6 rounded-lg shadow-lg hover:bg-gray-100 transition flex items-center justify-center gap-2 font-semibold"
           >
             <Phone className="h-4 w-4" />
             {isFR ? "Appelez 24/7" : "Call Us 24/7"}
