@@ -1,23 +1,15 @@
+
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
 import { Separator } from "@/components/ui/separator";
-import { 
-  Ship, 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock,
-  Facebook,
-  Linkedin,
-  Twitter
-} from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
-import { getQuoteRoute } from '@/lib/routes';
+import CompanyInfo from './footer/CompanyInfo';
+import ServicesLinks from './footer/ServicesLinks';
+import QuickLinks from './footer/QuickLinks';
+import ContactInfo from './footer/ContactInfo';
 
 const Footer = () => {
   const { language } = useLanguage();
-  const navigate = useNavigate();
 
   const footerContent = {
     fr: {
@@ -99,140 +91,15 @@ const Footer = () => {
     }
   };
 
-  const handleQuoteClick = () => {
-    navigate(getQuoteRoute(language));
-  };
-
   return (
     <footer className="bg-blue-900 text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="p-2 bg-orange-500 rounded-lg">
-                <Ship className="h-8 w-8 text-white" />
-              </div>
-              <div>
-                <div className="text-xl font-bold font-serif">
-                  Ndoukoumane Shipping & Services
-                </div>
-                <div className="text-blue-300 text-sm">
-                  {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}
-                </div>
-              </div>
-            </div>
-            
-            <p className="text-blue-200 mb-6 leading-relaxed">
-              {content.company.description}
-            </p>
-            
-            <div className="space-y-3">
-              <div className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
-                <span className="text-blue-200 text-sm">
-                  {content.company.address}
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-orange-400 flex-shrink-0" />
-                <div className="text-blue-200 text-sm">
-                  <div>{content.contact.office}: {content.company.phone}</div>
-                  <div className="text-orange-300">{content.contact.urgent}: {content.company.urgent}</div>
-                </div>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-orange-400 flex-shrink-0" />
-                <span className="text-blue-200 text-sm">
-                  {content.company.email}
-                </span>
-              </div>
-            </div>
-
-            {/* Quote Button in Footer */}
-            <div className="mt-6">
-              <Button 
-                className="bg-orange-500 hover:bg-orange-600 text-white w-full"
-                onClick={handleQuoteClick}
-              >
-                {language === 'fr' ? 'Demander un devis' : 'Request a quote'}
-              </Button>
-            </div>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6 text-orange-400">
-              {content.services.title}
-            </h3>
-            <ul className="space-y-3">
-              {content.services.items.map((service, index) => (
-                <li key={index}>
-                  <Link 
-                    to="/services" 
-                    className="text-blue-200 hover:text-white transition-colors text-sm"
-                    onClick={() => handleLinkClick('/services')}
-                  >
-                    {service}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6 text-orange-400">
-              {content.quickLinks.title}
-            </h3>
-            <ul className="space-y-3">
-              {content.quickLinks.items.map((link, index) => (
-                <li key={index}>
-                  <Link 
-                    to={link.href} 
-                    className="text-blue-200 hover:text-white transition-colors text-sm"
-                    onClick={() => handleLinkClick(link.href)}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6 text-orange-400">
-              {content.contact.title}
-            </h3>
-            
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <Clock className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
-                <div className="text-blue-200 text-sm whitespace-pre-line">
-                  {content.contact.hours}
-                </div>
-              </div>
-              
-              <div>
-                <p className="text-blue-200 text-sm mb-4">
-                  {language === 'fr' ? 'Suivez-nous' : 'Follow us'}
-                </p>
-                <div className="flex space-x-3">
-                  <Button variant="ghost" size="sm" className="p-2 text-blue-200 hover:text-white hover:bg-blue-800">
-                    <Facebook className="h-5 w-5" />
-                  </Button>
-                  <Button variant="ghost" size="sm" className="p-2 text-blue-200 hover:text-white hover:bg-blue-800">
-                    <Linkedin className="h-5 w-5" />
-                  </Button>
-                  <Button variant="ghost" size="sm" className="p-2 text-blue-200 hover:text-white hover:bg-blue-800">
-                    <Twitter className="h-5 w-5" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <CompanyInfo content={content} />
+          <ServicesLinks content={content} onLinkClick={handleLinkClick} />
+          <QuickLinks content={content} onLinkClick={handleLinkClick} />
+          <ContactInfo content={content} language={language} />
         </div>
       </div>
 
