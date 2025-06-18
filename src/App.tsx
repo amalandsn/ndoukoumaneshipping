@@ -32,7 +32,7 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogPostPage />} />
           {/* Change: Actualités now shows IndustryNews instead of Blog */}
           <Route path="/actualites" element={<IndustryNews />} />
-          <Route path="/actualites/:slug" element={<Blog PostPage />} />
+          <Route path="/actualites/:slug" element={<BlogPostPage />} />
           <Route path="/actualites-secteur" element={<IndustryNews />} />
           <Route path="/industry-news" element={<IndustryNews />} />
           {/* New pages */}

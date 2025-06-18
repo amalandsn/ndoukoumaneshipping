@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -25,7 +24,7 @@ const Footer = () => {
         address: "Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar",
         phone: "+221 33 822 29 80",
         urgent: "+221 77 402 18 25",
-        email: "info@ndoukoumane-shipping.sn"
+        email: "contact@ndoukoumaneshipping.com"
       },
       services: {
         title: "Nos Services",
@@ -59,7 +58,7 @@ const Footer = () => {
         address: "Central Park, opposite the National Fire Brigade HQ, Dakar",
         phone: "+221 33 822 29 80",
         urgent: "+221 77 402 18 25",
-        email: "info@ndoukoumane-shipping.sn"
+        email: "contact@ndoukoumaneshipping.com"
       },
       services: {
         title: "Our Services",

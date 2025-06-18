@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -7,6 +6,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { Building2, Ship, Truck, Award, Star, Quote } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const References = () => {
   const { language } = useLanguage();
@@ -42,6 +42,73 @@ const References = () => {
 
   const currentContent = content[language];
 
+  // Use the same testimonials as homepage
+  const testimonials = {
+    fr: [
+      {
+        name: "Amadou Diallo",
+        company: "Senegal Export Corp",
+        role: "Directeur Logistique",
+        content: "Ndoukoumane Shipping & Services nous accompagne depuis 5 ans avec un professionnalisme exemplaire. Leurs équipes réactives et leur maîtrise des procédures douanières nous font gagner un temps précieux.",
+        rating: 5,
+        image: "/Amadou-Diallo.webp"
+      },
+      {
+        name: "Bousso Cisse",
+        company: "West Africa Trading",
+        role: "Responsable Import",
+        content: "Un service de consignation maritime de qualité supérieure. La transparence dans les opérations et le suivi en temps réel sont remarquables. Je recommande vivement leurs services.",
+        rating: 5,
+        image: "/Bousso-Cisse.webp"
+      },
+      {
+        name: "Abdoulaye Sow",
+        company: "Atlantic Freight Solutions",
+        role: "CEO",
+        content: "Partenaire de confiance pour nos opérations portuaires. Leur expertise et leur réactivité nous permettent d'optimiser nos délais de livraison. Un service client exceptionnel.",
+        rating: 5,
+        image: "/Abdoulaye-Sow.webp"
+      }
+    ],
+    en: [
+      {
+        name: "Amadou Diallo",
+        company: "Senegal Export Corp",
+        role: "Logistics Director",
+        content: "Ndoukoumane Shipping & Services has been supporting us for 5 years with exemplary professionalism. Their responsive teams and mastery of customs procedures save us precious time.",
+        rating: 5,
+        image: "/Amadou-Diallo.webp"
+      },
+      {
+        name: "Bousso Cisse",
+        company: "West Africa Trading",
+        role: "Import Manager",
+        content: "Superior quality maritime consignment service. The transparency in operations and real-time tracking are remarkable. I highly recommend their services.",
+        rating: 5,
+        image: "/Bousso-Cisse.webp"
+      },
+      {
+        name: "Abdoulaye Sow",
+        company: "Atlantic Freight Solutions",
+        role: "CEO",
+        content: "Trusted partner for our port operations. Their expertise and responsiveness allow us to optimize our delivery times. Exceptional customer service.",
+        rating: 5,
+        image: "/Abdoulaye-Sow.webp"
+      }
+    ]
+  };
+
+  const currentTestimonials = testimonials[language];
+
+  // Utility function for initials
+  function getInitials(name: string) {
+    return name
+      .split(" ")
+      .map((n) => n[0]?.toUpperCase() || "")
+      .join("")
+      .slice(0, 2);
+  }
+
   const clients = [
     {
       name: "MSC Mediterranean Shipping Company",
@@ -66,27 +133,6 @@ const References = () => {
         ? "Collaboration stratégique pour l'optimisation des chaînes d'approvisionnement"
         : "Strategic collaboration for supply chain optimization",
       logo: "📦"
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: "Amadou Diallo",
-      company: "MSC Dakar",
-      role: language === 'fr' ? "Directeur des Opérations" : "Operations Director",
-      text: language === 'fr'
-        ? "Ndoukoumane Shipping & Services nous accompagne depuis 5 ans avec un professionnalisme exemplaire. Leur réactivité et expertise font la différence."
-        : "Ndoukoumane Shipping & Services has been supporting us for 5 years with exemplary professionalism. Their responsiveness and expertise make all the difference.",
-      rating: 5
-    },
-    {
-      name: "Marie Dubois",
-      company: "CMA CGM Sénégal",
-      role: language === 'fr' ? "Responsable Logistique" : "Logistics Manager",
-      text: language === 'fr'
-        ? "Une équipe dédiée qui comprend nos enjeux. Les délais sont respectés et la qualité de service est constante."
-        : "A dedicated team that understands our challenges. Deadlines are met and service quality is consistent.",
-      rating: 5
     }
   ];
 
@@ -220,8 +266,8 @@ const References = () => {
             {currentContent.testimonialsTitle}
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((testimonial, index) => (
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {currentTestimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
@@ -233,19 +279,29 @@ const References = () => {
                   <CardContent className="p-6">
                     <Quote className="h-8 w-8 text-blue-200 mb-4" />
                     <p className="text-gray-700 mb-6 italic">
-                      "{testimonial.text}"
+                      "{testimonial.content}"
                     </p>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4 mb-4">
+                      <Avatar className="w-12 h-12">
+                        <AvatarImage
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="object-cover"
+                        />
+                        <AvatarFallback className="bg-blue-100 text-blue-600 font-semibold">
+                          {getInitials(testimonial.name)}
+                        </AvatarFallback>
+                      </Avatar>
                       <div>
                         <div className="font-semibold">{testimonial.name}</div>
                         <div className="text-sm text-gray-500">{testimonial.role}</div>
                         <div className="text-sm text-blue-600">{testimonial.company}</div>
                       </div>
-                      <div className="flex">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                        ))}
-                      </div>
+                    </div>
+                    <div className="flex">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                      ))}
                     </div>
                   </CardContent>
                 </Card>
