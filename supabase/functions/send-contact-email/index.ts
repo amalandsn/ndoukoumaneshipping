@@ -27,9 +27,9 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('Received contact form submission:', { name, email, messageLength: message.length });
 
-    // Send email to company
+    // Send email to company using verified domain
     const emailResponse = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
+      from: "Contact Form <contact@ndoukoumaneshipping.sn>",
       to: ["info@ndoukoumaneshipping.sn"],
       subject: `Nouveau message de contact - ${name}`,
       html: `
@@ -60,9 +60,9 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Email sent successfully:", emailResponse);
 
-    // Send confirmation email to user
+    // Send confirmation email to user using verified domain
     await resend.emails.send({
-      from: "Ndoukoumane Shipping <onboarding@resend.dev>",
+      from: "Ndoukoumane Shipping <noreply@ndoukoumaneshipping.sn>",
       to: [email],
       subject: "Confirmation de réception de votre message",
       html: `
