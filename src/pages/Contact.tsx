@@ -39,7 +39,7 @@ const Contact = () => {
       info: {
         title: "Informations de contact",
         address: "Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar, Sénégal",
-        hours: "Lun–Ven : 8h–18h\nSam–Dim : 8h–12h",
+        hours: "Lun–Ven : 8h–18h • Sam–Dim : 8h–12h",
         emergency: "Urgence 24/7",
         networks: "Réseaux"
       }
@@ -58,7 +58,7 @@ const Contact = () => {
       info: {
         title: "Contact information",
         address: "Central Park, opposite National Fire Brigade HQ, Dakar, Senegal",
-        hours: "Mon–Fri: 8h–18h\nSat–Sun: 8h–12h",
+        hours: "Mon–Fri: 8h–18h • Sat–Sun: 8h–12h",
         emergency: "24/7 Emergency",
         networks: "Networks"
       }
@@ -304,7 +304,7 @@ const Contact = () => {
                       <h3 className="font-semibold text-gray-900 mb-1">
                         {language === 'fr' ? 'Horaires' : 'Hours'}
                       </h3>
-                      <p className="text-gray-600 whitespace-pre-line">{currentContent.info.hours}</p>
+                      <p className="text-gray-600">{currentContent.info.hours}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -351,7 +351,7 @@ const Contact = () => {
                 <CardContent>
                   <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.951234567890!2d-17.4677734!3d14.6928067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172f73c3b2b23%3A0x1234567890abcdef!2sCentral%20Park%20Dakar!5e0!3m2!1sfr!2ssn!4v1234567890123"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.9668423476557!2d-17.44250668513698!3d14.682570589766598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec17295e1775ef1%3A0x1ee2e80b10007d39!2sCentral%20Park%20Dakar!5e0!3m2!1sfr!2ssn!4v1734546782152!5m2!1sfr!2ssn"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
