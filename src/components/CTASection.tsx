@@ -10,6 +10,10 @@ const CTASection = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();
 
+  const handleQuoteClick = () => {
+    navigate(language === 'fr' ? '/devis' : '/quote');
+  };
+
   return (
     <section className="py-20 bg-gradient-to-r from-orange-500 to-orange-600 text-white" id="contact">
       <div className="container mx-auto px-4 text-center">
@@ -35,7 +39,7 @@ const CTASection = () => {
             <Button 
               size="lg" 
               className="bg-blue-600 text-white hover:bg-blue-700 border-2 border-white px-8 py-4 transform transition-transform hover:scale-105"
-              onClick={() => navigate(language === 'fr' ? '/devis' : '/quote')}
+              onClick={handleQuoteClick}
             >
               <FileText className="h-5 w-5 mr-2" />
               {language === 'fr' ? 'Demander un devis' : 'Request a quote'}
