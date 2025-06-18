@@ -47,7 +47,7 @@ const Footer = () => {
       },
       contact: {
         title: "Contact",
-        hours: "Lun-Ven: 8h00-18h00\nSam: 8h00-12h00",
+        hours: "Lun–Ven : 8h–18h\nSam–Dim : 8h–12h",
         office: "Bureau",
         urgent: "Urgence 24/7"
       },
@@ -81,7 +81,7 @@ const Footer = () => {
       },
       contact: {
         title: "Contact",
-        hours: "Mon-Fri: 8:00-18:00\nSat: 8:00-12:00",
+        hours: "Mon–Fri: 8h–18h\nSat–Sun: 8h–12h",
         office: "Office",
         urgent: "24/7 Emergency"
       },
@@ -90,6 +90,13 @@ const Footer = () => {
   };
 
   const content = footerContent[language];
+
+  const handleLinkClick = (href: string) => {
+    // Si on est déjà sur la page, forcer le scroll vers le haut
+    if (window.location.pathname === href) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <footer className="bg-blue-900 text-white">
@@ -150,6 +157,7 @@ const Footer = () => {
                   <Link 
                     to="/services" 
                     className="text-blue-200 hover:text-white transition-colors text-sm"
+                    onClick={() => handleLinkClick('/services')}
                   >
                     {service}
                   </Link>
@@ -169,6 +177,7 @@ const Footer = () => {
                   <Link 
                     to={link.href} 
                     className="text-blue-200 hover:text-white transition-colors text-sm"
+                    onClick={() => handleLinkClick(link.href)}
                   >
                     {link.label}
                   </Link>
@@ -222,10 +231,18 @@ const Footer = () => {
           </div>
           
           <div className="flex space-x-6 text-sm">
-            <Link to="/legal#politique-confidentialite" className="text-blue-300 hover:text-white transition-colors">
+            <Link 
+              to="/legal#politique-confidentialite" 
+              className="text-blue-300 hover:text-white transition-colors"
+              onClick={() => handleLinkClick('/legal')}
+            >
               {language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
             </Link>
-            <Link to="/legal#conditions-utilisation" className="text-blue-300 hover:text-white transition-colors">
+            <Link 
+              to="/legal#conditions-utilisation" 
+              className="text-blue-300 hover:text-white transition-colors"
+              onClick={() => handleLinkClick('/legal')}
+            >
               {language === 'fr' ? 'Conditions d\'utilisation' : 'Terms of Service'}
             </Link>
           </div>

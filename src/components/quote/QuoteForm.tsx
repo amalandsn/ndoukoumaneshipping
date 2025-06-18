@@ -15,18 +15,17 @@ import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { Send, Upload } from 'lucide-react';
 
-const quoteSchema = z.object({
-  fullName: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().min(10, 'Phone number must be at least 10 characters'),
-  services: z.array(z.string()).min(1, 'Please select at least one service'),
-  from: z.string().min(2, 'Origin location is required'),
-  to: z.string().min(2, 'Destination is required'),
-  volume: z.string().min(1, 'Volume/weight is required'),
+// Schéma Zod avec messages d'erreur bilingues
+const createQuoteSchema = (language: 'fr' | 'en') => z.object({
+  fullName: z.string().min(2, language === 'fr' ? 'Le nom doit contenir au moins 2 caractères' : 'Name must be at least 2 characters'),
+  email: z.string().email(language === 'fr' ? 'Adresse e-mail invalide' : 'Invalid email address'),
+  phone: z.string().min(10, language === 'fr' ? 'Le numéro de téléphone doit contenir au moins 10 caractères' : 'Phone number must be at least 10 characters'),
+  services: z.array(z.string()).min(1, language === 'fr' ? 'Veuillez sélectionner au moins un service' : 'Please select at least one service'),
+  from: z.string().min(2, language === 'fr' ? 'Le lieu de départ est requis' : 'Origin location is required'),
+  to: z.string().min(2, language === 'fr' ? 'La destination est requise' : 'Destination is required'),
+  volume: z.string().min(1, language === 'fr' ? 'Le volume/poids est requis' : 'Volume/weight is required'),
   message: z.string().optional(),
 });
-
-type QuoteFormData = z.infer<typeof quoteSchema>;
 
 const QuoteForm = () => {
   const { language } = useLanguage();
@@ -34,8 +33,8 @@ const QuoteForm = () => {
   const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<QuoteFormData>({
-    resolver: zodResolver(quoteSchema),
+  const form = useForm<z.infer<ReturnType<typeof createQuoteSchema>>>({
+    resolver: zodResolver(createQuoteSchema(language)),
     defaultValues: {
       fullName: '',
       email: '',
@@ -56,7 +55,7 @@ const QuoteForm = () => {
     { value: 'autre', labelFr: 'Autre', labelEn: 'Other' },
   ];
 
-  const onSubmit = async (data: QuoteFormData) => {
+  const onSubmit = async (data: z.infer<ReturnType<typeof createQuoteSchema>>) => {
     setIsSubmitting(true);
     try {
       // Call the edge function to handle the quote request

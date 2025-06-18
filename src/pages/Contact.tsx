@@ -9,7 +9,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 const Contact = () => {
   const { language } = useLanguage();
@@ -37,8 +39,9 @@ const Contact = () => {
       info: {
         title: "Informations de contact",
         address: "Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar, Sénégal",
-        hours: "Lun-Ven: 8h00-18h00\nSam: 8h00-12h00",
-        emergency: "Urgence 24/7"
+        hours: "Lun–Ven : 8h–18h\nSam–Dim : 8h–12h",
+        emergency: "Urgence 24/7",
+        networks: "Réseaux"
       }
     },
     en: {
@@ -55,8 +58,9 @@ const Contact = () => {
       info: {
         title: "Contact information",
         address: "Central Park, opposite National Fire Brigade HQ, Dakar, Senegal",
-        hours: "Mon-Fri: 8:00-18:00\nSat: 8:00-12:00",
-        emergency: "24/7 Emergency"
+        hours: "Mon–Fri: 8h–18h\nSat–Sun: 8h–12h",
+        emergency: "24/7 Emergency",
+        networks: "Networks"
       }
     }
   };
@@ -66,11 +70,42 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Form submission logic would go here
-    setTimeout(() => {
+    
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          message: `Téléphone: ${formData.phone}\nSujet: ${formData.subject}\n\nMessage:\n${formData.message}`
+        }
+      });
+
+      if (error) throw error;
+
+      toast.success(
+        language === 'fr' 
+          ? 'Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.' 
+          : 'Message sent successfully! We will respond to you as soon as possible.'
+      );
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast.error(
+        language === 'fr' 
+          ? 'Erreur lors de l\'envoi du message. Veuillez réessayer.' 
+          : 'Error sending message. Please try again.'
+      );
+    } finally {
       setIsSubmitting(false);
-      // Reset form or show success message
-    }, 2000);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -271,6 +306,60 @@ const Contact = () => {
                       </h3>
                       <p className="text-gray-600 whitespace-pre-line">{currentContent.info.hours}</p>
                     </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Réseaux Section */}
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-blue-900">
+                    {currentContent.info.networks}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <a 
+                      href="https://www.linkedin.com/company/ndoukoumane-shipping-services" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-3 text-blue-600 hover:text-blue-800 transition-colors"
+                    >
+                      <div className="w-6 h-6 text-blue-600">📱</div>
+                      <span>LinkedIn</span>
+                    </a>
+                    <a 
+                      href="https://wa.me/221774021825" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-3 text-green-600 hover:text-green-800 transition-colors"
+                    >
+                      <MessageSquare className="w-6 h-6" />
+                      <span>WhatsApp Business</span>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Map Section */}
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-blue-900">
+                    {language === 'fr' ? 'Localisation' : 'Location'}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.951234567890!2d-17.4677734!3d14.6928067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172f73c3b2b23%3A0x1234567890abcdef!2sCentral%20Park%20Dakar!5e0!3m2!1sfr!2ssn!4v1234567890123"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="rounded-lg"
+                    ></iframe>
                   </div>
                 </CardContent>
               </Card>
