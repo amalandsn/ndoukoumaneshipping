@@ -16,6 +16,8 @@ import References from "./pages/References";
 import Careers from "./pages/Careers";
 import Legal from "./pages/Legal";
 import NotFound from "./pages/NotFound";
+import Quote from "./pages/Quote";
+import QuoteSuccess from "./pages/QuoteSuccess";
 
 const queryClient = new QueryClient();
 

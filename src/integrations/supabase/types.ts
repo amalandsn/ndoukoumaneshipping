@@ -54,6 +54,54 @@ export type Database = {
         }
         Relationships: []
       }
+      quotes: {
+        Row: {
+          created_at: string
+          destination: string
+          email: string
+          file_url: string | null
+          full_name: string
+          id: string
+          language: string
+          message: string | null
+          origin_location: string
+          phone: string
+          services: string[]
+          updated_at: string
+          volume_weight: string
+        }
+        Insert: {
+          created_at?: string
+          destination: string
+          email: string
+          file_url?: string | null
+          full_name: string
+          id?: string
+          language?: string
+          message?: string | null
+          origin_location: string
+          phone: string
+          services: string[]
+          updated_at?: string
+          volume_weight: string
+        }
+        Update: {
+          created_at?: string
+          destination?: string
+          email?: string
+          file_url?: string | null
+          full_name?: string
+          id?: string
+          language?: string
+          message?: string | null
+          origin_location?: string
+          phone?: string
+          services?: string[]
+          updated_at?: string
+          volume_weight?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

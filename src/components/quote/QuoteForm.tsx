@@ -71,9 +71,9 @@ const QuoteForm = () => {
 
       if (error) throw error;
 
-      // Track analytics
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'quote_request_submitted', {
+      // Track analytics if gtag is available
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'quote_request_submitted', {
           quote_id: result.quoteId,
         });
       }
