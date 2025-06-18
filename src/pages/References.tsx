@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import ChatAssistant from '@/components/ChatAssistant';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Building2, Ship, Truck, Award, Star, Quote } from 'lucide-react';
@@ -360,6 +361,7 @@ const References = () => {
       </section>
 
       <Footer />
+      <ChatAssistant />
     </div>
   );
 };

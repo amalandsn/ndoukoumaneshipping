@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Ship, X, Phone } from 'lucide-react';
+import { Menu, Ship, X, Phone, FileText } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/hooks/useLanguage';
 
@@ -83,6 +83,13 @@ const Navigation = () => {
             <LanguageSwitcher />
             
             <Button className="bg-orange-500 hover:bg-orange-600 text-white" asChild>
+              <Link to={language === 'fr' ? '/devis' : '/quote'}>
+                <FileText className="h-4 w-4 mr-2" />
+                {language === 'fr' ? 'Demande de devis' : 'Quote request'}
+              </Link>
+            </Button>
+            
+            <Button className="bg-blue-900 hover:bg-blue-800 text-white" asChild>
               <a href="tel:+221774021825">
                 <Phone className="h-4 w-4 mr-2" />
                 {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
@@ -135,6 +142,13 @@ const Navigation = () => {
                   })}
                   
                   <Button className="bg-orange-500 hover:bg-orange-600 text-white mt-6" asChild>
+                    <Link to={language === 'fr' ? '/devis' : '/quote'} onClick={() => setIsOpen(false)}>
+                      <FileText className="h-4 w-4 mr-2" />
+                      {language === 'fr' ? 'Demande de devis' : 'Quote request'}
+                    </Link>
+                  </Button>
+                  
+                  <Button className="bg-blue-900 hover:bg-blue-800 text-white" asChild>
                     <a href="tel:+221774021825">
                       <Phone className="h-4 w-4 mr-2" />
                       {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}

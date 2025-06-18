@@ -1,7 +1,7 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import ChatAssistant from '@/components/ChatAssistant';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Users, Send, Heart, Zap, Shield, DollarSign } from 'lucide-react';
