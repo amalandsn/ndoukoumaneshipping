@@ -8,7 +8,7 @@ const statsContent = {
   fr: {
     title: "Notre Excellence en Chiffres",
     stats: [
-      { label: "Années d'expérience", number: 20, suffix: "+" },
+      { label: "Années d'expérience", number: 6, suffix: "+" },
       { label: "TEUs par an", number: 150000, suffix: "+" },
       { label: "Employés qualifiés", number: 85, suffix: "" },
       { label: "Ports desservis", number: 12, suffix: "" }
@@ -17,7 +17,7 @@ const statsContent = {
   en: {
     title: "Our Excellence in Numbers",
     stats: [
-      { label: "Years of experience", number: 20, suffix: "+" },
+      { label: "Years of experience", number: 6, suffix: "+" },
       { label: "TEUs per year", number: 150000, suffix: "+" },
       { label: "Qualified employees", number: 85, suffix: "" },
       { label: "Ports served", number: 12, suffix: "" }

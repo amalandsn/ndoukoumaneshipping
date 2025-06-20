@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Separator } from "@/components/ui/separator";
@@ -14,7 +13,7 @@ const Footer = () => {
   const footerContent = {
     fr: {
       company: {
-        description: "Leader en services maritimes au Sénégal avec plus de 20 ans d'expérience dans la consignation, manutention et transit douanier.",
+        description: "6 ans d'expérience dans la consignation et manutention transit avec solution logistique.",
         address: "Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar",
         phone: "+221 33 822 29 80",
         urgent: "+221 77 402 18 25",
@@ -48,7 +47,7 @@ const Footer = () => {
     },
     en: {
       company: {
-        description: "Leading maritime services in Senegal with over 20 years of experience in consignment, handling and customs transit.",
+        description: "6 years of experience in consignment and handling transit with logistics solutions.",
         address: "Central Park, opposite the National Fire Brigade HQ, Dakar",
         phone: "+221 33 822 29 80",
         urgent: "+221 77 402 18 25",
