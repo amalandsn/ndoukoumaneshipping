@@ -1,7 +1,10 @@
+
 import React from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { ServiceData } from '@/data/services';
+
 interface ServiceCardProps extends ServiceData {}
+
 const ServiceCard: React.FC<ServiceCardProps> = ({
   img,
   icon: Icon,
@@ -10,10 +13,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   bulletsFr,
   bulletsEn
 }) => {
-  const {
-    language
-  } = useLanguage();
-  return <div className="flex flex-col rounded-xl shadow-lg overflow-hidden bg-white">
+  const { language } = useLanguage();
+
+  return (
+    <div className="flex flex-col rounded-xl shadow-lg overflow-hidden bg-white">
       {/* Hero - optimized smaller image */}
       <div className="relative">
         <img src={img} alt={titleFr} className="h-28 md:h-36 w-full object-cover" />
@@ -32,9 +35,14 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
 
         <ul className="list-disc list-inside marker:text-orange-500 space-y-1 text-sm leading-relaxed text-gray-700">
-          {language === 'en' ? bulletsEn.map((bullet, index) => <li key={index}>{bullet}</li>) : bulletsFr.map((bullet, index) => <li key={index} className="Pour cette section les mesures doivent \xEAtre exprim\xE9s en metre cube au lieu de metre carre Sur le site remplace 20 ans d'exp\xE9rience par \"6 ans d'exp\xE9rience dans la consignation et manutention transit avec solution logistique\" \n">{bullet}</li>)}
+          {language === 'en' 
+            ? bulletsEn.map((bullet, index) => <li key={index}>{bullet}</li>) 
+            : bulletsFr.map((bullet, index) => <li key={index}>{bullet}</li>)
+          }
         </ul>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default ServiceCard;

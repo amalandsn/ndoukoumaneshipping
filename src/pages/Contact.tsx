@@ -39,7 +39,7 @@ const Contact = () => {
       info: {
         title: "Informations de contact",
         address: "Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar, Sénégal",
-        hours: "Lun–Ven : 8h–18h • Sam–Dim : 8h–12h",
+        hours: "Disponibles 24h/24 et 7j/7",
         emergency: "Urgence 24/7",
         networks: "Réseaux"
       }
@@ -58,7 +58,7 @@ const Contact = () => {
       info: {
         title: "Contact information",
         address: "Central Park, opposite National Fire Brigade HQ, Dakar, Senegal",
-        hours: "Mon–Fri: 8h–18h • Sat–Sun: 8h–12h",
+        hours: "Available 24/7",
         emergency: "24/7 Emergency",
         networks: "Networks"
       }

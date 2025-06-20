@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -22,7 +23,7 @@ const References = () => {
       stats: {
         clients: "Clients Actifs",
         projects: "Projets Réalisés",
-        experience: "Années d'Expérience",
+        experience: "6 ans d'Expérience",
         satisfaction: "Satisfaction Client"
       }
     },
@@ -35,7 +36,7 @@ const References = () => {
       stats: {
         clients: "Active Clients",
         projects: "Completed Projects",
-        experience: "Years of Experience",
+        experience: "6 Years of Experience",
         satisfaction: "Client Satisfaction"
       }
     }
@@ -128,6 +129,14 @@ const References = () => {
       logo: "🌊"
     },
     {
+      name: "Maersk Line",
+      sector: language === 'fr' ? "Transport Maritime" : "Maritime Transport",
+      description: language === 'fr'
+        ? "6 ans d'expérience dans la consignation et manutention transit avec solution logistique"
+        : "6 years of experience in consignment and handling transit with logistics solutions",
+      logo: "⚓"
+    },
+    {
       name: "Bollore Transport & Logistics",
       sector: language === 'fr' ? "Logistique Intégrée" : "Integrated Logistics",
       description: language === 'fr'
@@ -139,12 +148,12 @@ const References = () => {
 
   const projects = [
     {
-      title: language === 'fr' ? "Modernisation Terminal Conteneurs" : "Container Terminal Modernization",
+      title: language === 'fr' ? "Partenariat avec PAD et DPW" : "Partnership with PAD and DPW",
       client: "Port Autonome de Dakar",
       year: "2023",
       description: language === 'fr'
-        ? "Optimisation des opérations de manutention avec réduction de 30% des temps d'attente"
-        : "Handling operations optimization with 30% reduction in waiting times",
+        ? "Participation active aux réflexions stratégiques aux côtés du Port autonome de Dakar et de DP World"
+        : "Active participation in strategic reflections alongside the Autonomous Port of Dakar and DP World",
       icon: <Ship className="h-6 w-6" />
     },
     {
@@ -191,7 +200,7 @@ const References = () => {
             {[
               { value: "50+", label: currentContent.stats.clients },
               { value: "200+", label: currentContent.stats.projects },
-              { value: "15+", label: currentContent.stats.experience },
+              { value: "6+", label: currentContent.stats.experience },
               { value: "98%", label: currentContent.stats.satisfaction }
             ].map((stat, index) => (
               <motion.div
@@ -227,7 +236,7 @@ const References = () => {
             {currentContent.clientsTitle}
           </motion.h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {clients.map((client, index) => (
               <motion.div
                 key={index}

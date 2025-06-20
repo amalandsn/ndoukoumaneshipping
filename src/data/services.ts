@@ -133,14 +133,14 @@ export const servicesData: ServiceData[] = [
     titleFr: "Conteneurs Individuels",
     titleEn: "Full Containers",
     bulletsFr: [
-      "Conteneurs dry 20' (33 m²)",
-      "Conteneurs dry 40' (60 m²)",
+      "Conteneurs dry 20' (33 m³)",
+      "Conteneurs dry 40' (60 m³)",
       "Reefer disponible sur demande",
       "Options Open Top (OT)"
     ],
     bulletsEn: [
-      "Dry containers 20' (33 m²)",
-      "Dry containers 40' (60 m²)",
+      "Dry containers 20' (33 m³)",
+      "Dry containers 40' (60 m³)",
       "Reefer available on request",
       "Open Top (OT) options"
     ]

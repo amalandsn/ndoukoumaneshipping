@@ -14,6 +14,8 @@ interface ContactInfoProps {
 }
 
 const ContactInfo = ({ content, language }: ContactInfoProps) => {
+  const hours24_7 = language === 'fr' ? 'Disponibles 24h/24 et 7j/7' : 'Available 24/7';
+  
   return (
     <div>
       <h3 className="text-lg font-semibold mb-6 text-orange-400">
@@ -24,7 +26,7 @@ const ContactInfo = ({ content, language }: ContactInfoProps) => {
         <div className="flex items-start space-x-3">
           <Clock className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
           <div className="text-blue-200 text-sm whitespace-pre-line">
-            {content.contact.hours}
+            {hours24_7}
           </div>
         </div>
         
