@@ -55,19 +55,24 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="flex-shrink-0">
+          <Link to="/" className="flex items-center space-x-2 min-w-0">
+            <div className="flex-shrink-0 w-10 h-10">
               <img 
                 src="/lovable-uploads/66d42876-b91f-404d-8969-4c661b04326f.png" 
                 alt="Ndoukoumane Groupe" 
-                className="h-12 w-auto object-contain"
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  console.log('Logo failed to load');
+                  e.currentTarget.style.display = 'none';
+                }}
+                onLoad={() => console.log('Logo loaded successfully')}
               />
             </div>
-            <div>
-              <div className="text-xl font-bold text-blue-900 font-serif">
+            <div className="min-w-0 flex-1">
+              <div className="text-sm sm:text-lg font-bold text-blue-900 font-serif truncate">
                 Ndoukoumane Shipping & Services
               </div>
-              <div className="text-xs text-gray-600">
+              <div className="text-xs text-gray-600 truncate">
                 {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}
               </div>
             </div>
@@ -122,12 +127,14 @@ const Navigation = () => {
                 <div className="flex flex-col space-y-6 mt-8">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <img 
-                        src="/lovable-uploads/66d42876-b91f-404d-8969-4c661b04326f.png" 
-                        alt="Ndoukoumane Groupe" 
-                        className="h-8 w-auto object-contain"
-                      />
-                      <span className="font-bold text-blue-900">Ndoukoumane</span>
+                      <div className="w-8 h-8 flex-shrink-0">
+                        <img 
+                          src="/lovable-uploads/66d42876-b91f-404d-8969-4c661b04326f.png" 
+                          alt="Ndoukoumane Groupe" 
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <span className="font-bold text-blue-900 text-sm">Ndoukoumane</span>
                     </div>
                     <Button 
                       variant="ghost" 
