@@ -59,7 +59,7 @@ const Navigation = () => {
             <img 
               src="/public/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-10 w-auto"
+              className="h-8 w-auto"
             />
             <div>
               <div className="text-xl font-bold text-blue-900 font-serif">
