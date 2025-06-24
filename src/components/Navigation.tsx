@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X, Phone, FileText } from 'lucide-react';
+import { Menu, Ship, X, Phone, FileText } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNavigate } from 'react-router-dom';
@@ -57,11 +57,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <div className="p-2 bg-blue-900 rounded-lg">
-              <img 
-                src="/lovable-uploads/66d42876-b91f-404d-8969-4c661b04326f.png" 
-                alt="Ndoukoumane Groupe" 
-                className="h-8 w-8 object-contain"
-              />
+              <Ship className="h-8 w-8 text-white" />
             </div>
             <div>
               <div className="text-xl font-bold text-blue-900 font-serif">
@@ -122,11 +118,7 @@ const Navigation = () => {
                 <div className="flex flex-col space-y-6 mt-8">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <img 
-                        src="/lovable-uploads/66d42876-b91f-404d-8969-4c661b04326f.png" 
-                        alt="Ndoukoumane Groupe" 
-                        className="h-6 w-6 object-contain"
-                      />
+                      <Ship className="h-6 w-6 text-blue-900" />
                       <span className="font-bold text-blue-900">Ndoukoumane</span>
                     </div>
                     <Button 
