@@ -33,13 +33,11 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
   return (
     <div className="lg:col-span-1">
       <div className="flex items-center space-x-3 mb-6">
-        <div className="bg-white p-2 rounded-lg">
-          <img 
-            src="/logo.webp"
-            alt="Ndoukoumane Shipping & Services"
-            className="h-12 w-auto"
-          />
-        </div>
+        <img 
+          src="/logof.webp"
+          alt="Ndoukoumane Shipping & Services"
+          className="h-18 w-auto"
+        />
         <div>
           <div className="text-xl font-bold font-serif">
             Ndoukoumane Shipping & Services
