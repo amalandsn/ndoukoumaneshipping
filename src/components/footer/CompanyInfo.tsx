@@ -36,13 +36,13 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
         <img 
           src="/logof.webp"
           alt="Ndoukoumane Shipping & Services"
-          className="h-18 w-auto"
+          className="h-16 w-auto"
         />
-        <div>
-          <div className="text-xl font-bold font-serif">
+        <div className="flex-1">
+          <div className="text-xl font-bold font-serif leading-tight">
             Ndoukoumane Shipping & Services
           </div>
-          <div className="text-blue-300 text-sm">
+          <div className="text-blue-300 text-sm mt-1">
             {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}
           </div>
         </div>
@@ -52,22 +52,22 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
         {content.company.description}
       </p>
       
-      <div className="space-y-3">
+      <div className="space-y-4">
         <div className="flex items-start space-x-3">
           <MapPin className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
-          <span className="text-blue-200 text-sm">
+          <span className="text-blue-200 text-sm leading-relaxed">
             {content.company.address}
           </span>
         </div>
-        <div className="flex items-center space-x-3">
-          <Phone className="h-5 w-5 text-orange-400 flex-shrink-0" />
-          <div className="text-blue-200 text-sm">
-            <div>{content.contact.office}: {content.company.phone}</div>
+        <div className="flex items-start space-x-3">
+          <Phone className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
+          <div className="text-blue-200 text-sm leading-relaxed">
+            <div className="mb-1">{content.contact.office}: {content.company.phone}</div>
             <div className="text-orange-300">{content.contact.urgent}: {content.company.urgent}</div>
           </div>
         </div>
-        <div className="flex items-center space-x-3">
-          <Mail className="h-5 w-5 text-orange-400 flex-shrink-0" />
+        <div className="flex items-start space-x-3">
+          <Mail className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
           <span className="text-blue-200 text-sm">
             {content.company.email}
           </span>

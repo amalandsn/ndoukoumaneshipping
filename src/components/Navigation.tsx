@@ -55,7 +55,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-4 flex-shrink-0">
+          <Link to="/" className="flex items-center space-x-4 flex-shrink-0 mr-8">
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
