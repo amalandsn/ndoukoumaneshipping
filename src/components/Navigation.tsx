@@ -56,11 +56,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="p-2 bg-blue-900 rounded-lg">
+            <div className="flex-shrink-0">
               <img 
                 src="/lovable-uploads/66d42876-b91f-404d-8969-4c661b04326f.png" 
                 alt="Ndoukoumane Groupe" 
-                className="h-8 w-8 object-contain"
+                className="h-12 w-auto object-contain"
               />
             </div>
             <div>
@@ -125,7 +125,7 @@ const Navigation = () => {
                       <img 
                         src="/lovable-uploads/66d42876-b91f-404d-8969-4c661b04326f.png" 
                         alt="Ndoukoumane Groupe" 
-                        className="h-6 w-6 object-contain"
+                        className="h-8 w-auto object-contain"
                       />
                       <span className="font-bold text-blue-900">Ndoukoumane</span>
                     </div>

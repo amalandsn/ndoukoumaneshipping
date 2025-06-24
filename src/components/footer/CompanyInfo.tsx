@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Ship, MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
 import { getQuoteRoute } from '@/lib/routes';
@@ -33,11 +33,15 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
   return (
     <div className="lg:col-span-1">
       <div className="flex items-center space-x-3 mb-6">
-        <div className="p-2 bg-orange-500 rounded-lg">
-          <Ship className="h-8 w-8 text-white" />
+        <div className="flex-shrink-0">
+          <img 
+            src="/lovable-uploads/66d42876-b91f-404d-8969-4c661b04326f.png" 
+            alt="Ndoukoumane Groupe" 
+            className="h-12 w-auto object-contain"
+          />
         </div>
         <div>
-          <div className="text-xl font-bold font-serif">
+          <div className="text-xl font-bold font-serif text-white">
             Ndoukoumane Shipping & Services
           </div>
           <div className="text-blue-300 text-sm">
