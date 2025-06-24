@@ -57,7 +57,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img 
-              src="/public/logo.webp"
+              src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
               className="h-12 w-auto sm:h-14 object-contain"
             />
