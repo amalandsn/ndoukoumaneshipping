@@ -57,7 +57,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
             <img 
-              src="/public/logo.webp"
+              src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
               className="h-10 w-auto"
             />
@@ -121,7 +121,7 @@ const Navigation = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <img 
-                        src="/public/logo.webp"
+                        src="/logo.webp"
                         alt="Ndoukoumane"
                         className="h-6 w-auto"
                       />
