@@ -9,7 +9,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useNavigate } from 'react-router-dom';
 import { getQuoteRoute } from '@/lib/routes';
 import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
+
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,36 +52,38 @@ const Navigation = () => {
     window.location.href = 'tel:+221774021825';
   };
 
-return (
+  return (
   <nav className="bg-white shadow-lg sticky top-0 z-50">
     <div className="container mx-auto px-4">
-      <div className="flex items-center py-3">
-        {/* --------------  Bloc logo + marque -------------- */}
+      <div className="flex items-center py-4">
+        {/* -----------------------------------------------------  Bloc gauche  */}
         <Link to="/" className="flex items-start gap-3 shrink-0">
+          {/* Logo : 56 px de haut */}
           <img
             src="/logo.webp"
             alt="Ndoukoumane Groupe"
             className="h-14 w-auto object-contain"
           />
 
-          {/* Marque : max-width pour éviter qu’elle s’étale */}
-          <div className="leading-tight max-w-[9rem]">
-            <h1 className="text-lg md:text-xl font-bold text-blue-900 font-serif">
-              Ndoukoumane<br />Shipping &amp; Services
-            </h1>
-            <p className="text-xs text-gray-600">
+          {/* Texte : jamais réduit, largeur min fixe   */}
+          <div className="min-w-max">
+            <div className="text-xl font-bold text-blue-900 font-serif leading-tight">
+              Ndoukoumane<br />
+              Shipping &amp; Services
+            </div>
+            <div className="text-xs text-gray-600">
               {language === "fr" ? "Services Maritimes" : "Maritime Services"}
-            </p>
+            </div>
           </div>
         </Link>
 
-        {/* --------------  Menu desktop -------------- */}
-        <ul className="hidden lg:flex items-center gap-10 ml-12 xl:ml-16">
+        {/* -----------------------------------------------------  Menu desktop  */}
+        <ul className="hidden lg:flex items-center gap-8 ml-auto">
           {items.map((item) => (
-            <li key={item.label} className="whitespace-nowrap">
+            <li key={item.label}>
               <Link
                 to={item.href}
-                className="text-sm font-medium text-gray-700 hover:text-blue-900"
+                className="text-sm font-medium text-gray-700 hover:text-blue-900 whitespace-nowrap"
               >
                 {item.label}
               </Link>
@@ -89,12 +91,13 @@ return (
           ))}
         </ul>
 
-        {/* --------------  Burger mobile -------------- */}
+        {/* -----------------------------------------------------  Burger mobile  */}
         <button
           className="lg:hidden ml-auto"
           onClick={toggleMobileMenu}
           aria-label="Menu"
         >
+          {/* Icône burger déjà importée */}
           <Menu className="h-6 w-6 text-blue-900" />
         </button>
       </div>
