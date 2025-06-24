@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Ship, X, Phone, FileText } from 'lucide-react';
+import { Menu, X, Phone, FileText } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNavigate } from 'react-router-dom';
@@ -56,9 +56,11 @@ const Navigation = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="p-2 bg-blue-900 rounded-lg">
-              <Ship className="h-8 w-8 text-white" />
-            </div>
+            <img 
+              src="/public/logo.webp"
+              alt="Ndoukoumane Shipping & Services"
+              className="h-10 w-auto"
+            />
             <div>
               <div className="text-xl font-bold text-blue-900 font-serif">
                 Ndoukoumane Shipping & Services
@@ -118,7 +120,11 @@ const Navigation = () => {
                 <div className="flex flex-col space-y-6 mt-8">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      <Ship className="h-6 w-6 text-blue-900" />
+                      <img 
+                        src="/public/logo.webp"
+                        alt="Ndoukoumane"
+                        className="h-6 w-auto"
+                      />
                       <span className="font-bold text-blue-900">Ndoukoumane</span>
                     </div>
                     <Button 
