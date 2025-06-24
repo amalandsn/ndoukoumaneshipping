@@ -55,14 +55,14 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-4 flex-shrink-0">
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-12 w-auto sm:h-14 object-contain"
+              className="h-16 w-auto sm:h-18 object-contain"
             />
-            <div>
-              <div className="text-xl font-bold text-blue-900 font-serif">
+            <div className="min-w-0">
+              <div className="text-lg sm:text-xl font-bold text-blue-900 font-serif leading-tight">
                 Ndoukoumane Shipping & Services
               </div>
               <div className="text-xs text-gray-600">
@@ -72,14 +72,14 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {items.map((item) => {
               const isActive = isActiveLink(item.href);
               return (
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 ${
+                  className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm xl:text-base ${
                     isActive
                       ? 'text-blue-900 border-orange-500'
                       : 'text-gray-700 border-transparent hover:text-blue-900'
@@ -95,12 +95,12 @@ const Navigation = () => {
             
             <LanguageSwitcher />
             
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white" onClick={handleQuoteClick}>
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white text-sm" onClick={handleQuoteClick}>
               <FileText className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Demande de devis' : 'Quote request'}
             </Button>
             
-            <Button className="bg-blue-900 hover:bg-blue-800 text-white" onClick={handleCallClick}>
+            <Button className="bg-blue-900 hover:bg-blue-800 text-white text-sm" onClick={handleCallClick}>
               <Phone className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
             </Button>
