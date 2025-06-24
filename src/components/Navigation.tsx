@@ -59,12 +59,12 @@ const Navigation = () => {
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-18 w-auto object-contain"
+              className="h-16 w-auto object-contain"
             />
             <div className="min-w-0">
               <div className="text-lg sm:text-xl font-bold text-blue-900 font-serif leading-tight">
-                <div>Ndoukoumane Shipping</div>
-                <div>& Services</div>
+                <div>Ndoukoumane</div>
+                <div>Shipping & Services</div>
               </div>
               <div className="text-xs text-gray-600">
                 {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}
