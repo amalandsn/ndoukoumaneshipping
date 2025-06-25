@@ -1,7 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { XMLParser } from "https://esm.sh/fast-xml-parser@4.3.5";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -23,7 +22,7 @@ async function scrapePAD() {
     console.log('Fetching PAD espace-media articles...');
     const html = await (await fetch(PAD_INDEX)).text();
     const linkRx = /href="(\/actualites\/[^"]+)"/g;
-    const links = [...html.matchAll(linkRx)].slice(0, 3).map(m => `https://www.portdakar.sn${m[1]}`);
+    const links = [...html.matchAll(linkRx)].slice(0, 2).map(m => `https://www.portdakar.sn${m[1]}`);
     console.log(`Found ${links.length} PAD espace-media article links`);
     
     const items = [];
@@ -89,7 +88,7 @@ async function scrapePADDirect() {
         return url;
       })
       .filter(url => url.includes('portdakar.sn'))
-      .slice(0, 3);
+      .slice(0, 1); // Limité à 1 article pour avoir un total de 3
 
     console.log(`Found ${links.length} PAD direct article links`);
     
@@ -162,49 +161,6 @@ async function scrapePADDirect() {
   }
 }
 
-/* ---------- 3. PTI : RSS in English, auto-translate to French --------- */
-const PTI_RSS = "https://www.porttechnology.org/feed/";
-
-async function scrapePTI() {
-  try {
-    console.log('Fetching PTI RSS...');
-    const xml = await (await fetch(PTI_RSS)).text();
-    const rss = new XMLParser().parse(xml).rss.channel.item;
-    const items = Array.isArray(rss) ? rss.slice(0, 3) : [rss].slice(0, 3);
-    
-    const results = [];
-    
-    for (const it of items) {
-      try {
-        const titleFr = await translate(it.title, "fr");
-        const descriptionClean = strip(it.description);
-        const excerptFr = await translate(descriptionClean.slice(0,160), "fr");
-        
-        results.push({
-          source: "Port Technology International",
-          title_fr: titleFr,
-          title_en: it.title,
-          excerpt_fr: excerptFr,
-          excerpt_en: descriptionClean.slice(0,160),
-          url: it.link,
-          slug: `${it.link.split("/").filter(Boolean).pop()}-pti-${Date.now()}`,
-          published_at: new Date(it.pubDate || Date.now()).toISOString(),
-          display_order: 2,
-        });
-        console.log(`Successfully processed PTI article: ${it.title}`);
-      } catch (error) {
-        console.error(`Error processing PTI article:`, error);
-      }
-    }
-    
-    console.log(`PTI scraping completed: ${results.length} articles`);
-    return results;
-  } catch (error) {
-    console.error('Error in scrapePTI:', error);
-    return [];
-  }
-}
-
 /* ---------- 4. Helpers ------------------------------------------------ */
 function strip(html: string) { 
   return html.replace(/<[^>]+>/g,"").trim(); 
@@ -234,17 +190,16 @@ serve(async (req) => {
   }
 
   try {
-    console.log('Starting news sync...');
+    console.log('Starting PAD news sync...');
     
-    const [padEspace, padDirect, pti] = await Promise.all([
-      scrapePAD(),           // PAD espace-media
-      scrapePADDirect(),     // PAD direct site  
-      scrapePTI()            // PTI
+    const [padEspace, padDirect] = await Promise.all([
+      scrapePAD(),           // PAD espace-media (2 articles)
+      scrapePADDirect(),     // PAD direct site (1 article)
     ]);
     
-    // Combiner toutes les sources PAD, puis PTI
-    const rows = [...padEspace, ...padDirect, ...pti];
-    console.log(`Total articles to sync: ${rows.length} (PAD espace: ${padEspace.length}, PAD direct: ${padDirect.length}, PTI: ${pti.length})`);
+    // Combiner les sources PAD pour un total de 3 articles maximum
+    const rows = [...padEspace, ...padDirect];
+    console.log(`Total PAD articles to sync: ${rows.length} (PAD espace: ${padEspace.length}, PAD direct: ${padDirect.length})`);
     
     if (rows.length) {
       const { error } = await sb.from("news").upsert(rows, { 
@@ -255,7 +210,7 @@ serve(async (req) => {
         console.error('Database upsert error:', error);
         throw error;
       }
-      console.log(`Successfully synced ${rows.length} articles (PAD total: ${padEspace.length + padDirect.length}, PTI: ${pti.length})`);
+      console.log(`Successfully synced ${rows.length} PAD articles`);
     }
     
     return new Response(
@@ -264,8 +219,7 @@ serve(async (req) => {
         synced: rows.length,
         pad_espace_articles: padEspace.length,
         pad_direct_articles: padDirect.length,
-        pti_articles: pti.length,
-        message: 'News sync completed successfully'
+        message: 'PAD news sync completed successfully'
       }),
       {
         status: 200,
@@ -273,7 +227,7 @@ serve(async (req) => {
       }
     );
   } catch (e) {
-    console.error('News sync failed:', e);
+    console.error('PAD news sync failed:', e);
     return new Response(
       JSON.stringify({ 
         success: false, 

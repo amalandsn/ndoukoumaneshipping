@@ -32,7 +32,7 @@ const NewsGrid: React.FC<NewsGridProps> = ({ news, isLoading }) => {
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(3)].map((_, i) => (
           <Card key={i} className="animate-pulse">
             <CardHeader>
               <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
@@ -56,25 +56,15 @@ const NewsGrid: React.FC<NewsGridProps> = ({ news, isLoading }) => {
       <div className="text-center py-12">
         <p className="text-gray-500">
           {language === 'fr' 
-            ? 'Aucune actualité disponible pour le moment.' 
-            : 'No news available at the moment.'}
+            ? 'Aucune actualité du Port Autonome de Dakar disponible pour le moment.' 
+            : 'No Port Autonome de Dakar news available at the moment.'}
         </p>
       </div>
     );
   }
 
-  // Sort articles: PAD first (display_order: 1), then PTI (display_order: 2), 
-  // and within each group, sort by published date (most recent first)
+  // Sort articles by published date (most recent first)
   const sortedNews = [...news].sort((a, b) => {
-    // First sort by display_order (PAD=1, PTI=2)
-    const orderA = a.display_order || (a.source.includes('Port Autonome') ? 1 : 2);
-    const orderB = b.display_order || (b.source.includes('Port Autonome') ? 1 : 2);
-    
-    if (orderA !== orderB) {
-      return orderA - orderB;
-    }
-    
-    // Then sort by published date (most recent first)
     return new Date(b.published_at).getTime() - new Date(a.published_at).getTime();
   });
 
@@ -91,11 +81,7 @@ const NewsGrid: React.FC<NewsGridProps> = ({ news, isLoading }) => {
               <div className="flex items-start justify-between gap-2 mb-2">
                 <Badge 
                   variant="secondary" 
-                  className={`text-xs ${
-                    item.source.includes('Port Autonome') 
-                      ? 'bg-blue-100 text-blue-800' 
-                      : 'bg-green-100 text-green-800'
-                  }`}
+                  className="text-xs bg-blue-100 text-blue-800"
                 >
                   {item.source}
                 </Badge>
