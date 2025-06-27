@@ -5,8 +5,8 @@ const PerformanceOptimizer = () => {
   useEffect(() => {
     // Add performance hints for hero images
     const prefetchHints = [
-      '/images/hero/slide2-1920.webp',
-      '/images/hero/slide3-1920.webp'
+      '/hero-manutention.webp',
+      '/hero-transit.webp'
     ];
 
     prefetchHints.forEach(href => {

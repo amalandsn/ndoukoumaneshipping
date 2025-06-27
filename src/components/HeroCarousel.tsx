@@ -8,8 +8,6 @@ import { getQuoteRoute } from '@/lib/routes';
 
 type Slide = {
   src: string;
-  srcSet: string;
-  sizes: string;
   fallback: string;
   alt: string;
   titleFR: string;
@@ -20,9 +18,7 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    src: "/images/hero/slide1-1920.webp",
-    srcSet: "/images/hero/slide1-768.webp 768w, /images/hero/slide1-1280.webp 1280w, /images/hero/slide1-1920.webp 1920w",
-    sizes: "(max-width: 768px) 768px, (max-width: 1280px) 1280px, 1920px",
+    src: "/hero-consignation.webp",
     fallback: "/hero-consignation.webp",
     alt: "Grue chargeant des conteneurs – consignation",
     titleFR: "Votre partenaire logistique 360°",
@@ -31,9 +27,7 @@ const slides: Slide[] = [
     subtitleEN: "Sea, Air & Road",
   },
   {
-    src: "/images/hero/slide2-1920.webp",
-    srcSet: "/images/hero/slide2-768.webp 768w, /images/hero/slide2-1280.webp 1280w, /images/hero/slide2-1920.webp 1920w",
-    sizes: "(max-width: 768px) 768px, (max-width: 1280px) 1280px, 1920px",
+    src: "/hero-manutention.webp",
     fallback: "/hero-manutention.webp",
     alt: "Manutention de conteneurs en Afrique de l'Ouest",
     titleFR: "Manutention rapide & sécurisée",
@@ -42,9 +36,7 @@ const slides: Slide[] = [
     subtitleEN: "Optimised loading and unloading",
   },
   {
-    src: "/images/hero/slide3-1920.webp",
-    srcSet: "/images/hero/slide3-768.webp 768w, /images/hero/slide3-1280.webp 1280w, /images/hero/slide3-1920.webp 1920w",
-    sizes: "(max-width: 768px) 768px, (max-width: 1280px) 1280px, 1920px",
+    src: "/hero-transit.webp",
     fallback: "/hero-transit.webp",
     alt: "Camions quittant le port – transit",
     titleFR: "Transit & logistique intégrés",
@@ -79,7 +71,7 @@ export default function HeroCarousel() {
   }, []);
   const paginate = (d: number) => set(([i]) => [(i + d + slides.length) % slides.length, d]);
 
-  const { src, srcSet, sizes, fallback, alt, titleFR, titleEN, subtitleFR, subtitleEN } = slides[idx];
+  const { src, fallback, alt, titleFR, titleEN, subtitleFR, subtitleEN } = slides[idx];
 
   const handleQuoteClick = () => {
     const locale = isFR ? 'fr' : 'en';
@@ -105,7 +97,7 @@ export default function HeroCarousel() {
   return (
     <section className="relative w-screen h-screen overflow-hidden">
       <AnimatePresence initial={false} custom={dir}>
-        <motion.picture
+        <motion.div
           key={idx}
           custom={dir}
           variants={fx}
@@ -115,15 +107,8 @@ export default function HeroCarousel() {
           transition={TRANS}
           className="absolute inset-0 w-full h-full kenburns"
         >
-          <source 
-            srcSet={srcSet}
-            sizes={sizes}
-            type="image/webp"
-          />
           <motion.img
             src={src}
-            srcSet={srcSet}
-            sizes={sizes}
             onError={(e) => (e.currentTarget.src = fallback)}
             alt={alt}
             loading={idx === 0 ? "eager" : "lazy"}
@@ -134,7 +119,7 @@ export default function HeroCarousel() {
               contentVisibility: idx === 0 ? 'visible' : 'auto',
             }}
           />
-        </motion.picture>
+        </motion.div>
       </AnimatePresence>
 
       {/* Overlay : texte spécifique au slide */}
