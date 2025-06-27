@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -36,6 +37,35 @@ const About = () => {
           "Accès Autoroute Dakar-Bamako & Port de Ndayane"
         ]
       },
+      ceo: {
+        title: "Mot du Directeur Général",
+        content: "Ndoukouman est un groupe créé en 2018 et 100 % sénégalais, fondé par moi-même, El Hadj Mor Ndao, opérateur économique à Dakar. Agréé dans les activités portuaires – manutention, transit, gestion de stock, tierce détention, logistique terrestre, aérienne et maritime, ainsi que consignataire de navires – nous ambitionnons de fluidifier l'acheminement des marchandises entre le port de Dakar et toute la sous-région.",
+        mission: "Notre mission : contribuer au positionnement du port de Dakar comme hub de transbordement et d'éclatement pour l'Afrique de l'Ouest.",
+        signature: "M. El Hadj Mor Ndao – Fondateur & Directeur Général"
+      },
+      team: {
+        title: "Présentation de l'équipe",
+        members: [
+          {
+            image: "/images/team/fman.webp",
+            name: "Mme Mame Diodio Ndao",
+            title: "CEO & Financial Manager",
+            description: "Pilote la stratégie financière et l'expansion régionale avec 15 ans d'expérience en banques et shipping."
+          },
+          {
+            image: "/images/team/cds.webp",
+            name: "Mme Dienaba Hane",
+            title: "Chef Département Shipping",
+            description: "Orchestre les opérations portuaires 24/7 et garantit un taux de ponctualité escale supérieur à 98 %."
+          },
+          {
+            image: "/images/team/stran.webp",
+            name: "M. Omar F. Dramé",
+            title: "Responsable Transit",
+            description: "Expert en dédouanement express : maîtrise LC BCEAO et corridors Dakar–Bamako–Niamey."
+          }
+        ]
+      },
       credo: {
         title: "Notre Credo : PIN",
         values: [
@@ -70,6 +100,35 @@ const About = () => {
           "Central Park, opposite National Fire Brigade HQ",
           "2-ha strategic platform – Dakar",
           "Direct link to Dakar-Bamako Highway & Ndayane Port"
+        ]
+      },
+      ceo: {
+        title: "Message from the CEO",
+        content: "Ndoukouman is a group created in 2018 and 100% Senegalese, founded by myself, El Hadj Mor Ndao, economic operator in Dakar. Approved in port activities – handling, transit, stock management, third-party detention, land, air and maritime logistics, as well as ship consignee – we aim to streamline the routing of goods between the port of Dakar and the entire sub-region.",
+        mission: "Our mission: contribute to positioning the port of Dakar as a transhipment and breakbulk hub for West Africa.",
+        signature: "M. El Hadj Mor Ndao – Founder & CEO"
+      },
+      team: {
+        title: "Team Presentation",
+        members: [
+          {
+            image: "/images/team/fman.webp",
+            name: "Mrs. Mame Diodio Ndao",
+            title: "CEO & Financial Manager",
+            description: "Drives financial strategy and regional expansion with 15 years of experience in banking and shipping."
+          },
+          {
+            image: "/images/team/cds.webp",
+            name: "Mrs. Dienaba Hane",
+            title: "Shipping Department Head",
+            description: "Orchestrates port operations 24/7 and guarantees a call punctuality rate above 98%."
+          },
+          {
+            image: "/images/team/stran.webp",
+            name: "Mr. Omar F. Dramé",
+            title: "Transit Manager",
+            description: "Expert in express customs clearance: masters LC BCEAO and Dakar–Bamako–Niamey corridors."
+          }
         ]
       },
       credo: {
@@ -246,6 +305,135 @@ const About = () => {
               </div>
             </motion.div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* CEO Message Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="grid lg:grid-cols-5 gap-8 items-center">
+              <div className="lg:col-span-3 order-2 lg:order-1">
+                <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-6 font-serif">
+                  {currentContent.ceo.title}
+                </h2>
+                
+                <div className="text-2xl italic text-gray-700 mb-6 leading-relaxed">
+                  "{currentContent.ceo.content.split('.')[0]}."
+                </div>
+                
+                <div className="text-gray-700 leading-relaxed mb-6">
+                  {currentContent.ceo.content.substring(currentContent.ceo.content.indexOf('.') + 1).trim()}
+                </div>
+                
+                <div className="text-lg font-medium text-orange-500 mb-4">
+                  {currentContent.ceo.mission}
+                </div>
+                
+                <div className="text-blue-900 font-semibold">
+                  {currentContent.ceo.signature}
+                </div>
+              </div>
+              
+              <div className="lg:col-span-2 order-1 lg:order-2">
+                <div className="relative">
+                  <img 
+                    src="/images/team/dg.webp" 
+                    alt="Portrait de M. El Hadj Mor Ndao, Directeur Général"
+                    className="w-full max-w-sm mx-auto aspect-[3/4] object-cover rounded-xl shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-16 bg-blue-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
+              {currentContent.team.title}
+            </h2>
+          </motion.div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+            {currentContent.team.members.map((member, index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img 
+                    src={member.image} 
+                    alt={`Portrait de ${member.name}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-blue-900 mb-1">
+                    {member.name}
+                  </h3>
+                  <div className="text-orange-500 font-medium text-sm mb-3">
+                    {member.title}
+                  </div>
+                  <p className="text-gray-700 text-sm leading-relaxed">
+                    {member.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile slider version */}
+          <div className="md:hidden">
+            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-4">
+              {currentContent.team.members.map((member, index) => (
+                <div
+                  key={index}
+                  className="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden snap-start"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img 
+                      src={member.image} 
+                      alt={`Portrait de ${member.name}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold text-blue-900 mb-1">
+                      {member.name}
+                    </h3>
+                    <div className="text-orange-500 font-medium text-sm mb-3">
+                      {member.title}
+                    </div>
+                    <p className="text-gray-700 text-sm leading-relaxed">
+                      {member.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
