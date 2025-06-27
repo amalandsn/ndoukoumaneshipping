@@ -346,7 +346,7 @@ const About = () => {
                   <img 
                     src="dg.webp" 
                     alt="Portrait de M. El Hadj Mor Ndao, Directeur Général"
-                    className="w-full max-w-sm mx-auto aspect-[3/4] object-cover rounded-xl shadow-lg"
+                    className="w-full max-w-sm mx-auto aspect-[3/4] object-cover object-top rounded-xl shadow-lg"
                   />
                 </div>
               </div>
@@ -380,11 +380,11 @@ const About = () => {
                 transition={{ delay: index * 0.2, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="aspect-[3/4] overflow-hidden">
                   <img 
                     src={member.image} 
                     alt={`Portrait de ${member.name}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 
@@ -411,11 +411,11 @@ const About = () => {
                   key={index}
                   className="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden snap-start"
                 >
-                  <div className="aspect-[4/3] overflow-hidden">
+                  <div className="aspect-[3/4] overflow-hidden">
                     <img 
                       src={member.image} 
                       alt={`Portrait de ${member.name}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
                   
