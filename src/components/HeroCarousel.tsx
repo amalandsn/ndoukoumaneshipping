@@ -1,3 +1,4 @@
+
 /* eslint-disable jsx-a11y/alt-text */
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,6 +8,8 @@ import { getQuoteRoute } from '@/lib/routes';
 
 type Slide = {
   src: string;
+  srcSet: string;
+  sizes: string;
   fallback: string;
   alt: string;
   titleFR: string;
@@ -17,8 +20,10 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    src: "/hero-consignation.webp",
-    fallback: "https://images.unsplash.com/photo-1700696724329-6969321da637?auto=format&fit=crop&w=1920&q=80",
+    src: "/images/hero/slide1-1920.webp",
+    srcSet: "/images/hero/slide1-768.webp 768w, /images/hero/slide1-1280.webp 1280w, /images/hero/slide1-1920.webp 1920w",
+    sizes: "(max-width: 768px) 768px, (max-width: 1280px) 1280px, 1920px",
+    fallback: "/hero-consignation.webp",
     alt: "Grue chargeant des conteneurs – consignation",
     titleFR: "Votre partenaire logistique 360°",
     subtitleFR: "Maritime, aérien, routier",
@@ -26,8 +31,10 @@ const slides: Slide[] = [
     subtitleEN: "Sea, Air & Road",
   },
   {
-    src: "/hero-manutention.webp",
-    fallback: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1920&q=80",
+    src: "/images/hero/slide2-1920.webp",
+    srcSet: "/images/hero/slide2-768.webp 768w, /images/hero/slide2-1280.webp 1280w, /images/hero/slide2-1920.webp 1920w",
+    sizes: "(max-width: 768px) 768px, (max-width: 1280px) 1280px, 1920px",
+    fallback: "/hero-manutention.webp",
     alt: "Manutention de conteneurs en Afrique de l'Ouest",
     titleFR: "Manutention rapide & sécurisée",
     subtitleFR: "Chargement et déchargement optimisés",
@@ -35,8 +42,10 @@ const slides: Slide[] = [
     subtitleEN: "Optimised loading and unloading",
   },
   {
-    src: "/hero-transit.webp",
-    fallback: "https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?auto=format&fit=crop&w=1920&q=80",
+    src: "/images/hero/slide3-1920.webp",
+    srcSet: "/images/hero/slide3-768.webp 768w, /images/hero/slide3-1280.webp 1280w, /images/hero/slide3-1920.webp 1920w",
+    sizes: "(max-width: 768px) 768px, (max-width: 1280px) 1280px, 1920px",
+    fallback: "/hero-transit.webp",
     alt: "Camions quittant le port – transit",
     titleFR: "Transit & logistique intégrés",
     subtitleFR: "Acheminement fluide de vos marchandises",
@@ -70,29 +79,62 @@ export default function HeroCarousel() {
   }, []);
   const paginate = (d: number) => set(([i]) => [(i + d + slides.length) % slides.length, d]);
 
-  const { src, fallback, alt, titleFR, titleEN, subtitleFR, subtitleEN } = slides[idx];
+  const { src, srcSet, sizes, fallback, alt, titleFR, titleEN, subtitleFR, subtitleEN } = slides[idx];
 
   const handleQuoteClick = () => {
     const locale = isFR ? 'fr' : 'en';
     navigate(getQuoteRoute(locale));
   };
 
+  // Preload first image for better LCP
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = slides[0].src;
+    link.setAttribute('fetchpriority', 'high');
+    document.head.appendChild(link);
+
+    return () => {
+      if (document.head.contains(link)) {
+        document.head.removeChild(link);
+      }
+    };
+  }, []);
+
   return (
     <section className="relative w-screen h-screen overflow-hidden">
       <AnimatePresence initial={false} custom={dir}>
-        <motion.img
+        <motion.picture
           key={idx}
-          src={src}
-          onError={(e) => (e.currentTarget.src = fallback)}
-          alt={alt}
           custom={dir}
           variants={fx}
           initial="enter"
           animate="center"
           exit="exit"
           transition={TRANS}
-          className="absolute inset-0 w-full h-full object-cover kenburns"
-        />
+          className="absolute inset-0 w-full h-full kenburns"
+        >
+          <source 
+            srcSet={srcSet}
+            sizes={sizes}
+            type="image/webp"
+          />
+          <motion.img
+            src={src}
+            srcSet={srcSet}
+            sizes={sizes}
+            onError={(e) => (e.currentTarget.src = fallback)}
+            alt={alt}
+            loading={idx === 0 ? "eager" : "lazy"}
+            fetchPriority={idx === 0 ? "high" : "low"}
+            decoding={idx === 0 ? "sync" : "async"}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              contentVisibility: idx === 0 ? 'visible' : 'auto',
+            }}
+          />
+        </motion.picture>
       </AnimatePresence>
 
       {/* Overlay : texte spécifique au slide */}

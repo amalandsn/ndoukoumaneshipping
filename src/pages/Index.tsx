@@ -11,10 +11,12 @@ import TestimonialsSlider from '@/components/TestimonialsSlider';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import ChatAssistant from '@/components/ChatAssistant';
+import PerformanceOptimizer from '@/components/PerformanceOptimizer';
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <PerformanceOptimizer />
       <Navigation />
       <HeroCarousel />
       <ServicesSection />

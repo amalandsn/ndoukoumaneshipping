@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,10 +16,20 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@ndoukoumane" />
     <meta name="twitter:image" content="Ndoukoumane" />
+
+    <!-- Critical resource preloads for better LCP -->
+    <link rel="preload" as="image" href="/images/hero/slide1-1920.webp" fetchpriority="high" />
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload critical CSS (if any) -->
+    <link rel="preload" as="style" href="/src/index.css" />
   </head>
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx" defer></script>
   </body>
 </html>
