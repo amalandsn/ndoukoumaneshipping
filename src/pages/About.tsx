@@ -46,19 +46,19 @@ const About = () => {
         title: "Présentation de l'équipe",
         members: [
           {
-            image: "/fman.webp",
+            image: "fman.webp",
             name: "Mme Mame Diodio Ndao",
             title: "CEO & Financial Manager",
             description: "Pilote la stratégie financière et l'expansion régionale avec 15 ans d'expérience en banques et shipping."
           },
           {
-            image: "/cds.webp",
+            image: "cds.webp",
             name: "Mme Dienaba Hane",
             title: "Chef Département Shipping",
             description: "Orchestre les opérations portuaires 24/7 et garantit un taux de ponctualité escale supérieur à 98 %."
           },
           {
-            image: "/stran.webp",
+            image: "stran.webp",
             name: "M. Omar F. Dramé",
             title: "Responsable Transit",
             description: "Expert en dédouanement express : maîtrise LC BCEAO et corridors Dakar–Bamako–Niamey."
@@ -111,19 +111,19 @@ const About = () => {
         title: "Team Presentation",
         members: [
           {
-            image: "/fman.webp",
+            image: "fman.webp",
             name: "Mrs. Mame Diodio Ndao",
             title: "CEO & Financial Manager",
             description: "Drives financial strategy and regional expansion with 15 years of experience in banking and shipping."
           },
           {
-            image: "/cds.webp",
+            image: "cds.webp",
             name: "Mrs. Dienaba Hane",
             title: "Shipping Department Head",
             description: "Orchestrates port operations 24/7 and guarantees a call punctuality rate above 98%."
           },
           {
-            image: "/stran.webp",
+            image: "stran.webp",
             name: "Mr. Omar F. Dramé",
             title: "Transit Manager",
             description: "Expert in express customs clearance: masters LC BCEAO and Dakar–Bamako–Niamey corridors."
@@ -344,7 +344,7 @@ const About = () => {
               <div className="lg:col-span-2 order-1 lg:order-2">
                 <div className="relative">
                   <img 
-                    src="/dg.webp" 
+                    src="dg.webp" 
                     alt="Portrait de M. El Hadj Mor Ndao, Directeur Général"
                     className="w-full max-w-sm mx-auto aspect-[3/4] object-cover rounded-xl shadow-lg"
                   />
