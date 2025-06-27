@@ -3,6 +3,8 @@ import React from 'react';
 import Navigation from '@/components/Navigation';
 import HeroCarousel from '@/components/HeroCarousel';
 import ServicesSection from '@/components/ServicesSection';
+import ActivitiesSection from '@/components/ActivitiesSection';
+import WarehousesSection from '@/components/WarehousesSection';
 import ProcessTimeline from '@/components/ProcessTimeline';
 import StatsSection from '@/components/StatsSection';
 import TestimonialsSlider from '@/components/TestimonialsSlider';
@@ -16,6 +18,8 @@ const Index = () => {
       <Navigation />
       <HeroCarousel />
       <ServicesSection />
+      <ActivitiesSection />
+      <WarehousesSection />
       <ProcessTimeline />
       <StatsSection />
       <TestimonialsSlider />

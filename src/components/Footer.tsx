@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Separator } from "@/components/ui/separator";
@@ -13,10 +14,10 @@ const Footer = () => {
   const footerContent = {
     fr: {
       company: {
-        description: "6 ans d'expérience dans la consignation et manutention transit avec solution logistique.",
+        description: "+6 années d'expérience dans la consignation et manutention transit avec solution logistique.",
         address: "Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar",
         phone: "+221 33 822 29 80",
-        urgent: "+221 77 402 18 25",
+        urgent: "+221 77 644 96 42",
         email: "contact@ndoukoumaneshipping.com"
       },
       services: {
@@ -47,10 +48,10 @@ const Footer = () => {
     },
     en: {
       company: {
-        description: "6 years of experience in consignment and handling transit with logistics solutions.",
+        description: "+6 years of experience in consignment and handling transit with logistics solutions.",
         address: "Central Park, opposite the National Fire Brigade HQ, Dakar",
         phone: "+221 33 822 29 80",
-        urgent: "+221 77 402 18 25",
+        urgent: "+221 77 644 96 42",
         email: "contact@ndoukoumaneshipping.com"
       },
       services: {

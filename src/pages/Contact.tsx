@@ -285,7 +285,7 @@ const Contact = () => {
                       </h3>
                       <p className="text-gray-600">+221 33 822 29 80</p>
                       <p className="text-orange-600 font-medium">
-                        {currentContent.info.emergency}: +221 77 402 18 25
+                        {currentContent.info.emergency}: +221 77 644 96 42
                       </p>
                     </div>
                   </div>
@@ -329,7 +329,7 @@ const Contact = () => {
                       <span>LinkedIn</span>
                     </a>
                     <a 
-                      href="https://wa.me/221774021825" 
+                      href="https://wa.me/221776449642" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex items-center space-x-3 text-green-600 hover:text-green-800 transition-colors"
