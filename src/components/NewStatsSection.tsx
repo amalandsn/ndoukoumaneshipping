@@ -11,19 +11,19 @@ const NewStatsSection = () => {
     fr: {
       title: "Notre Excellence en Chiffres",
       stats: [
-        { label: "Chiffre d'affaires", number: 10000000000, suffix: " FCFA+", display: "10 Md FCFA+" },
-        { label: "Investissement initial", number: 4000000000, suffix: " FCFA", display: "4 Md FCFA" },
-        { label: "Part de marché SN", number: 4.5, suffix: "%", display: "4.5%" },
-        { label: "Service commercial", number: 24, suffix: "/7", display: "24/7" }
+        { label: "Chiffre d'affaires", number: 10000000000, prefix: "", suffix: "", display: "10 Md FCFA+" },
+        { label: "Investissement initial", number: 4000000000, prefix: "", suffix: "", display: "4 Md FCFA" },
+        { label: "Part de marché SN", number: 4.5, prefix: "", suffix: "", display: "4.5%" },
+        { label: "Service commercial", number: 24, prefix: "", suffix: "", display: "24/7" }
       ]
     },
     en: {
       title: "Our Excellence in Numbers",
       stats: [
-        { label: "Revenue", number: 10000000000, suffix: " FCFA+", display: "10 Bn FCFA+" },
-        { label: "Initial Investment", number: 4000000000, suffix: " FCFA", display: "4 Bn FCFA" },
-        { label: "Market Share SN", number: 4.5, suffix: "%", display: "4.5%" },
-        { label: "Commercial Desk", number: 24, suffix: "/7", display: "24/7" }
+        { label: "Revenue", number: 10000000000, prefix: "", suffix: "", display: "10 Bn FCFA+" },
+        { label: "Initial Investment", number: 4000000000, prefix: "", suffix: "", display: "4 Bn FCFA" },
+        { label: "Market Share SN", number: 4.5, prefix: "", suffix: "", display: "4.5%" },
+        { label: "Commercial Desk", number: 24, prefix: "", suffix: "", display: "24/7" }
       ]
     }
   };

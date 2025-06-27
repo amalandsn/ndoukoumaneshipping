@@ -8,19 +8,19 @@ const statsContent = {
   fr: {
     title: "Notre Excellence en Chiffres",
     stats: [
-      { label: "Années d'expérience", number: 6, suffix: "+" },
-      { label: "TEUs par an", number: 150000, suffix: "+" },
-      { label: "Employés qualifiés", number: 85, suffix: "" },
-      { label: "Ports desservis", number: 12, suffix: "" }
+      { label: "Années d'expérience", number: 6, prefix: "+", suffix: "" },
+      { label: "TEUs par an", number: 150000, prefix: "+", suffix: "" },
+      { label: "Employés qualifiés", number: 85, prefix: "", suffix: "" },
+      { label: "Ports desservis", number: 12, prefix: "", suffix: "" }
     ]
   },
   en: {
     title: "Our Excellence in Numbers",
     stats: [
-      { label: "Years of experience", number: 6, suffix: "+" },
-      { label: "TEUs per year", number: 150000, suffix: "+" },
-      { label: "Qualified employees", number: 85, suffix: "" },
-      { label: "Ports served", number: 12, suffix: "" }
+      { label: "Years of experience", number: 6, prefix: "+", suffix: "" },
+      { label: "TEUs per year", number: 150000, prefix: "+", suffix: "" },
+      { label: "Qualified employees", number: 85, prefix: "", suffix: "" },
+      { label: "Ports served", number: 12, prefix: "", suffix: "" }
     ]
   }
 };
@@ -57,6 +57,7 @@ const StatsSection = () => {
               <StatsCounter
                 label={stat.label}
                 targetNumber={stat.number}
+                prefix={stat.prefix}
                 suffix={stat.suffix}
               />
             </motion.div>

@@ -5,6 +5,7 @@ import { motion, useInView } from 'framer-motion';
 interface StatsCounterProps {
   label: string;
   targetNumber: number;
+  prefix?: string;
   suffix?: string;
   duration?: number;
 }
@@ -12,6 +13,7 @@ interface StatsCounterProps {
 const StatsCounter: React.FC<StatsCounterProps> = ({ 
   label, 
   targetNumber, 
+  prefix = "",
   suffix = "", 
   duration = 1000 
 }) => {
@@ -46,7 +48,7 @@ const StatsCounter: React.FC<StatsCounterProps> = ({
       className="text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
     >
       <div className="text-4xl lg:text-5xl font-bold text-orange-500 mb-2">
-        {count}{suffix}
+        {prefix}{count}{suffix}
       </div>
       <div className="text-blue-900 text-sm lg:text-base font-medium">
         {label}

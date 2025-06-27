@@ -23,7 +23,7 @@ const References = () => {
       stats: {
         clients: "Clients Actifs",
         projects: "Projets Réalisés",
-        experience: "6 ans d'Expérience",
+        experience: "Années d'Expérience",
         satisfaction: "Satisfaction Client"
       }
     },
@@ -36,7 +36,7 @@ const References = () => {
       stats: {
         clients: "Active Clients",
         projects: "Completed Projects",
-        experience: "6 Years of Experience",
+        experience: "Years of Experience",
         satisfaction: "Client Satisfaction"
       }
     }
@@ -198,9 +198,9 @@ const References = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { value: "50+", label: currentContent.stats.clients },
-              { value: "200+", label: currentContent.stats.projects },
-              { value: "6+", label: currentContent.stats.experience },
+              { value: "+50", label: currentContent.stats.clients },
+              { value: "+200", label: currentContent.stats.projects },
+              { value: "+6", label: currentContent.stats.experience },
               { value: "98%", label: currentContent.stats.satisfaction }
             ].map((stat, index) => (
               <motion.div
