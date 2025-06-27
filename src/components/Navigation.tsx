@@ -3,7 +3,13 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X, Phone, FileText } from 'lucide-react';
+import { Menu, X, Phone, FileText, ChevronDown } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +25,15 @@ const Navigation = () => {
     fr: [
       { label: 'Accueil', href: '/' },
       { label: 'À propos', href: '/about' },
-      { label: 'Services', href: '/services' },
+      { 
+        label: 'Nos Prestations', 
+        href: '#',
+        submenu: [
+          { label: 'Services', href: '/services' },
+          { label: 'Activités', href: '/activites' },
+          { label: 'Nos entrepôts', href: '/entrepots' }
+        ]
+      },
       { label: 'Références', href: '/references' },
       { label: 'Actualités', href: '/actualites' },
       { label: 'Carrières', href: '/careers' },
@@ -28,7 +42,15 @@ const Navigation = () => {
     en: [
       { label: 'Home', href: '/' },
       { label: 'About', href: '/about' },
-      { label: 'Services', href: '/services' },
+      { 
+        label: 'Our Services', 
+        href: '#',
+        submenu: [
+          { label: 'Services', href: '/services' },
+          { label: 'Activities', href: '/activites' },
+          { label: 'Our warehouses', href: '/entrepots' }
+        ]
+      },
       { label: 'References', href: '/references' },
       { label: 'News', href: '/actualites' },
       { label: 'Careers', href: '/careers' },
@@ -40,6 +62,10 @@ const Navigation = () => {
 
   const isActiveLink = (href: string) => {
     return location.pathname === href;
+  };
+
+  const isActiveSubmenu = (submenu: any[]) => {
+    return submenu.some(item => location.pathname === item.href);
   };
 
   const handleQuoteClick = () => {
@@ -75,6 +101,37 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {items.map((item) => {
+              if (item.submenu) {
+                const isActive = isActiveSubmenu(item.submenu);
+                return (
+                  <DropdownMenu key={item.label}>
+                    <DropdownMenuTrigger className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm xl:text-base flex items-center gap-1 ${
+                      isActive
+                        ? 'text-blue-900 border-orange-500'
+                        : 'text-gray-700 border-transparent hover:text-blue-900'
+                    }`}>
+                      {item.label}
+                      <ChevronDown className="h-4 w-4" />
+                      {!isActive && (
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
+                      )}
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="bg-white shadow-lg border rounded-md p-1 z-50">
+                      {item.submenu.map((subItem) => (
+                        <DropdownMenuItem key={subItem.href} asChild>
+                          <Link
+                            to={subItem.href}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-900 rounded-sm cursor-pointer"
+                          >
+                            {subItem.label}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                );
+              }
+
               const isActive = isActiveLink(item.href);
               return (
                 <Link
@@ -138,6 +195,38 @@ const Navigation = () => {
                   </div>
                   
                   {items.map((item) => {
+                    if (item.submenu) {
+                      const isActive = isActiveSubmenu(item.submenu);
+                      return (
+                        <div key={item.label}>
+                          <div className={`text-lg font-medium py-2 border-b border-gray-100 ${
+                            isActive ? 'text-blue-900 border-orange-500' : 'text-gray-700'
+                          }`}>
+                            {item.label}
+                          </div>
+                          <div className="ml-4 space-y-2 mt-2">
+                            {item.submenu.map((subItem) => {
+                              const isSubActive = isActiveLink(subItem.href);
+                              return (
+                                <Link
+                                  key={subItem.href}
+                                  to={subItem.href}
+                                  className={`block text-base py-1 transition-colors ${
+                                    isSubActive
+                                      ? 'text-blue-900 font-medium'
+                                      : 'text-gray-600 hover:text-blue-900'
+                                  }`}
+                                  onClick={() => setIsOpen(false)}
+                                >
+                                  {subItem.label}
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    }
+
                     const isActive = isActiveLink(item.href);
                     return (
                       <Link
