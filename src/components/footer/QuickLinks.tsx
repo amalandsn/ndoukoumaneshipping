@@ -15,7 +15,7 @@ interface QuickLinksProps {
 const QuickLinks = ({ content, onLinkClick }: QuickLinksProps) => {
   return (
     <div>
-      <h3 className="text-lg font-semibold mb-6 text-blue-300">
+      <h3 className="text-lg font-semibold mb-6 text-white">
         {content.quickLinks.title}
       </h3>
       <ul className="space-y-3">

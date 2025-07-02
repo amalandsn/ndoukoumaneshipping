@@ -15,7 +15,7 @@ interface ServicesLinksProps {
 const ServicesLinks = ({ content, onLinkClick }: ServicesLinksProps) => {
   return (
     <div>
-      <h3 className="text-lg font-semibold mb-6 text-blue-300">
+      <h3 className="text-lg font-semibold mb-6 text-white">
         {content.services.title}
       </h3>
       <ul className="space-y-3">

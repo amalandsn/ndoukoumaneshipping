@@ -18,7 +18,7 @@ const ContactInfo = ({ content, language }: ContactInfoProps) => {
   
   return (
     <div>
-      <h3 className="text-lg font-semibold mb-6 text-blue-300">
+      <h3 className="text-lg font-semibold mb-6 text-white">
         {content.contact.title}
       </h3>
       
