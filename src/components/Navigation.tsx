@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -82,9 +80,9 @@ const Navigation = () => {
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-18 w-auto object-contain"
+              className="h-20 w-auto object-contain"
             />
-            <div className="min-w-0">
+            <div className="min-w-0 ml-4">
               <div className="text-xl font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
                 <div>Ndoukoumane</div>
                 <div>Shipping & Services</div>
@@ -263,4 +261,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
