@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X, Phone, FileText, ChevronDown } from 'lucide-react';
+import { Menu, X, FileText, ChevronDown } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -71,23 +72,19 @@ const Navigation = () => {
     navigate(getQuoteRoute(language));
   };
 
-  const handleCallClick = () => {
-    window.location.href = 'tel:+221774021825';
-  };
-
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-4 flex-shrink-0 mr-8">
+          <Link to="/" className="flex items-center space-x-3 flex-shrink-0">
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-48 w-auto object-contain"
+              className="h-16 w-auto object-contain"
             />
             <div className="min-w-0">
-              <div className="text-lg sm:text-xl font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
+              <div className="text-base sm:text-lg font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
                 <div>Ndoukoumane</div>
                 <div>Shipping & Services</div>
               </div>
@@ -98,13 +95,13 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+          <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
             {items.map((item) => {
               if (item.submenu) {
                 const isActive = isActiveSubmenu(item.submenu);
                 return (
                   <DropdownMenu key={item.label}>
-                    <DropdownMenuTrigger className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm xl:text-base flex items-center gap-1 ${
+                    <DropdownMenuTrigger className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm flex items-center gap-1 ${
                       isActive
                         ? 'border-blue-600'
                         : 'border-transparent'
@@ -137,7 +134,7 @@ const Navigation = () => {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm xl:text-base ${
+                  className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm ${
                     isActive
                       ? 'border-blue-600'
                       : 'border-transparent'
@@ -157,11 +154,6 @@ const Navigation = () => {
             <Button className="text-white text-sm" style={{ backgroundColor: '#0553A5' }} onClick={handleQuoteClick}>
               <FileText className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Demande de devis' : 'Quote request'}
-            </Button>
-            
-            <Button variant="outline" className="text-sm hover:text-white" style={{ color: '#0553A5', borderColor: '#0553A5' }} onClick={handleCallClick}>
-              <Phone className="h-4 w-4 mr-2" />
-              {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
             </Button>
           </div>
 
@@ -257,11 +249,6 @@ const Navigation = () => {
                   >
                     <FileText className="h-4 w-4 mr-2" />
                     {language === 'fr' ? 'Demande de devis' : 'Quote request'}
-                  </Button>
-                  
-                  <Button variant="outline" className="text-white" style={{ color: '#0553A5', borderColor: '#0553A5' }} onClick={handleCallClick}>
-                    <Phone className="h-4 w-4 mr-2" />
-                    {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
                   </Button>
                 </div>
               </SheetContent>
