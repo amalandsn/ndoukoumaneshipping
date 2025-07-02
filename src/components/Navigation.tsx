@@ -77,13 +77,13 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-8 flex-shrink-0">
+          <Link to="/" className="flex items-center space-x-6 flex-shrink-0">
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-24 w-auto object-contain"
+              className="h-28 w-auto object-contain"
             />
-            <div className="min-w-0 ml-4">
+            <div className="min-w-0 ml-2">
               <div className="text-xl font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
                 <div>Ndoukoumane</div>
                 <div>Shipping & Services</div>
@@ -95,7 +95,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6 flex-1 justify-center ml-10">
+          <div className="hidden lg:flex items-center space-x-6 flex-1 justify-center ml-6">
             {items.map((item) => {
               if (item.submenu) {
                 const isActive = isActiveSubmenu(item.submenu);
@@ -150,8 +150,9 @@ const Navigation = () => {
             })}
           </div>
           
-          {/* Right side - Quote Button and Language Switcher for desktop */}
+          {/* Right side - Language Switcher and Quote Button for desktop */}
           <div className="hidden lg:flex items-center space-x-4">
+            <LanguageSwitcher />
             <Button 
               className="text-white text-sm" 
               style={{ backgroundColor: '#0553A5' }}
@@ -160,7 +161,6 @@ const Navigation = () => {
               <FileText className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Demander un devis' : 'Request a quote'}
             </Button>
-            <LanguageSwitcher />
           </div>
 
           {/* Mobile Navigation */}
