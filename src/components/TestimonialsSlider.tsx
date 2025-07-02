@@ -94,13 +94,13 @@ const TestimonialsSlider = () => {
   }
 
   return (
-    <section className="py-20 bg-blue-900 text-white overflow-hidden">
+    <section className="py-20 bg-primary text-white overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4 font-serif">
             {language === 'fr' ? 'Témoignages Clients' : 'Client Testimonials'}
           </h2>
-          <p className="text-lg text-blue-200 max-w-2xl mx-auto">
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
             {language === 'fr'
               ? 'La satisfaction de nos clients est notre priorité absolue'
               : "Our clients' satisfaction is our absolute priority"
@@ -138,24 +138,24 @@ const TestimonialsSlider = () => {
 
               <Card className="bg-white/10 backdrop-blur-sm border-0 text-white">
                 <CardContent className="p-8 lg:p-12 text-center">
-                  <Quote className="h-12 w-12 text-orange-400 mx-auto mb-6" />
+                  <Quote className="h-12 w-12 text-white mx-auto mb-6" />
                   <blockquote className="text-lg lg:text-xl leading-relaxed mb-8 italic">
                     "{currentTestimonials[currentIndex].content}"
                   </blockquote>
                   <div className="flex items-center justify-center mb-4">
                     {[...Array(currentTestimonials[currentIndex].rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-orange-400 fill-current" />
+                      <Star key={i} className="h-5 w-5 text-white fill-current" />
                     ))}
                   </div>
                   <div className="flex items-center justify-center space-x-4">
-                    <Avatar className="w-16 h-16 border-2 border-orange-400">
+                    <Avatar className="w-16 h-16 border-2 border-white">
                       <AvatarImage
                         src={currentTestimonials[currentIndex].image}
                         alt={currentTestimonials[currentIndex].name}
                         key={`avatar-img-${currentTestimonials[currentIndex].name}`}
                         className="object-cover w-16 h-16"
                       />
-                      <AvatarFallback className="bg-blue-900 text-white border-2 border-orange-400 text-sm font-semibold w-16 h-16 flex items-center justify-center">
+                      <AvatarFallback className="bg-white text-primary border-2 border-white text-sm font-semibold w-16 h-16 flex items-center justify-center">
                         {getInitials(currentTestimonials[currentIndex].name)}
                       </AvatarFallback>
                     </Avatar>
@@ -163,10 +163,10 @@ const TestimonialsSlider = () => {
                       <div className="font-semibold text-lg">
                         {currentTestimonials[currentIndex].name}
                       </div>
-                      <div className="text-blue-200 text-sm">
+                      <div className="text-white/80 text-sm">
                         {currentTestimonials[currentIndex].role}
                       </div>
-                      <div className="text-orange-400 text-sm font-medium">
+                      <div className="text-white text-sm font-medium">
                         {currentTestimonials[currentIndex].company}
                       </div>
                     </div>
@@ -183,7 +183,7 @@ const TestimonialsSlider = () => {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentIndex ? 'bg-orange-400' : 'bg-white/30'
+                  index === currentIndex ? 'bg-white' : 'bg-white/30'
                 }`}
               />
             ))}

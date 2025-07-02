@@ -80,7 +80,7 @@ const Activities = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="py-20 bg-blue-900 text-white">
+      <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -91,7 +91,7 @@ const Activities = () => {
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 font-serif leading-tight">
               {currentContent.title}
             </h1>
-            <p className="text-xl lg:text-2xl text-blue-100 font-medium">
+            <p className="text-xl lg:text-2xl text-white/80 font-medium">
               {currentContent.subtitle}
             </p>
           </motion.div>
@@ -115,14 +115,14 @@ const Activities = () => {
               >
                 <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
                       <sector.icon className="h-6 w-6 text-white" />
                     </div>
-                    <h2 className="text-3xl font-bold text-blue-900 font-serif">
+                    <h2 className="text-3xl font-bold text-primary font-serif">
                       {sector.title}
                     </h2>
                   </div>
-                  <p className="text-gray-700 leading-relaxed text-lg">
+                  <p className="text-muted-foreground leading-relaxed text-lg">
                     {sector.text}
                   </p>
                 </div>
@@ -133,7 +133,7 @@ const Activities = () => {
                       alt={sector.title}
                       className="w-full h-80 object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                   </div>
                 </div>
               </motion.div>
@@ -143,7 +143,7 @@ const Activities = () => {
       </section>
 
       {/* Key Figures Section */}
-      <section className="py-16 bg-blue-900 text-white">
+      <section className="py-16 bg-primary text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-12"
@@ -164,10 +164,10 @@ const Activities = () => {
               transition={{ delay: 0.1, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="text-4xl font-bold text-orange-500 mb-2">
+              <div className="text-4xl font-bold text-white mb-2">
                 {currentContent.keyFigures.teu}
               </div>
-              <div className="text-blue-100 font-medium">
+              <div className="text-white/80 font-medium">
                 {language === 'fr' ? 'Containers traités' : 'Containers handled'}
               </div>
             </motion.div>
@@ -178,10 +178,10 @@ const Activities = () => {
               transition={{ delay: 0.2, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="text-4xl font-bold text-orange-500 mb-2">
+              <div className="text-4xl font-bold text-white mb-2">
                 {currentContent.keyFigures.calls}
               </div>
-              <div className="text-blue-100 font-medium">
+              <div className="text-white/80 font-medium">
                 {language === 'fr' ? 'Navires traités' : 'Vessels handled'}
               </div>
             </motion.div>
@@ -192,10 +192,10 @@ const Activities = () => {
               transition={{ delay: 0.3, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="text-4xl font-bold text-orange-500 mb-2">
+              <div className="text-4xl font-bold text-white mb-2">
                 {currentContent.keyFigures.clients}
               </div>
-              <div className="text-blue-100 font-medium">
+              <div className="text-white/80 font-medium">
                 {language === 'fr' ? 'Partenaires fidèles' : 'Loyal partners'}
               </div>
             </motion.div>

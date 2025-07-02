@@ -81,7 +81,7 @@ const Careers = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-700 to-blue-800 text-white py-20">
+      <section className="bg-primary text-white py-20">
         <div className="max-w-4xl mx-auto text-center space-y-4 px-4">
           <motion.h1 
             className="text-3xl md:text-4xl font-bold"
@@ -125,11 +125,11 @@ const Careers = () => {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="inline-flex p-4 bg-blue-100 rounded-full text-blue-600 mb-4">
+                <div className="inline-flex p-4 bg-primary/10 rounded-full text-primary mb-4">
                   {reason.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{reason.title}</h3>
-                <p className="text-gray-600">{reason.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-primary">{reason.title}</h3>
+                <p className="text-muted-foreground">{reason.description}</p>
               </motion.div>
             ))}
           </div>
@@ -198,7 +198,7 @@ const Careers = () => {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="inline-flex p-3 bg-blue-100 rounded-full text-blue-600 mb-3">
+                <div className="inline-flex p-3 bg-primary/10 rounded-full text-primary mb-3">
                   {benefit.icon}
                 </div>
                 <p className="text-sm font-medium">{benefit.text}</p>

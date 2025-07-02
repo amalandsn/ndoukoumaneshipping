@@ -133,13 +133,13 @@ export default function HeroCarousel() {
         <div className="flex flex-col sm:flex-row gap-4">
           <button
             onClick={handleQuoteClick}
-            className="bg-[#FF7A00] text-white py-3 px-6 rounded-lg shadow-lg hover:opacity-90 transition"
+            className="bg-white text-primary py-3 px-6 rounded-lg shadow-lg hover:bg-white/90 transition font-semibold"
           >
             {isFR ? "Demander un devis" : "Request a quote"}
           </button>
           <a
             href="tel:+221774021825"
-            className="bg-white text-blue-900 py-3 px-6 rounded-lg shadow-lg hover:bg-gray-100 transition flex items-center justify-center gap-2 font-semibold"
+            className="bg-primary text-white py-3 px-6 rounded-lg shadow-lg hover:bg-primary/90 transition flex items-center justify-center gap-2 font-semibold"
           >
             <Phone className="h-4 w-4" />
             {isFR ? "Appelez 24/7" : "Call Us 24/7"}

@@ -120,7 +120,7 @@ const Contact = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-700 to-blue-800 text-white py-20">
+      <section className="bg-primary text-white py-20">
         <div className="container mx-auto text-center space-y-4 px-4">
           <motion.h1 
             className="text-3xl md:text-4xl font-bold"
@@ -131,7 +131,7 @@ const Contact = () => {
             {currentContent.title}
           </motion.h1>
           <motion.p 
-            className="text-xl text-blue-100 max-w-2xl mx-auto"
+            className="text-xl text-white/80 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -154,7 +154,7 @@ const Contact = () => {
             >
               <Card className="shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-blue-900">
+                  <CardTitle className="text-2xl text-primary">
                     {language === 'fr' ? 'Envoyez-nous un message' : 'Send us a message'}
                   </CardTitle>
                 </CardHeader>
@@ -239,7 +239,7 @@ const Contact = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3"
+                      className="w-full bg-primary hover:bg-primary/90 text-white py-3"
                     >
                       <Send className="w-4 h-4 mr-2" />
                       {isSubmitting ? 
@@ -262,13 +262,13 @@ const Contact = () => {
             >
               <Card className="shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-blue-900">
+                  <CardTitle className="text-2xl text-primary">
                     {currentContent.info.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <MapPin className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                    <MapPin className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">
                         {language === 'fr' ? 'Adresse' : 'Address'}
@@ -278,20 +278,20 @@ const Contact = () => {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <Phone className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                    <Phone className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">
                         {language === 'fr' ? 'Téléphone' : 'Phone'}
                       </h3>
                       <p className="text-gray-600">+221 33 822 29 80</p>
-                      <p className="text-orange-600 font-medium">
+                      <p className="text-primary font-medium">
                         {currentContent.info.emergency}: +221 77 644 96 42
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <Mail className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                    <Mail className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">E-mail</h3>
                       <p className="text-gray-600">contact@ndoukoumaneshipping.sn</p>
@@ -299,7 +299,7 @@ const Contact = () => {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <Clock className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                    <Clock className="w-6 h-6 text-primary mt-1 flex-shrink-0" />
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1">
                         {language === 'fr' ? 'Horaires' : 'Hours'}
@@ -313,7 +313,7 @@ const Contact = () => {
               {/* Réseaux Section */}
               <Card className="shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-blue-900">
+                  <CardTitle className="text-2xl text-primary">
                     {currentContent.info.networks}
                   </CardTitle>
                 </CardHeader>
@@ -344,7 +344,7 @@ const Contact = () => {
               {/* Map Section */}
               <Card className="shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-blue-900">
+                  <CardTitle className="text-2xl text-primary">
                     {language === 'fr' ? 'Localisation' : 'Location'}
                   </CardTitle>
                 </CardHeader>

@@ -164,7 +164,7 @@ const Warehouses = () => {
       
       {/* Hero Section */}
       <section className="relative h-96 bg-cover bg-center" style={{
-        backgroundImage: `linear-gradient(rgba(1, 43, 108, 0.6), rgba(1, 43, 108, 0.6)), url('/entrepot1.webp')`
+        backgroundImage: `linear-gradient(hsl(var(--primary) / 0.6), hsl(var(--primary) / 0.6)), url('/entrepot1.webp')`
       }}>
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
@@ -176,7 +176,7 @@ const Warehouses = () => {
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 font-serif leading-tight">
               {currentContent.heroTitle}
             </h1>
-            <p className="text-xl lg:text-2xl text-blue-100 font-medium">
+            <p className="text-xl lg:text-2xl text-white/80 font-medium">
               {currentContent.heroSubtitle}
             </p>
           </motion.div>
@@ -193,10 +193,10 @@ const Warehouses = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
               {currentContent.capacities.title}
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-muted-foreground">
               {currentContent.capacities.subtitle}
             </p>
           </motion.div>
@@ -210,18 +210,18 @@ const Warehouses = () => {
                 transition={{ delay: index * 0.1, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full bg-gradient-to-br from-blue-900/90 to-blue-800/90 text-white border-none shadow-xl">
+                <Card className="h-full bg-gradient-to-br from-primary/90 to-primary/80 text-white border-none shadow-xl">
                   <CardContent className="p-8">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center">
-                        <kpi.icon className="h-6 w-6 text-white" />
+                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                        <kpi.icon className="h-6 w-6 text-primary" />
                       </div>
                       <h3 className="text-xl font-bold">{kpi.title}</h3>
                     </div>
-                    <div className="text-3xl font-bold text-orange-500 mb-3">
+                    <div className="text-3xl font-bold text-white mb-3">
                       {kpi.value}
                     </div>
-                    <p className="text-blue-100">
+                    <p className="text-white/80">
                       {kpi.description}
                     </p>
                   </CardContent>
@@ -242,7 +242,7 @@ const Warehouses = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
               {currentContent.gallery.title}
             </h2>
           </motion.div>
@@ -263,10 +263,10 @@ const Warehouses = () => {
                       alt={image.caption}
                       className="w-full h-64 object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                   </div>
                   <CardContent className="p-6">
-                    <p className="text-gray-700 font-medium">{image.caption}</p>
+                    <p className="text-muted-foreground font-medium">{image.caption}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -276,7 +276,7 @@ const Warehouses = () => {
       </section>
 
       {/* Testimonial Section */}
-      <section className="py-20 bg-blue-900 text-white">
+      <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="max-w-4xl mx-auto text-center"
@@ -285,14 +285,14 @@ const Warehouses = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <Star className="h-12 w-12 text-orange-500 mx-auto mb-6" />
+            <Star className="h-12 w-12 text-white mx-auto mb-6" />
             <blockquote className="text-xl lg:text-2xl font-medium mb-8 italic">
               "{currentContent.testimonial.quote}"
             </blockquote>
-            <div className="text-orange-400 font-semibold">
+            <div className="text-white font-semibold">
               {currentContent.testimonial.author}
             </div>
-            <div className="text-blue-300">
+            <div className="text-white/80">
               {currentContent.testimonial.company}
             </div>
           </motion.div>
@@ -309,10 +309,10 @@ const Warehouses = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-6 font-serif">
+              <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-6 font-serif">
                 {currentContent.location.title}
               </h2>
-              <p className="text-gray-700 leading-relaxed text-lg">
+              <p className="text-muted-foreground leading-relaxed text-lg">
                 {currentContent.location.text}
               </p>
             </motion.div>
@@ -328,7 +328,7 @@ const Warehouses = () => {
                   alt={currentContent.location.title}
                   className="w-full h-80 object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
               </div>
             </motion.div>
           </div>
@@ -336,7 +336,7 @@ const Warehouses = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-orange-500">
+      <section className="py-16 bg-primary">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center text-white max-w-3xl mx-auto"
@@ -353,7 +353,7 @@ const Warehouses = () => {
             </p>
             <Button 
               onClick={handleQuoteClick}
-              className="bg-white text-orange-500 hover:bg-gray-100 text-lg px-8 py-4 font-semibold"
+              className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-4 font-semibold"
             >
               {currentContent.cta.button}
             </Button>

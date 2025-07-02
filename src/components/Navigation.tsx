@@ -113,7 +113,7 @@ const Navigation = () => {
                       {item.label}
                       <ChevronDown className="h-4 w-4" />
                       {!isActive && (
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
                       )}
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="bg-white shadow-lg border rounded-md p-1 z-50">
@@ -121,7 +121,7 @@ const Navigation = () => {
                         <DropdownMenuItem key={subItem.href} asChild>
                           <Link
                             to={subItem.href}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-900 rounded-sm cursor-pointer"
+                            className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary rounded-sm cursor-pointer"
                           >
                             {subItem.label}
                           </Link>
@@ -139,13 +139,13 @@ const Navigation = () => {
                   to={item.href}
                   className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm xl:text-base ${
                     isActive
-                      ? 'text-blue-900 border-orange-500'
-                      : 'text-gray-700 border-transparent hover:text-blue-900'
+                      ? 'text-primary border-primary'
+                      : 'text-foreground border-transparent hover:text-primary'
                   }`}
                 >
                   {item.label}
                   {!isActive && (
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
                   )}
                 </Link>
               );
@@ -153,12 +153,12 @@ const Navigation = () => {
             
             <LanguageSwitcher />
             
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white text-sm" onClick={handleQuoteClick}>
+            <Button className="bg-primary hover:bg-primary/90 text-white text-sm" onClick={handleQuoteClick}>
               <FileText className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Demande de devis' : 'Quote request'}
             </Button>
             
-            <Button className="bg-blue-900 hover:bg-blue-800 text-white text-sm" onClick={handleCallClick}>
+            <Button variant="outline" className="text-primary border-primary hover:bg-primary hover:text-white text-sm" onClick={handleCallClick}>
               <Phone className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
             </Button>
@@ -183,7 +183,7 @@ const Navigation = () => {
                         alt="Ndoukoumane"
                         className="h-6 w-auto"
                       />
-                      <span className="font-bold text-blue-900">Ndoukoumane</span>
+                      <span className="font-bold text-primary">Ndoukoumane</span>
                     </div>
                     <Button 
                       variant="ghost" 
@@ -199,8 +199,8 @@ const Navigation = () => {
                       const isActive = isActiveSubmenu(item.submenu);
                       return (
                         <div key={item.label}>
-                          <div className={`text-lg font-medium py-2 border-b border-gray-100 ${
-                            isActive ? 'text-blue-900 border-orange-500' : 'text-gray-700'
+                          <div className={`text-lg font-medium py-2 border-b border-border ${
+                            isActive ? 'text-primary border-primary' : 'text-foreground'
                           }`}>
                             {item.label}
                           </div>
@@ -213,8 +213,8 @@ const Navigation = () => {
                                   to={subItem.href}
                                   className={`block text-base py-1 transition-colors ${
                                     isSubActive
-                                      ? 'text-blue-900 font-medium'
-                                      : 'text-gray-600 hover:text-blue-900'
+                                      ? 'text-primary font-medium'
+                                      : 'text-muted-foreground hover:text-primary'
                                   }`}
                                   onClick={() => setIsOpen(false)}
                                 >
@@ -232,10 +232,10 @@ const Navigation = () => {
                       <Link
                         key={item.href}
                         to={item.href}
-                        className={`text-lg font-medium py-2 border-b border-gray-100 transition-colors ${
+                        className={`text-lg font-medium py-2 border-b border-border transition-colors ${
                           isActive
-                            ? 'text-blue-900 border-orange-500'
-                            : 'text-gray-700 hover:text-blue-900'
+                            ? 'text-primary border-primary'
+                            : 'text-foreground hover:text-primary'
                         }`}
                         onClick={() => setIsOpen(false)}
                       >
@@ -245,7 +245,7 @@ const Navigation = () => {
                   })}
                   
                   <Button 
-                    className="bg-orange-500 hover:bg-orange-600 text-white mt-6" 
+                    className="bg-primary hover:bg-primary/90 text-white mt-6" 
                     onClick={() => {
                       handleQuoteClick();
                       setIsOpen(false);
@@ -255,7 +255,7 @@ const Navigation = () => {
                     {language === 'fr' ? 'Demande de devis' : 'Quote request'}
                   </Button>
                   
-                  <Button className="bg-blue-900 hover:bg-blue-800 text-white" onClick={handleCallClick}>
+                  <Button variant="outline" className="text-primary border-primary hover:bg-primary hover:text-white" onClick={handleCallClick}>
                     <Phone className="h-4 w-4 mr-2" />
                     {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
                   </Button>

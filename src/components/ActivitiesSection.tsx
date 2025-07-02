@@ -61,7 +61,7 @@ const ActivitiesSection = () => {
   const currentContent = content[language];
 
   return (
-    <section className="py-20 bg-blue-50">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -70,10 +70,10 @@ const ActivitiesSection = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
+          <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
             {currentContent.title}
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-muted-foreground">
             {currentContent.subtitle}
           </p>
         </motion.div>
@@ -92,14 +92,14 @@ const ActivitiesSection = () => {
             >
               <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
                     <activity.icon className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold text-blue-900 font-serif">
+                  <h3 className="text-2xl font-bold text-primary font-serif">
                     {activity.title}
                   </h3>
                 </div>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {activity.text}
                 </p>
               </div>
@@ -110,7 +110,7 @@ const ActivitiesSection = () => {
                     alt={activity.title}
                     className="w-full h-80 object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                 </div>
               </div>
             </motion.div>

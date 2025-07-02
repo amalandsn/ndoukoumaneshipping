@@ -177,7 +177,7 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="py-20 bg-blue-900 text-white">
+      <section className="py-20 bg-primary text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -202,7 +202,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
               {currentContent.keyNumbers}
             </h2>
           </motion.div>
@@ -218,12 +218,12 @@ const About = () => {
                 viewport={{ once: true }}
               >
                 <div className="mb-4">
-                  <metric.icon className="h-12 w-12 text-orange-500 mx-auto" />
+                  <metric.icon className="h-12 w-12 text-primary mx-auto" />
                 </div>
-                <div className="text-2xl lg:text-3xl font-bold text-blue-900 mb-2">
+                <div className="text-2xl lg:text-3xl font-bold text-primary mb-2">
                   {metric.value}
                 </div>
-                <div className="text-gray-600 font-medium">
+                <div className="text-muted-foreground font-medium">
                   {language === 'fr' ? metric.label_fr : metric.label_en}
                 </div>
               </motion.div>

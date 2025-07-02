@@ -90,7 +90,7 @@ const WarehousesSection = () => {
     <section className="py-0 bg-white">
       {/* Hero Header */}
       <div className="relative h-96 bg-cover bg-center" style={{
-        backgroundImage: `linear-gradient(rgba(1, 43, 108, 0.6), rgba(1, 43, 108, 0.6)), url('/entrepot1.webp')`
+        backgroundImage: `linear-gradient(hsl(var(--primary) / 0.6), hsl(var(--primary) / 0.6)), url('/entrepot1.webp')`
       }}>
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
@@ -103,7 +103,7 @@ const WarehousesSection = () => {
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 font-serif leading-tight">
               {currentContent.heroTitle}
             </h2>
-            <p className="text-xl lg:text-2xl text-blue-100 font-medium">
+            <p className="text-xl lg:text-2xl text-white/80 font-medium">
               {currentContent.heroSubtitle}
             </p>
           </motion.div>
@@ -119,15 +119,15 @@ const WarehousesSection = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-3xl font-bold text-blue-900 mb-6 font-serif">
+            <h3 className="text-3xl font-bold text-primary mb-6 font-serif">
               {currentContent.textTitle}
             </h3>
-            <p className="text-gray-700 leading-relaxed text-lg mb-8">
+            <p className="text-muted-foreground leading-relaxed text-lg mb-8">
               {currentContent.text}
             </p>
             <Button 
               onClick={handleWarehouseClick}
-              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3"
+              className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
             >
               {currentContent.button}
             </Button>
@@ -144,7 +144,7 @@ const WarehousesSection = () => {
                 alt={currentContent.textTitle}
                 className="w-full h-80 object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </div>
           </motion.div>
         </div>
@@ -165,16 +165,16 @@ const WarehousesSection = () => {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full bg-gradient-to-br from-blue-900/90 to-blue-800/90 text-white border-none shadow-xl backdrop-blur-sm">
+              <Card className="h-full bg-gradient-to-br from-primary/90 to-primary/80 text-white border-none shadow-xl backdrop-blur-sm">
                 <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <kpi.icon className="h-6 w-6 text-white" />
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                    <kpi.icon className="h-6 w-6 text-primary" />
                   </div>
                   <h4 className="text-lg font-bold mb-2">{kpi.title}</h4>
-                  <div className="text-2xl font-bold text-orange-500 mb-2">
+                  <div className="text-2xl font-bold text-white mb-2">
                     {kpi.value}
                   </div>
-                  <p className="text-blue-100 text-sm">
+                  <p className="text-white/80 text-sm">
                     {kpi.description}
                   </p>
                 </CardContent>
