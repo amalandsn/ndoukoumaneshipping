@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -150,11 +149,12 @@ const ChatAssistant = () => {
       <div className="fixed bottom-6 right-6 z-50">
         <Button
           onClick={openChat}
-          className="bg-blue-deep hover:bg-blue-deep/90 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse"
+          className="bg-white hover:bg-white/90 text-blue-deep rounded-full w-14 h-14 transition-all duration-300 animate-pulse"
+          style={{ boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)' }}
         >
           <MessageCircle className="h-6 w-6" />
         </Button>
-        <Badge className="absolute -top-2 -left-2 bg-white text-blue-deep">
+        <Badge className="absolute -top-2 -left-2 bg-white text-blue-deep border border-blue-deep/20">
           24/7
         </Badge>
       </div>
