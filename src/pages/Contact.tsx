@@ -38,7 +38,7 @@ const Contact = () => {
       },
       info: {
         title: "Informations de contact",
-        address: "Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar, Sénégal",
+        address: "Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar",
         hours: "Disponibles 24h/24 et 7j/7",
         emergency: "Urgence 24/7",
         networks: "Réseaux"
@@ -57,7 +57,7 @@ const Contact = () => {
       },
       info: {
         title: "Contact information",
-        address: "Central Park, opposite National Fire Brigade HQ, Dakar, Senegal",
+        address: "Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar",
         hours: "Available 24/7",
         emergency: "24/7 Emergency",
         networks: "Networks"

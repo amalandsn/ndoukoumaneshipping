@@ -35,7 +35,7 @@ const Legal = () => {
           <p><strong>Capital social :</strong> 4 000 000 000 FCFA</p>
           
           <h3>Siège Social & Contact</h3>
-          <p><strong>Adresse :</strong> Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar, Sénégal</p>
+          <p><strong>Adresse :</strong> Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar, Sénégal</p>
           <p><strong>Téléphone :</strong> +221 33 822 29 80</p>
           <p><strong>Email :</strong> contact@ndoukoumaneshipping.sn</p>
           <p><strong>Site web :</strong> www.ndoukoumaneshipping.sn</p>
@@ -85,7 +85,7 @@ const Legal = () => {
           <p><strong>Share capital:</strong> 4,000,000,000 FCFA</p>
           
           <h3>Registered Office & Contact</h3>
-          <p><strong>Address:</strong> Central Park, opposite National Fire Brigade HQ, Dakar, Senegal</p>
+          <p><strong>Address:</strong> Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar, Senegal</p>
           <p><strong>Phone:</strong> +221 33 822 29 80</p>
           <p><strong>Email:</strong> contact@ndoukoumaneshipping.sn</p>
           <p><strong>Website:</strong> www.ndoukoumaneshipping.sn</p>

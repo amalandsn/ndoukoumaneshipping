@@ -15,7 +15,7 @@ const Footer = () => {
     fr: {
       company: {
         description: "+6 années d'expérience dans la consignation et manutention transit avec solution logistique.",
-        address: "Central Park, face Brigade Nationale des Sapeurs-Pompiers, Dakar",
+        address: "Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar",
         phone: "+221 33 822 29 80",
         urgent: "+221 77 644 96 42",
         email: "contact@ndoukoumaneshipping.com"
@@ -49,7 +49,7 @@ const Footer = () => {
     en: {
       company: {
         description: "+6 years of experience in consignment and handling transit with logistics solutions.",
-        address: "Central Park, opposite the National Fire Brigade HQ, Dakar",
+        address: "Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar",
         phone: "+221 33 822 29 80",
         urgent: "+221 77 644 96 42",
         email: "contact@ndoukoumaneshipping.com"

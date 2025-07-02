@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -31,7 +32,7 @@ const About = () => {
       location: {
         title: "Notre Localisation",
         bullets: [
-          "Central Park, face Brigade Nationale des Sapeurs-Pompiers",
+          "Central Park ex 4 c Avenue Malick Sy Bureau 3008",
           "Plate-forme stratégique de 2 ha – Dakar",
           "Accès Autoroute Dakar-Bamako & Port de Ndayane"
         ]
@@ -96,7 +97,7 @@ const About = () => {
       location: {
         title: "Our Location",
         bullets: [
-          "Central Park, opposite National Fire Brigade HQ",
+          "Central Park ex 4 c Avenue Malick Sy Bureau 3008",
           "2-ha strategic platform – Dakar",
           "Direct link to Dakar-Bamako Highway & Ndayane Port"
         ]
