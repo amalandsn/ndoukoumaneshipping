@@ -85,14 +85,14 @@ const Navigation = () => {
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-16 w-auto object-contain"
+              className="h-24 w-auto object-contain"
             />
             <div className="min-w-0">
-              <div className="text-lg sm:text-xl font-bold text-blue-900 font-serif leading-tight">
+              <div className="text-lg sm:text-xl font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
                 <div>Ndoukoumane</div>
                 <div>Shipping & Services</div>
               </div>
-              <div className="text-xs text-gray-600">
+              <div className="text-xs" style={{ color: '#0553A5' }}>
                 {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}
               </div>
             </div>
@@ -107,13 +107,13 @@ const Navigation = () => {
                   <DropdownMenu key={item.label}>
                     <DropdownMenuTrigger className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm xl:text-base flex items-center gap-1 ${
                       isActive
-                        ? 'text-blue-900 border-orange-500'
-                        : 'text-gray-700 border-transparent hover:text-blue-900'
-                    }`}>
+                        ? 'border-orange-500'
+                        : 'border-transparent'
+                    }`} style={{ color: '#0553A5' }}>
                       {item.label}
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className="h-4 w-4" style={{ color: '#0553A5' }} />
                       {!isActive && (
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
                       )}
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="bg-white shadow-lg border rounded-md p-1 z-50">
@@ -121,7 +121,8 @@ const Navigation = () => {
                         <DropdownMenuItem key={subItem.href} asChild>
                           <Link
                             to={subItem.href}
-                            className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary rounded-sm cursor-pointer"
+                            className="block px-4 py-2 text-sm hover:bg-muted rounded-sm cursor-pointer"
+                            style={{ color: '#0553A5' }}
                           >
                             {subItem.label}
                           </Link>
@@ -139,13 +140,14 @@ const Navigation = () => {
                   to={item.href}
                   className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm xl:text-base ${
                     isActive
-                      ? 'text-primary border-primary'
-                      : 'text-foreground border-transparent hover:text-primary'
+                      ? 'border-orange-500'
+                      : 'border-transparent'
                   }`}
+                  style={{ color: '#0553A5' }}
                 >
                   {item.label}
                   {!isActive && (
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
                   )}
                 </Link>
               );
@@ -153,12 +155,12 @@ const Navigation = () => {
             
             <LanguageSwitcher />
             
-            <Button className="bg-primary hover:bg-primary/90 text-white text-sm" onClick={handleQuoteClick}>
+            <Button className="text-white text-sm" style={{ backgroundColor: '#0553A5' }} onClick={handleQuoteClick}>
               <FileText className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Demande de devis' : 'Quote request'}
             </Button>
             
-            <Button variant="outline" className="text-primary border-primary hover:bg-primary hover:text-white text-sm" onClick={handleCallClick}>
+            <Button variant="outline" className="text-sm hover:text-white" style={{ color: '#0553A5', borderColor: '#0553A5' }} onClick={handleCallClick}>
               <Phone className="h-4 w-4 mr-2" />
               {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
             </Button>
@@ -171,7 +173,7 @@ const Navigation = () => {
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="sm">
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-6 w-6" style={{ color: '#0553A5' }} />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-80">
@@ -181,16 +183,16 @@ const Navigation = () => {
                       <img 
                         src="/logo.webp"
                         alt="Ndoukoumane"
-                        className="h-6 w-auto"
+                        className="h-8 w-auto"
                       />
-                      <span className="font-bold text-primary">Ndoukoumane</span>
+                      <span className="font-bold" style={{ color: '#0553A5' }}>Ndoukoumane</span>
                     </div>
                     <Button 
                       variant="ghost" 
                       size="sm" 
                       onClick={() => setIsOpen(false)}
                     >
-                      <X className="h-5 w-5" />
+                      <X className="h-5 w-5" style={{ color: '#0553A5' }} />
                     </Button>
                   </div>
                   
@@ -200,8 +202,8 @@ const Navigation = () => {
                       return (
                         <div key={item.label}>
                           <div className={`text-lg font-medium py-2 border-b border-border ${
-                            isActive ? 'text-primary border-primary' : 'text-foreground'
-                          }`}>
+                            isActive ? 'border-orange-500' : ''
+                          }`} style={{ color: '#0553A5' }}>
                             {item.label}
                           </div>
                           <div className="ml-4 space-y-2 mt-2">
@@ -213,9 +215,10 @@ const Navigation = () => {
                                   to={subItem.href}
                                   className={`block text-base py-1 transition-colors ${
                                     isSubActive
-                                      ? 'text-primary font-medium'
-                                      : 'text-muted-foreground hover:text-primary'
+                                      ? 'font-medium'
+                                      : 'opacity-80'
                                   }`}
+                                  style={{ color: '#0553A5' }}
                                   onClick={() => setIsOpen(false)}
                                 >
                                   {subItem.label}
@@ -234,9 +237,10 @@ const Navigation = () => {
                         to={item.href}
                         className={`text-lg font-medium py-2 border-b border-border transition-colors ${
                           isActive
-                            ? 'text-primary border-primary'
-                            : 'text-foreground hover:text-primary'
+                            ? 'border-orange-500'
+                            : ''
                         }`}
+                        style={{ color: '#0553A5' }}
                         onClick={() => setIsOpen(false)}
                       >
                         {item.label}
@@ -245,7 +249,8 @@ const Navigation = () => {
                   })}
                   
                   <Button 
-                    className="bg-primary hover:bg-primary/90 text-white mt-6" 
+                    className="text-white mt-6" 
+                    style={{ backgroundColor: '#0553A5' }}
                     onClick={() => {
                       handleQuoteClick();
                       setIsOpen(false);
@@ -255,7 +260,7 @@ const Navigation = () => {
                     {language === 'fr' ? 'Demande de devis' : 'Quote request'}
                   </Button>
                   
-                  <Button variant="outline" className="text-primary border-primary hover:bg-primary hover:text-white" onClick={handleCallClick}>
+                  <Button variant="outline" className="text-white" style={{ color: '#0553A5', borderColor: '#0553A5' }} onClick={handleCallClick}>
                     <Phone className="h-4 w-4 mr-2" />
                     {language === 'fr' ? 'Appelez 24/7' : 'Call Us 24/7'}
                   </Button>
