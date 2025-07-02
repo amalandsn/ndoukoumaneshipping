@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Separator } from "@/components/ui/separator";
@@ -115,14 +114,14 @@ const Footer = () => {
           <div className="flex space-x-6 text-sm">
             <Link 
               to="/legal#politique-confidentialite" 
-              className="text-white/80 hover:text-white transition-colors"
+              className="text-white/80 hover:text-white/80 hover:underline transition-all duration-200"
               onClick={() => handleLinkClick('/legal')}
             >
               {language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
             </Link>
             <Link 
               to="/legal#conditions-utilisation" 
-              className="text-white/80 hover:text-white transition-colors"
+              className="text-white/80 hover:text-white/80 hover:underline transition-all duration-200"
               onClick={() => handleLinkClick('/legal')}
             >
               {language === 'fr' ? 'Conditions d\'utilisation' : 'Terms of Service'}
