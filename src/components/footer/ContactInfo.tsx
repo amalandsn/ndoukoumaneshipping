@@ -24,8 +24,8 @@ const ContactInfo = ({ content, language }: ContactInfoProps) => {
       
       <div className="space-y-4">
         <div className="flex items-start space-x-3">
-          <Clock className="h-5 w-5 text-blue-300 mt-0.5 flex-shrink-0" />
-          <div className="text-blue-200 text-sm whitespace-pre-line">
+          <Clock className="h-5 w-5 text-white mt-0.5 flex-shrink-0" />
+          <div className="text-white text-sm whitespace-pre-line">
             {hours24_7}
           </div>
         </div>

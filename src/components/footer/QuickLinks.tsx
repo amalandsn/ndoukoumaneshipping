@@ -23,7 +23,7 @@ const QuickLinks = ({ content, onLinkClick }: QuickLinksProps) => {
           <li key={index}>
             <Link 
               to={link.href} 
-              className="text-blue-200 hover:text-white/80 hover:underline transition-all duration-200 text-sm"
+              className="text-white hover:text-white/80 hover:underline transition-all duration-200 text-sm"
               onClick={() => onLinkClick(link.href)}
             >
               {link.label}

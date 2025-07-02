@@ -23,7 +23,7 @@ const ServicesLinks = ({ content, onLinkClick }: ServicesLinksProps) => {
           <li key={index}>
             <Link 
               to="/services" 
-              className="text-blue-200 hover:text-white/80 hover:underline transition-all duration-200 text-sm"
+              className="text-white hover:text-white/80 hover:underline transition-all duration-200 text-sm"
               onClick={() => onLinkClick('/services')}
             >
               {service}

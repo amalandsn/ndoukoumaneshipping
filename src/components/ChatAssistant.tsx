@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -149,11 +150,11 @@ const ChatAssistant = () => {
       <div className="fixed bottom-6 right-6 z-50">
         <Button
           onClick={openChat}
-          className="bg-orange-500 hover:bg-orange-600 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse"
+          className="bg-blue-deep hover:bg-blue-deep/90 text-white rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse"
         >
           <MessageCircle className="h-6 w-6" />
         </Button>
-        <Badge className="absolute -top-2 -left-2 bg-blue-600 text-white">
+        <Badge className="absolute -top-2 -left-2 bg-white text-blue-deep">
           24/7
         </Badge>
       </div>
@@ -164,11 +165,11 @@ const ChatAssistant = () => {
     <div className="fixed bottom-6 right-6 z-50">
       <Card className={`w-80 shadow-2xl transition-all duration-300 ${isMinimized ? 'h-16' : 'h-96'}`}>
         {/* Chat Header */}
-        <CardHeader className="pb-3 bg-blue-900 text-white rounded-t-lg">
+        <CardHeader className="pb-3 bg-blue-deep text-white rounded-t-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <div className="p-1.5 bg-orange-500 rounded-full">
-                <Bot className="h-4 w-4" />
+              <div className="p-1.5 bg-white rounded-full">
+                <Bot className="h-4 w-4 text-blue-deep" />
               </div>
               <div>
                 <CardTitle className="text-sm font-semibold">
@@ -176,7 +177,7 @@ const ChatAssistant = () => {
                 </CardTitle>
                 <div className="flex items-center space-x-1">
                   <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                  <span className="text-xs text-blue-200">En ligne</span>
+                  <span className="text-xs text-white/80">En ligne</span>
                 </div>
               </div>
             </div>
@@ -186,7 +187,7 @@ const ChatAssistant = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMinimized(!isMinimized)}
-                className="text-white hover:bg-blue-800 p-1"
+                className="text-white hover:bg-white/20 p-1"
               >
                 {isMinimized ? <Maximize2 className="h-4 w-4" /> : <Minimize2 className="h-4 w-4" />}
               </Button>
@@ -194,7 +195,7 @@ const ChatAssistant = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsOpen(false)}
-                className="text-white hover:bg-blue-800 p-1"
+                className="text-white hover:bg-white/20 p-1"
               >
                 <X className="h-4 w-4" />
               </Button>
@@ -214,12 +215,12 @@ const ChatAssistant = () => {
                   >
                     <div className={`max-w-[80%] p-3 rounded-lg ${
                       message.type === 'user' 
-                        ? 'bg-orange-500 text-white' 
+                        ? 'bg-blue-deep text-white' 
                         : 'bg-gray-100 text-gray-800'
                     }`}>
                       <div className="flex items-start space-x-2">
                         {message.type === 'bot' && (
-                          <Bot className="h-4 w-4 mt-0.5 text-blue-600" />
+                          <Bot className="h-4 w-4 mt-0.5 text-blue-deep" />
                         )}
                         {message.type === 'user' && (
                           <User className="h-4 w-4 mt-0.5" />
@@ -236,7 +237,7 @@ const ChatAssistant = () => {
                   <div className="flex justify-start">
                     <div className="bg-gray-100 p-3 rounded-lg">
                       <div className="flex items-center space-x-2">
-                        <Bot className="h-4 w-4 text-blue-600" />
+                        <Bot className="h-4 w-4 text-blue-deep" />
                         <div className="text-sm text-gray-600">
                           {content.typing}
                         </div>
@@ -262,7 +263,7 @@ const ChatAssistant = () => {
                       variant="outline"
                       size="sm"
                       onClick={() => handleQuickAction(action)}
-                      className="text-xs p-2 h-auto"
+                      className="text-xs p-2 h-auto border-blue-deep text-blue-deep hover:bg-blue-deep hover:text-white"
                     >
                       {action}
                     </Button>
@@ -284,7 +285,7 @@ const ChatAssistant = () => {
                 <Button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim()}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-3"
+                  className="bg-blue-deep hover:bg-blue-deep/90 text-white px-3"
                 >
                   <Send className="h-4 w-4" />
                 </Button>
