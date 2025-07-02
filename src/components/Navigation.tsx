@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -80,7 +81,7 @@ const Navigation = () => {
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-20 w-auto object-contain"
+              className="h-24 w-auto object-contain"
             />
             <div className="min-w-0 ml-4">
               <div className="text-xl font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
@@ -149,8 +150,16 @@ const Navigation = () => {
             })}
           </div>
           
-          {/* Right side - Language Switcher only for desktop */}
-          <div className="hidden lg:flex items-center">
+          {/* Right side - Quote Button and Language Switcher for desktop */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <Button 
+              className="text-white text-sm" 
+              style={{ backgroundColor: '#0553A5' }}
+              onClick={handleQuoteClick}
+            >
+              <FileText className="h-4 w-4 mr-2" />
+              {language === 'fr' ? 'Demander un devis' : 'Request a quote'}
+            </Button>
             <LanguageSwitcher />
           </div>
 
