@@ -177,7 +177,7 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="py-20 bg-primary text-white">
+      <section className="py-20 bg-blue-deep text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -202,7 +202,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
+            <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
               {currentContent.keyNumbers}
             </h2>
           </motion.div>
@@ -218,9 +218,9 @@ const About = () => {
                 viewport={{ once: true }}
               >
                 <div className="mb-4">
-                  <metric.icon className="h-12 w-12 text-primary mx-auto" />
+                  <metric.icon className="h-12 w-12 text-blue-deep mx-auto" />
                 </div>
-                <div className="text-2xl lg:text-3xl font-bold text-primary mb-2">
+                <div className="text-2xl lg:text-3xl font-bold text-blue-deep mb-2">
                   {metric.value}
                 </div>
                 <div className="text-muted-foreground font-medium">
@@ -246,10 +246,10 @@ const About = () => {
               viewport={{ once: true }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <Target className="text-orange-500 text-2xl h-6 w-6" />
-                <h3 className="text-lg font-semibold text-blue-900">{currentContent.mission.title}</h3>
+                <Target className="text-blue-deep text-2xl h-6 w-6" />
+                <h3 className="text-lg font-semibold text-blue-deep">{currentContent.mission.title}</h3>
               </div>
-              <ul className="list-disc list-inside marker:text-orange-500 space-y-1 text-sm leading-relaxed text-gray-700">
+              <ul className="list-disc list-inside marker:text-blue-deep space-y-1 text-sm leading-relaxed text-gray-700">
                 {currentContent.mission.bullets.map((bullet, index) => (
                   <li key={index}>{bullet}</li>
                 ))}
@@ -265,10 +265,10 @@ const About = () => {
               viewport={{ once: true }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <Eye className="text-orange-500 text-2xl h-6 w-6" />
-                <h3 className="text-lg font-semibold text-blue-900">{currentContent.vision.title}</h3>
+                <Eye className="text-blue-deep text-2xl h-6 w-6" />
+                <h3 className="text-lg font-semibold text-blue-deep">{currentContent.vision.title}</h3>
               </div>
-              <ul className="list-disc list-inside marker:text-orange-500 space-y-1 text-sm leading-relaxed text-gray-700">
+              <ul className="list-disc list-inside marker:text-blue-deep space-y-1 text-sm leading-relaxed text-gray-700">
                 {currentContent.vision.bullets.map((bullet, index) => (
                   <li key={index}>{bullet}</li>
                 ))}
@@ -294,10 +294,10 @@ const About = () => {
               
               <div className="p-6 flex-1">
                 <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="text-orange-500 text-2xl h-6 w-6" />
-                  <h3 className="text-lg font-semibold text-blue-900">{currentContent.location.title}</h3>
+                  <MapPin className="text-blue-deep text-2xl h-6 w-6" />
+                  <h3 className="text-lg font-semibold text-blue-deep">{currentContent.location.title}</h3>
                 </div>
-                <ul className="list-disc list-inside marker:text-orange-500 space-y-1 text-sm leading-relaxed text-gray-700">
+                <ul className="list-disc list-inside marker:text-blue-deep space-y-1 text-sm leading-relaxed text-gray-700">
                   {currentContent.location.bullets.map((bullet, index) => (
                     <li key={index}>{bullet}</li>
                   ))}
@@ -321,7 +321,7 @@ const About = () => {
           >
             <div className="grid lg:grid-cols-5 gap-8 items-center">
               <div className="lg:col-span-3 order-2 lg:order-1">
-                <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-6 font-serif">
+                <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-6 font-serif">
                   {currentContent.ceo.title}
                 </h2>
                 
@@ -333,11 +333,11 @@ const About = () => {
                   {currentContent.ceo.content.substring(currentContent.ceo.content.indexOf('.') + 1).trim()}
                 </div>
                 
-                <div className="text-lg font-medium text-orange-500 mb-4">
+                <div className="text-lg font-medium text-blue-deep mb-4">
                   {currentContent.ceo.mission}
                 </div>
                 
-                <div className="text-blue-900 font-semibold">
+                <div className="text-blue-deep font-semibold">
                   {currentContent.ceo.signature}
                 </div>
               </div>
@@ -366,7 +366,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
+            <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
               {currentContent.team.title}
             </h2>
           </motion.div>
@@ -390,10 +390,10 @@ const About = () => {
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-lg font-bold text-blue-900 mb-1">
+                  <h3 className="text-lg font-bold text-blue-deep mb-1">
                     {member.name}
                   </h3>
-                  <div className="text-orange-500 font-medium text-sm mb-3">
+                  <div className="text-blue-deep/70 font-medium text-sm mb-3">
                     {member.title}
                   </div>
                   <p className="text-gray-700 text-sm leading-relaxed">
@@ -421,10 +421,10 @@ const About = () => {
                   </div>
                   
                   <div className="p-6">
-                    <h3 className="text-lg font-bold text-blue-900 mb-1">
+                    <h3 className="text-lg font-bold text-blue-deep mb-1">
                       {member.name}
                     </h3>
-                    <div className="text-orange-500 font-medium text-sm mb-3">
+                    <div className="text-blue-deep/70 font-medium text-sm mb-3">
                       {member.title}
                     </div>
                     <p className="text-gray-700 text-sm leading-relaxed">
@@ -448,7 +448,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
+            <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
               {currentContent.credo.title}
             </h2>
           </motion.div>
@@ -463,10 +463,10 @@ const About = () => {
                 transition={{ delay: index * 0.2, duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <span className="text-5xl font-extrabold text-orange-500 block mb-4">
+                <span className="text-5xl font-extrabold text-blue-deep block mb-4">
                   {index + 1}
                 </span>
-                <p className="text-lg font-semibold text-blue-900">
+                <p className="text-lg font-semibold text-blue-deep">
                   {value}
                 </p>
               </motion.div>

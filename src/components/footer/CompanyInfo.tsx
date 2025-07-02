@@ -54,20 +54,20 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
       
       <div className="space-y-4">
         <div className="flex items-start space-x-3">
-          <MapPin className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
+          <MapPin className="h-5 w-5 text-blue-300 mt-0.5 flex-shrink-0" />
           <span className="text-blue-200 text-sm leading-relaxed">
             {content.company.address}
           </span>
         </div>
         <div className="flex items-start space-x-3">
-          <Phone className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
+          <Phone className="h-5 w-5 text-blue-300 mt-0.5 flex-shrink-0" />
           <div className="text-blue-200 text-sm leading-relaxed">
             <div className="mb-1">{content.contact.office}: {content.company.phone}</div>
-            <div className="text-orange-300">{content.contact.urgent}: {content.company.urgent}</div>
+            <div className="text-blue-100">{content.contact.urgent}: {content.company.urgent}</div>
           </div>
         </div>
         <div className="flex items-start space-x-3">
-          <Mail className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
+          <Mail className="h-5 w-5 text-blue-300 mt-0.5 flex-shrink-0" />
           <span className="text-blue-200 text-sm">
             {content.company.email}
           </span>
@@ -76,7 +76,7 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
 
       <div className="mt-6">
         <Button 
-          className="bg-orange-500 hover:bg-orange-600 text-white w-full"
+          className="bg-white text-blue-deep hover:bg-white/90 w-full"
           onClick={handleQuoteClick}
         >
           {language === 'fr' ? 'Demander un devis' : 'Request a quote'}

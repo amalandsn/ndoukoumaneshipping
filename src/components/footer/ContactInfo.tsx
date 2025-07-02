@@ -18,13 +18,13 @@ const ContactInfo = ({ content, language }: ContactInfoProps) => {
   
   return (
     <div>
-      <h3 className="text-lg font-semibold mb-6 text-orange-400">
+      <h3 className="text-lg font-semibold mb-6 text-blue-300">
         {content.contact.title}
       </h3>
       
       <div className="space-y-4">
         <div className="flex items-start space-x-3">
-          <Clock className="h-5 w-5 text-orange-400 mt-0.5 flex-shrink-0" />
+          <Clock className="h-5 w-5 text-blue-300 mt-0.5 flex-shrink-0" />
           <div className="text-blue-200 text-sm whitespace-pre-line">
             {hours24_7}
           </div>
