@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -77,11 +78,11 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-6 flex-shrink-0">
+          <Link to="/" className="flex items-center space-x-8 flex-shrink-0">
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-24 w-auto object-contain"
+              className="h-18 w-auto object-contain"
             />
             <div className="min-w-0">
               <div className="text-xl font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
@@ -95,7 +96,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center ml-8">
+          <div className="hidden lg:flex items-center space-x-6 flex-1 justify-center ml-10">
             {items.map((item) => {
               if (item.submenu) {
                 const isActive = isActiveSubmenu(item.submenu);
@@ -172,7 +173,7 @@ const Navigation = () => {
                       <img 
                         src="/logo.webp"
                         alt="Ndoukoumane"
-                        className="h-8 w-auto"
+                        className="h-12 w-auto"
                       />
                       <span className="font-bold" style={{ color: '#0553A5' }}>Ndoukoumane</span>
                     </div>
@@ -185,57 +186,60 @@ const Navigation = () => {
                     </Button>
                   </div>
                   
-                  {items.map((item) => {
-                    if (item.submenu) {
-                      const isActive = isActiveSubmenu(item.submenu);
-                      return (
-                        <div key={item.label}>
-                          <div className={`text-lg font-medium py-2 border-b border-border ${
-                            isActive ? 'border-blue-600' : ''
-                          }`} style={{ color: '#0553A5' }}>
-                            {item.label}
+                  {/* Mobile menu items with space-y-4 for 1rem gap */}
+                  <div className="space-y-4">
+                    {items.map((item) => {
+                      if (item.submenu) {
+                        const isActive = isActiveSubmenu(item.submenu);
+                        return (
+                          <div key={item.label}>
+                            <div className={`text-lg font-medium py-2 border-b border-border ${
+                              isActive ? 'border-blue-600' : ''
+                            }`} style={{ color: '#0553A5' }}>
+                              {item.label}
+                            </div>
+                            <div className="ml-4 space-y-2 mt-2">
+                              {item.submenu.map((subItem) => {
+                                const isSubActive = isActiveLink(subItem.href);
+                                return (
+                                  <Link
+                                    key={subItem.href}
+                                    to={subItem.href}
+                                    className={`block text-base py-1 transition-colors ${
+                                      isSubActive
+                                        ? 'font-medium'
+                                        : 'opacity-80'
+                                    }`}
+                                    style={{ color: '#0553A5' }}
+                                    onClick={() => setIsOpen(false)}
+                                  >
+                                    {subItem.label}
+                                  </Link>
+                                );
+                              })}
+                            </div>
                           </div>
-                          <div className="ml-4 space-y-2 mt-2">
-                            {item.submenu.map((subItem) => {
-                              const isSubActive = isActiveLink(subItem.href);
-                              return (
-                                <Link
-                                  key={subItem.href}
-                                  to={subItem.href}
-                                  className={`block text-base py-1 transition-colors ${
-                                    isSubActive
-                                      ? 'font-medium'
-                                      : 'opacity-80'
-                                  }`}
-                                  style={{ color: '#0553A5' }}
-                                  onClick={() => setIsOpen(false)}
-                                >
-                                  {subItem.label}
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    }
+                        );
+                      }
 
-                    const isActive = isActiveLink(item.href);
-                    return (
-                      <Link
-                        key={item.href}
-                        to={item.href}
-                        className={`text-lg font-medium py-2 border-b border-border transition-colors ${
-                          isActive
-                            ? 'border-blue-600'
-                            : ''
-                        }`}
-                        style={{ color: '#0553A5' }}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.label}
-                      </Link>
-                    );
-                  })}
+                      const isActive = isActiveLink(item.href);
+                      return (
+                        <Link
+                          key={item.href}
+                          to={item.href}
+                          className={`text-lg font-medium py-2 border-b border-border transition-colors ${
+                            isActive
+                              ? 'border-blue-600'
+                              : ''
+                          }`}
+                          style={{ color: '#0553A5' }}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                  </div>
                   
                   <Button 
                     className="text-white mt-6" 
@@ -259,3 +263,4 @@ const Navigation = () => {
 };
 
 export default Navigation;
+

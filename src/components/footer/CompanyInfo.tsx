@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -32,11 +33,11 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
 
   return (
     <div className="lg:col-span-1">
-      <div className="flex items-start space-x-4 mb-6">
+      <div className="flex items-start gap-8 mb-6">
         <img 
           src="/logof.webp"
           alt="Ndoukoumane Shipping & Services"
-          className="h-24 w-auto flex-shrink-0"
+          className="h-18 w-auto flex-shrink-0"
         />
         <div className="flex-1 min-w-0">
           <div className="text-xl font-bold font-serif leading-tight text-white">
@@ -88,3 +89,4 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
 };
 
 export default CompanyInfo;
+
