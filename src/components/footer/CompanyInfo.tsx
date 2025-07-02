@@ -36,11 +36,12 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
         <img 
           src="/logof.webp"
           alt="Ndoukoumane Shipping & Services"
-          className="h-20 w-auto flex-shrink-0"
+          className="h-24 w-auto flex-shrink-0"
         />
         <div className="flex-1 min-w-0">
-          <div className="text-lg font-bold font-serif leading-tight text-white">
-            Ndoukoumane Shipping & Services
+          <div className="text-xl font-bold font-serif leading-tight text-white">
+            <div>Ndoukoumane</div>
+            <div>Shipping & Services</div>
           </div>
           <div className="text-white text-sm mt-1">
             {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}

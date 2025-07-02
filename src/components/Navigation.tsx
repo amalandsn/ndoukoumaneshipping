@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -74,27 +75,27 @@ const Navigation = () => {
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-4 flex-shrink-0">
+          <Link to="/" className="flex items-center space-x-6 flex-shrink-0">
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-20 w-auto object-contain"
+              className="h-24 w-auto object-contain"
             />
             <div className="min-w-0">
-              <div className="text-lg font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
+              <div className="text-xl font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
                 <div>Ndoukoumane</div>
                 <div>Shipping & Services</div>
               </div>
-              <div className="text-xs" style={{ color: '#0553A5' }}>
+              <div className="text-sm" style={{ color: '#0553A5' }}>
                 {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}
               </div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 flex-1 justify-center">
+          <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center ml-8">
             {items.map((item) => {
               if (item.submenu) {
                 const isActive = isActiveSubmenu(item.submenu);
@@ -150,7 +151,7 @@ const Navigation = () => {
           </div>
           
           {/* Right side - Language Switcher only for desktop */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center">
             <LanguageSwitcher />
           </div>
 
