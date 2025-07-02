@@ -25,7 +25,7 @@ const HeroVideo = () => {
   const content = heroContent[language];
 
   return (
-    <section className="relative h-screen overflow-hidden bg-blue-900">
+    <section className="relative h-screen overflow-hidden bg-blue-deep">
       {/* Background Video */}
       <div className="absolute inset-0">
         <video
@@ -46,7 +46,7 @@ const HeroVideo = () => {
         </video>
         
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-deep/80 via-blue-deep/70 to-transparent" />
       </div>
 
       {/* Content */}
@@ -83,7 +83,7 @@ const HeroVideo = () => {
             >
               <Button 
                 size="lg" 
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg transform transition-transform hover:scale-105"
+                className="bg-white text-blue-deep hover:bg-white/90 px-8 py-4 text-lg transform transition-transform hover:scale-105"
               >
                 {content.cta}
               </Button>

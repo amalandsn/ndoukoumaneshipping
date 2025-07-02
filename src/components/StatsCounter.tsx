@@ -47,10 +47,10 @@ const StatsCounter: React.FC<StatsCounterProps> = ({
       transition={{ duration: 0.6 }}
       className="text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
     >
-      <div className="text-4xl lg:text-5xl font-bold text-orange-500 mb-2">
+      <div className="text-4xl lg:text-5xl font-bold text-blue-deep mb-2">
         {prefix}{count}{suffix}
       </div>
-      <div className="text-blue-900 text-sm lg:text-base font-medium">
+      <div className="text-blue-deep text-sm lg:text-base font-medium">
         {label}
       </div>
     </motion.div>

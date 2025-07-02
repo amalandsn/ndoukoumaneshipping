@@ -138,7 +138,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
 
   return (
     <section 
-      className="relative h-screen overflow-hidden bg-blue-900"
+      className="relative h-screen overflow-hidden bg-blue-deep"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={onTouchStart}
@@ -166,7 +166,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
         </AnimatePresence>
         
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-deep/80 via-blue-deep/70 to-transparent" />
       </div>
 
       {/* Content Overlay */}
@@ -193,7 +193,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
             <motion.div>
               <Button 
                 size="lg" 
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 text-lg transform transition-transform hover:scale-105"
+                className="bg-white text-blue-deep hover:bg-white/90 px-8 py-4 text-lg transform transition-transform hover:scale-105"
               >
                 {content.cta}
               </Button>
@@ -210,7 +210,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ slides }) => {
             onClick={() => setCurrentSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentSlide 
-                ? 'bg-orange-500 scale-125' 
+                ? 'bg-blue-deep scale-125' 
                 : 'bg-white/50 hover:bg-white/75'
             }`}
             aria-label={`Go to slide ${index + 1}`}

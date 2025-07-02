@@ -33,7 +33,7 @@ const NewStatsSection = () => {
     : statsContent.en;
 
   return (
-    <section className="py-20 bg-blue-900 text-white">
+    <section className="py-20 bg-blue-deep text-white">
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -56,10 +56,10 @@ const NewStatsSection = () => {
               viewport={{ once: true }}
               className="text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow"
             >
-              <div className="text-3xl lg:text-4xl font-bold text-orange-500 mb-2">
+              <div className="text-3xl lg:text-4xl font-bold text-blue-deep mb-2">
                 {stat.display}
               </div>
-              <div className="text-blue-900 text-sm lg:text-base font-medium">
+              <div className="text-blue-deep text-sm lg:text-base font-medium">
                 {stat.label}
               </div>
             </motion.div>
