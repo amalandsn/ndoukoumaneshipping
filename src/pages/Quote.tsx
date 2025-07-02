@@ -12,7 +12,7 @@ const Quote = () => {
   const { language } = useLanguage();
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <QuoteHero />
       <QuoteBenefits />

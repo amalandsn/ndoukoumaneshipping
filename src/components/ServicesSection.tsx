@@ -47,7 +47,7 @@ const ServicesSection = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-4 font-serif">
+          <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
             {language === 'fr' ? "Nos Services" : "Our Services"}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -66,7 +66,7 @@ const ServicesSection = () => {
               transition={{ delay: idx * 0.15, duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="rounded-xl shadow-lg hover:scale-[1.02] transition bg-white overflow-hidden">
+              <div className="rounded-xl shadow-lg hover:scale-[1.02] transition bg-white overflow-hidden border border-gray-100">
                 <div className="relative h-48 w-full">
                   <img
                     src={s.img}
@@ -74,10 +74,10 @@ const ServicesSection = () => {
                     className="h-full w-full object-cover rounded-t-xl"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#002A5Ccc] via-transparent rounded-t-xl" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-deep/80 via-transparent rounded-t-xl" />
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-lg font-semibold text-[#002A5C]">{s.title}</h3>
+                  <h3 className="text-lg font-semibold text-blue-deep">{s.title}</h3>
                   <p className="mt-2 text-sm text-gray-600">{s.desc}</p>
                 </div>
               </div>

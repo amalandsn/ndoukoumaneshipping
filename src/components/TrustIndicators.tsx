@@ -7,7 +7,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 const TrustIndicators = () => {
   const { language } = useLanguage();
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8">
           <motion.div
@@ -17,10 +17,10 @@ const TrustIndicators = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="mx-auto mb-4 p-4 bg-green-100 rounded-full text-green-600 w-fit">
+            <div className="mx-auto mb-4 p-4 bg-blue-deep/10 rounded-full text-blue-deep w-fit">
               <Shield className="h-8 w-8" />
             </div>
-            <h3 className="text-xl font-semibold text-blue-900 mb-2">
+            <h3 className="text-xl font-semibold text-blue-deep mb-2">
               {language === 'fr' ? 'Sécurité Garantie' : 'Guaranteed Security'}
             </h3>
             <p className="text-gray-600">
@@ -37,10 +37,10 @@ const TrustIndicators = () => {
             transition={{ delay: 0.2, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="mx-auto mb-4 p-4 bg-blue-100 rounded-full text-blue-600 w-fit">
+            <div className="mx-auto mb-4 p-4 bg-blue-deep/10 rounded-full text-blue-deep w-fit">
               <Clock className="h-8 w-8" />
             </div>
-            <h3 className="text-xl font-semibold text-blue-900 mb-2">
+            <h3 className="text-xl font-semibold text-blue-deep mb-2">
               {language === 'fr' ? 'Rapidité d\'Exécution' : 'Fast Execution'}
             </h3>
             <p className="text-gray-600">
@@ -57,10 +57,10 @@ const TrustIndicators = () => {
             transition={{ delay: 0.4, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="mx-auto mb-4 p-4 bg-orange-100 rounded-full text-orange-600 w-fit">
+            <div className="mx-auto mb-4 p-4 bg-blue-deep/10 rounded-full text-blue-deep w-fit">
               <Zap className="h-8 w-8" />
             </div>
-            <h3 className="text-xl font-semibold text-blue-900 mb-2">
+            <h3 className="text-xl font-semibold text-blue-deep mb-2">
               {language === 'fr' ? 'Innovation Continue' : 'Continuous Innovation'}
             </h3>
             <p className="text-gray-600">

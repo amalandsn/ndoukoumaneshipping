@@ -15,7 +15,7 @@ import PerformanceOptimizer from '@/components/PerformanceOptimizer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <PerformanceOptimizer />
       <Navigation />
       <HeroCarousel />

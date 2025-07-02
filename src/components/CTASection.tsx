@@ -24,7 +24,7 @@ const CTASection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-r from-orange-500 to-orange-600 text-white" id="contact">
+    <section className="py-20 bg-blue-deep text-white" id="contact">
       <div className="container mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -38,7 +38,7 @@ const CTASection = () => {
               'Ready to optimize your maritime operations?'
             }
           </h2>
-          <p className="text-xl mb-8 text-orange-100 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 text-white/80 max-w-2xl mx-auto">
             {language === 'fr' ?
               "Contactez notre équipe d'experts pour un accompagnement personnalisé et des solutions sur mesure." :
               'Contact our team of experts for personalized support and customized solutions.'
@@ -47,7 +47,7 @@ const CTASection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
               size="lg" 
-              className="bg-blue-600 text-white hover:bg-blue-700 border-2 border-white px-8 py-4 transform transition-transform hover:scale-105"
+              className="bg-white text-blue-deep hover:bg-gray-100 border-2 border-white px-8 py-4 transform transition-transform hover:scale-105"
               onClick={handleQuoteClick}
             >
               <FileText className="h-5 w-5 mr-2" />
@@ -55,7 +55,7 @@ const CTASection = () => {
             </Button>
             <Button 
               size="lg" 
-              className="bg-white text-orange-600 hover:bg-gray-100 px-8 py-4 transform transition-transform hover:scale-105"
+              className="bg-transparent text-white hover:bg-white/10 border-2 border-white px-8 py-4 transform transition-transform hover:scale-105"
               onClick={handleCallClick}
             >
               <Phone className="h-5 w-5 mr-2" />

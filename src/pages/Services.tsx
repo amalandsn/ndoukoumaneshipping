@@ -38,11 +38,11 @@ const Services = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="py-20 bg-blue-900 text-white">
+      <section className="py-20 bg-blue-deep text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -53,7 +53,7 @@ const Services = () => {
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 font-serif leading-tight">
               {currentContent.title}
             </h1>
-            <p className="text-xl lg:text-2xl text-blue-100 font-medium">
+            <p className="text-xl lg:text-2xl text-white/90 font-medium">
               {currentContent.subtitle}
             </p>
           </motion.div>
@@ -80,7 +80,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-orange-500">
+      <section className="py-16 bg-blue-deep">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center text-white max-w-3xl mx-auto"
@@ -94,7 +94,7 @@ const Services = () => {
             </h2>
             <Button 
               onClick={handleQuoteClick}
-              className="bg-white text-orange-500 hover:bg-gray-100 text-lg px-8 py-4 font-semibold"
+              className="bg-white text-blue-deep hover:bg-gray-100 text-lg px-8 py-4 font-semibold"
             >
               <FileText className="h-5 w-5 mr-2" />
               {currentContent.ctaButton}

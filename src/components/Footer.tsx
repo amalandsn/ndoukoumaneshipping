@@ -92,7 +92,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-blue-900 text-white">
+    <footer className="bg-blue-deep text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -103,26 +103,26 @@ const Footer = () => {
         </div>
       </div>
 
-      <Separator className="bg-blue-800" />
+      <Separator className="bg-white/20" />
 
       {/* Bottom Footer */}
       <div className="container mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div className="text-blue-300 text-sm">
+          <div className="text-white/80 text-sm">
             {content.copyright}
           </div>
           
           <div className="flex space-x-6 text-sm">
             <Link 
               to="/legal#politique-confidentialite" 
-              className="text-blue-300 hover:text-white transition-colors"
+              className="text-white/80 hover:text-white transition-colors"
               onClick={() => handleLinkClick('/legal')}
             >
               {language === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy'}
             </Link>
             <Link 
               to="/legal#conditions-utilisation" 
-              className="text-blue-300 hover:text-white transition-colors"
+              className="text-white/80 hover:text-white transition-colors"
               onClick={() => handleLinkClick('/legal')}
             >
               {language === 'fr' ? 'Conditions d\'utilisation' : 'Terms of Service'}

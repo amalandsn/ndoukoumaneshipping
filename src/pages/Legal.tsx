@@ -129,11 +129,11 @@ const Legal = () => {
   const currentContent = content[language];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-700 to-blue-800 text-white py-20">
+      <section className="bg-blue-deep text-white py-20">
         <div className="max-w-4xl mx-auto text-center space-y-4 px-4">
           <motion.h1 
             className="text-3xl md:text-4xl font-bold"
@@ -147,7 +147,7 @@ const Legal = () => {
       </section>
 
       {/* Legal Content */}
-      <section className="py-16">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
           {/* Legal Notices */}
           <motion.div
@@ -156,11 +156,11 @@ const Legal = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white rounded-lg shadow-lg p-8 mb-8 scroll-mt-24"
+            className="bg-white rounded-lg shadow-lg border border-gray-100 p-8 mb-8 scroll-mt-24"
           >
-            <h2 className="text-2xl font-bold mb-6 text-blue-900">{currentContent.legalNotices.title}</h2>
+            <h2 className="text-2xl font-bold mb-6 text-blue-deep">{currentContent.legalNotices.title}</h2>
             <div 
-              className="prose prose-blue max-w-none"
+              className="prose prose-blue max-w-none text-gray-700"
               dangerouslySetInnerHTML={{ __html: currentContent.legalNotices.content }}
             />
           </motion.div>
@@ -172,11 +172,11 @@ const Legal = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white rounded-lg shadow-lg p-8 mb-8 scroll-mt-24"
+            className="bg-white rounded-lg shadow-lg border border-gray-100 p-8 mb-8 scroll-mt-24"
           >
-            <h2 className="text-2xl font-bold mb-6 text-blue-900">{currentContent.privacy.title}</h2>
+            <h2 className="text-2xl font-bold mb-6 text-blue-deep">{currentContent.privacy.title}</h2>
             <div 
-              className="prose prose-blue max-w-none"
+              className="prose prose-blue max-w-none text-gray-700"
               dangerouslySetInnerHTML={{ __html: currentContent.privacy.content }}
             />
           </motion.div>
@@ -188,11 +188,11 @@ const Legal = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white rounded-lg shadow-lg p-8 scroll-mt-24"
+            className="bg-white rounded-lg shadow-lg border border-gray-100 p-8 scroll-mt-24"
           >
-            <h2 className="text-2xl font-bold mb-6 text-blue-900">{currentContent.terms.title}</h2>
+            <h2 className="text-2xl font-bold mb-6 text-blue-deep">{currentContent.terms.title}</h2>
             <div 
-              className="prose prose-blue max-w-none"
+              className="prose prose-blue max-w-none text-gray-700"
               dangerouslySetInnerHTML={{ __html: currentContent.terms.content }}
             />
           </motion.div>
