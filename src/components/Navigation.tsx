@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -85,7 +84,7 @@ const Navigation = () => {
             <img 
               src="/logo.webp"
               alt="Ndoukoumane Shipping & Services"
-              className="h-24 w-auto object-contain"
+              className="h-48 w-auto object-contain"
             />
             <div className="min-w-0">
               <div className="text-lg sm:text-xl font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
@@ -107,13 +106,13 @@ const Navigation = () => {
                   <DropdownMenu key={item.label}>
                     <DropdownMenuTrigger className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm xl:text-base flex items-center gap-1 ${
                       isActive
-                        ? 'border-orange-500'
+                        ? 'border-blue-600'
                         : 'border-transparent'
                     }`} style={{ color: '#0553A5' }}>
                       {item.label}
                       <ChevronDown className="h-4 w-4" style={{ color: '#0553A5' }} />
                       {!isActive && (
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#0553A5' }}></span>
                       )}
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="bg-white shadow-lg border rounded-md p-1 z-50">
@@ -140,14 +139,14 @@ const Navigation = () => {
                   to={item.href}
                   className={`font-medium transition-colors duration-200 relative group border-b-2 pb-1 text-sm xl:text-base ${
                     isActive
-                      ? 'border-orange-500'
+                      ? 'border-blue-600'
                       : 'border-transparent'
                   }`}
                   style={{ color: '#0553A5' }}
                 >
                   {item.label}
                   {!isActive && (
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200 group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-200 group-hover:w-full" style={{ backgroundColor: '#0553A5' }}></span>
                   )}
                 </Link>
               );
@@ -202,7 +201,7 @@ const Navigation = () => {
                       return (
                         <div key={item.label}>
                           <div className={`text-lg font-medium py-2 border-b border-border ${
-                            isActive ? 'border-orange-500' : ''
+                            isActive ? 'border-blue-600' : ''
                           }`} style={{ color: '#0553A5' }}>
                             {item.label}
                           </div>
@@ -237,7 +236,7 @@ const Navigation = () => {
                         to={item.href}
                         className={`text-lg font-medium py-2 border-b border-border transition-colors ${
                           isActive
-                            ? 'border-orange-500'
+                            ? 'border-blue-600'
                             : ''
                         }`}
                         style={{ color: '#0553A5' }}

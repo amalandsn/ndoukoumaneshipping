@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -36,7 +35,7 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
         <img 
           src="/logof.webp"
           alt="Ndoukoumane Shipping & Services"
-          className="h-24 w-auto"
+          className="h-48 w-auto"
         />
         <div className="flex-1">
           <div className="text-xl font-bold font-serif leading-tight text-white">
