@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -58,6 +57,12 @@ const About = () => {
             name: "Mme Mame Diodio Ndao",
             title: "CEO & Financial Manager",
             description: "Pilote la stratégie financière et l'expansion régionale avec des années d'expérience en banques et shipping."
+          },
+          {
+            image: "as.webp",
+            name: "M. Abdourahmane Sall",
+            title: "Directeur d'exploitation",
+            description: "Fort de plus de dix ans d'expérience dans la gestion des opérations portuaires et logistiques, M. Sall supervise l'optimisation des flux, la sécurité des sites et la satisfaction client au quotidien."
           },
           {
             image: "cds.webp",
@@ -123,6 +128,12 @@ const About = () => {
             name: "Mrs. Mame Diodio Ndao",
             title: "CEO & Financial Manager",
             description: "Drives financial strategy and regional expansion with 15 years of experience in banking and shipping."
+          },
+          {
+            image: "as.webp",
+            name: "Mr. Abdourahmane Sall",
+            title: "Operations Director",
+            description: "With over ten years of experience in port and logistics operations management, Mr. Sall supervises flow optimization, site security, and daily customer satisfaction."
           },
           {
             image: "cds.webp",
@@ -377,13 +388,59 @@ const About = () => {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
                 className="relative"
+                onMouseEnter={(e) => {
+                  const carousel = e.currentTarget.querySelector('[data-carousel]');
+                  if (carousel) carousel.setAttribute('data-paused', 'true');
+                }}
+                onMouseLeave={(e) => {
+                  const carousel = e.currentTarget.querySelector('[data-carousel]');
+                  if (carousel) carousel.removeAttribute('data-paused');
+                }}
+                onFocus={(e) => {
+                  const carousel = e.currentTarget.querySelector('[data-carousel]');
+                  if (carousel) carousel.setAttribute('data-paused', 'true');
+                }}
+                onBlur={(e) => {
+                  const carousel = e.currentTarget.querySelector('[data-carousel]');
+                  if (carousel) carousel.removeAttribute('data-paused');
+                }}
               >
                 <Carousel
                   opts={{
                     align: "start",
                     loop: true,
                   }}
+                  plugins={[
+                    {
+                      init: (embla) => {
+                        let autoplayTimer: NodeJS.Timeout;
+                        
+                        const startAutoplay = () => {
+                          autoplayTimer = setInterval(() => {
+                            const container = embla.containerNode().parentElement?.parentElement;
+                            const isPaused = container?.hasAttribute('data-paused');
+                            if (!isPaused) {
+                              embla.scrollNext();
+                            }
+                          }, 4000);
+                        };
+
+                        const stopAutoplay = () => {
+                          if (autoplayTimer) {
+                            clearInterval(autoplayTimer);
+                          }
+                        };
+
+                        // Start autoplay
+                        startAutoplay();
+
+                        // Cleanup on destroy
+                        embla.on('destroy', stopAutoplay);
+                      }
+                    }
+                  ]}
                   className="w-full"
+                  data-carousel
                 >
                   <CarouselContent className="-ml-2 md:-ml-4">
                     {currentContent.team.members.map((member, index) => (
