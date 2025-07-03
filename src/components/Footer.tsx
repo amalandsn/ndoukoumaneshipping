@@ -103,7 +103,7 @@ const Footer = () => {
     <footer className="bg-blue-deep text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Company Section - Logo and Description */}
           <div className="lg:col-span-1">
             <div className="mb-6">
@@ -123,7 +123,7 @@ const Footer = () => {
               </p>
             </div>
             
-            {/* Contact Info aligned to the right */}
+            {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-4 w-4 text-white mt-0.5 flex-shrink-0" />
@@ -145,7 +145,21 @@ const Footer = () => {
                 </span>
               </div>
             </div>
+          </div>
 
+          {/* Services Section with Button */}
+          <div className="lg:col-span-1">
+            <h3 className="text-lg font-semibold text-white mb-6">
+              {content.services.title}
+            </h3>
+            <ul className="space-y-3">
+              {content.services.items.map((service, index) => (
+                <li key={index} className="text-white/80 hover:text-white transition-colors text-sm">
+                  {service}
+                </li>
+              ))}
+            </ul>
+            
             <div className="mt-6">
               <Button 
                 className="bg-white text-blue-deep hover:bg-white/90 w-full text-sm"
@@ -156,14 +170,13 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services Section */}
+          {/* Quick Links */}
           <div className="lg:col-span-1">
-            <ServicesLinks content={content} onLinkClick={handleLinkClick} />
+            <QuickLinks content={content} onLinkClick={handleLinkClick} />
           </div>
 
-          {/* Quick Links and Contact */}
-          <div className="lg:col-span-1 space-y-8">
-            <QuickLinks content={content} onLinkClick={handleLinkClick} />
+          {/* Contact Section */}
+          <div className="lg:col-span-1">
             <ContactInfo content={content} language={language} />
           </div>
         </div>

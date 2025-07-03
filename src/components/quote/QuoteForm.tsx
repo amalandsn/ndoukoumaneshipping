@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
@@ -121,239 +120,237 @@ const QuoteForm = () => {
   };
 
   return (
-    <section id="quote-form" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 font-serif">
-              {language === 'fr' ? 'Demande de devis' : 'Quote request'}
-            </h2>
-            <p className="text-xl text-gray-600">
-              {language === 'fr' 
-                ? 'Remplissez ce formulaire pour recevoir votre devis personnalisé'
-                : 'Fill out this form to receive your personalized quote'
-              }
-            </p>
-          </div>
+    <div className="bg-white p-8 rounded-2xl shadow-lg h-full">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="mb-8"
+      >
+        <div className="text-center mb-8">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 font-serif">
+            {language === 'fr' ? 'Demande de devis' : 'Quote request'}
+          </h2>
+          <p className="text-xl text-gray-600">
+            {language === 'fr' 
+              ? 'Remplissez ce formulaire pour recevoir votre devis personnalisé'
+              : 'Fill out this form to receive your personalized quote'
+            }
+          </p>
+        </div>
 
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="grid md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="fullName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        {language === 'fr' ? 'Nom & Prénom' : 'Full name'} *
-                      </FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        {language === 'fr' ? 'E-mail professionnel' : 'Business e-mail'} *
-                      </FormLabel>
-                      <FormControl>
-                        <Input type="email" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        {language === 'fr' ? 'Téléphone (+ indicatif)' : 'Phone (+country code)'} *
-                      </FormLabel>
-                      <FormControl>
-                        <Input type="tel" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="volume"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        {language === 'fr' ? 'Volume / poids' : 'Volume / weight'} *
-                      </FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder={language === 'fr' ? 'Ex: 20 m³, 5 tonnes' : 'Ex: 20 m³, 5 tons'} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid md:grid-cols-2 gap-6">
               <FormField
                 control={form.control}
-                name="services"
-                render={() => (
-                  <FormItem>
-                    <FormLabel>
-                      {language === 'fr' ? 'Type d\'expédition' : 'Shipment type'} *
-                    </FormLabel>
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                      {serviceOptions.map((service) => (
-                        <FormField
-                          key={service.value}
-                          control={form.control}
-                          name="services"
-                          render={({ field }) => (
-                            <FormItem className="flex items-center space-x-2">
-                              <FormControl>
-                                <Checkbox
-                                  checked={field.value?.includes(service.value)}
-                                  onCheckedChange={(checked) => {
-                                    return checked
-                                      ? field.onChange([...field.value, service.value])
-                                      : field.onChange(field.value?.filter((value) => value !== service.value))
-                                  }}
-                                />
-                              </FormControl>
-                              <FormLabel className="text-sm font-normal">
-                                {language === 'fr' ? service.labelFr : service.labelEn}
-                              </FormLabel>
-                            </FormItem>
-                          )}
-                        />
-                      ))}
-                    </div>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="from"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        {language === 'fr' ? 'Lieu de départ' : 'Origin location'} *
-                      </FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="to"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>
-                        {language === 'fr' ? 'Destination' : 'Destination'} *
-                      </FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <FormField
-                control={form.control}
-                name="message"
+                name="fullName"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      {language === 'fr' ? 'Message complémentaire' : 'Additional details'}
+                      {language === 'fr' ? 'Nom & Prénom' : 'Full name'} *
                     </FormLabel>
                     <FormControl>
-                      <Textarea 
-                        {...field} 
-                        rows={4}
-                        placeholder={language === 'fr' ? 'Détails supplémentaires...' : 'Additional details...'}
-                      />
+                      <Input {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {language === 'fr' ? 'Pièce jointe (pdf/jpg, 10 Mo max)' : 'Attachment (pdf/jpg, 10 MB max)'}
-                </label>
-                <div className="flex items-center space-x-4">
-                  <input
-                    type="file"
-                    accept=".pdf,.jpg,.jpeg,.png"
-                    onChange={handleFileChange}
-                    className="hidden"
-                    id="file-upload"
-                  />
-                  <label
-                    htmlFor="file-upload"
-                    className="cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
-                  >
-                    <Upload className="h-4 w-4 mr-2" />
-                    {language === 'fr' ? 'Choisir un fichier' : 'Choose file'}
-                  </label>
-                  {file && (
-                    <span className="text-sm text-gray-600">{file.name}</span>
-                  )}
-                </div>
-              </div>
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {language === 'fr' ? 'E-mail professionnel' : 'Business e-mail'} *
+                    </FormLabel>
+                    <FormControl>
+                      <Input type="email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-              <div className="text-center">
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="bg-blue-900 hover:bg-blue-800 px-8 py-3 text-lg"
+            <div className="grid md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {language === 'fr' ? 'Téléphone (+ indicatif)' : 'Phone (+country code)'} *
+                    </FormLabel>
+                    <FormControl>
+                      <Input type="tel" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="volume"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {language === 'fr' ? 'Volume / poids' : 'Volume / weight'} *
+                    </FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder={language === 'fr' ? 'Ex: 20 m³, 5 tonnes' : 'Ex: 20 m³, 5 tons'} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <FormField
+              control={form.control}
+              name="services"
+              render={() => (
+                <FormItem>
+                  <FormLabel>
+                    {language === 'fr' ? 'Type d\'expédition' : 'Shipment type'} *
+                  </FormLabel>
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    {serviceOptions.map((service) => (
+                      <FormField
+                        key={service.value}
+                        control={form.control}
+                        name="services"
+                        render={({ field }) => (
+                          <FormItem className="flex items-center space-x-2">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value?.includes(service.value)}
+                                onCheckedChange={(checked) => {
+                                  return checked
+                                    ? field.onChange([...field.value, service.value])
+                                    : field.onChange(field.value?.filter((value) => value !== service.value))
+                                }}
+                              />
+                            </FormControl>
+                            <FormLabel className="text-sm font-normal">
+                              {language === 'fr' ? service.labelFr : service.labelEn}
+                            </FormLabel>
+                          </FormItem>
+                        )}
+                      />
+                    ))}
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="from"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {language === 'fr' ? 'Lieu de départ' : 'Origin location'} *
+                    </FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="to"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {language === 'fr' ? 'Destination' : 'Destination'} *
+                    </FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    {language === 'fr' ? 'Message complémentaire' : 'Additional details'}
+                  </FormLabel>
+                  <FormControl>
+                    <Textarea 
+                      {...field} 
+                      rows={4}
+                      placeholder={language === 'fr' ? 'Détails supplémentaires...' : 'Additional details...'}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {language === 'fr' ? 'Pièce jointe (pdf/jpg, 10 Mo max)' : 'Attachment (pdf/jpg, 10 MB max)'}
+              </label>
+              <div className="flex items-center space-x-4">
+                <input
+                  type="file"
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  onChange={handleFileChange}
+                  className="hidden"
+                  id="file-upload"
+                />
+                <label
+                  htmlFor="file-upload"
+                  className="cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                      {language === 'fr' ? 'Envoi en cours...' : 'Sending...'}
-                    </>
-                  ) : (
-                    <>
-                      <Send className="h-4 w-4 mr-2" />
-                      {language === 'fr' ? 'Envoyer ma demande' : 'Send request'}
-                    </>
-                  )}
-                </Button>
+                  <Upload className="h-4 w-4 mr-2" />
+                  {language === 'fr' ? 'Choisir un fichier' : 'Choose file'}
+                </label>
+                {file && (
+                  <span className="text-sm text-gray-600">{file.name}</span>
+                )}
               </div>
-            </form>
-          </Form>
-        </motion.div>
-      </div>
-    </section>
+            </div>
+
+            <div className="text-center">
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="bg-blue-900 hover:bg-blue-800 px-8 py-3 text-lg"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                    {language === 'fr' ? 'Envoi en cours...' : 'Sending...'}
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4 mr-2" />
+                    {language === 'fr' ? 'Envoyer ma demande' : 'Send request'}
+                  </>
+                )}
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </motion.div>
+    </div>
   );
 };
 

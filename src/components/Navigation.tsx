@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -150,7 +151,7 @@ const Navigation = () => {
           </div>
           
           {/* Right side - Language Switcher and Quote Button for desktop */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-8">
             <LanguageSwitcher />
             <Button 
               className="text-white text-sm" 

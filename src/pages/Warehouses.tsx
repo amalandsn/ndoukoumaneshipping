@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -284,93 +283,93 @@ const Warehouses = () => {
         </div>
       </section>
 
-      {/* Warehouses Section */}
+      {/* Warehouses and Logistics Section - Side by Side */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
-              {currentContent.warehouses.title}
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              {currentContent.warehouses.subtitle}
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {currentContent.warehouses.items.map((item, index) => (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left Column - Warehouses */}
+            <div>
               <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: 40 }}
+                className="mb-12"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6 text-center">
-                    <Building2 className="h-8 w-8 text-primary mx-auto mb-3" />
-                    <h3 className="text-lg font-semibold text-primary mb-2">{item.name}</h3>
-                    <p className="text-2xl font-bold text-muted-foreground">{item.size}</p>
-                  </CardContent>
-                </Card>
+                <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
+                  {currentContent.warehouses.title}
+                </h2>
+                <p className="text-xl text-muted-foreground mb-8">
+                  {currentContent.warehouses.subtitle}
+                </p>
               </motion.div>
-            ))}
-          </div>
 
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-lg font-semibold text-primary">{currentContent.warehouses.total}</p>
-          </motion.div>
-        </div>
-      </section>
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                {currentContent.warehouses.items.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
+                      <CardContent className="p-6 text-center">
+                        <Building2 className="h-8 w-8 text-primary mx-auto mb-3" />
+                        <h3 className="text-lg font-semibold text-primary mb-2">{item.name}</h3>
+                        <p className="text-2xl font-bold text-muted-foreground">{item.size}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
 
-      {/* Logistics Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
-              {currentContent.logistics.title}
-            </h2>
-          </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <p className="text-lg font-semibold text-primary">{currentContent.warehouses.total}</p>
+              </motion.div>
+            </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {currentContent.logistics.items.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg"
-                >
-                  <Truck className="h-5 w-5 text-primary flex-shrink-0" />
-                  <span className="text-muted-foreground">{item}</span>
-                </motion.div>
-              ))}
+            {/* Right Column - Logistics */}
+            <div>
+              <motion.div
+                className="mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
+                  {currentContent.logistics.title}
+                </h2>
+              </motion.div>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                {currentContent.logistics.items.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm"
+                  >
+                    <Truck className="h-5 w-5 text-primary flex-shrink-0" />
+                    <span className="text-muted-foreground">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Gallery Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16"

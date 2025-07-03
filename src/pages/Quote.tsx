@@ -15,8 +15,24 @@ const Quote = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       <QuoteHero />
-      <QuoteBenefits />
-      <QuoteForm />
+      
+      {/* Benefits and Form Section - Side by Side */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10">
+            {/* Left Column - Benefits */}
+            <div>
+              <QuoteBenefits />
+            </div>
+            
+            {/* Right Column - Form */}
+            <div>
+              <QuoteForm />
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <Footer />
       <ChatAssistant />
     </div>
