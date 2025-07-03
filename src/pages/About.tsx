@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -50,7 +51,7 @@ const About = () => {
         signature: "M. El Hadj Mor Ndao – Fondateur & Directeur Général"
       },
       team: {
-        title: "Présentation de l'équipe",
+        title: "L'équipe de Ndoukouman Shipping",
         members: [
           {
             image: "fman.webp",
@@ -115,7 +116,7 @@ const About = () => {
         signature: "M. El Hadj Mor Ndao – Founder & CEO"
       },
       team: {
-        title: "Team Presentation",
+        title: "Ndoukouman Shipping Team",
         members: [
           {
             image: "fman.webp",
@@ -198,260 +199,268 @@ const About = () => {
         </div>
       </section>
 
-      {/* Global Container for all sections */}
-      <div className="max-w-5xl mx-auto px-6 py-16 space-y-24">
-
-        {/* 1. CEO Message Section */}
-        <section>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="lg:grid lg:grid-cols-2 lg:gap-8 items-center"
-          >
-            {/* Left Column - CEO Text */}
-            <div className="order-2 lg:order-1">
-              <div className="text-2xl italic text-gray-700 mb-6 leading-relaxed">
-                "{currentContent.ceo.content.split('.')[0]}."
-              </div>
-              
-              <div className="text-gray-700 leading-relaxed mb-6">
-                {currentContent.ceo.content.substring(currentContent.ceo.content.indexOf('.') + 1).trim()}
-              </div>
-              
-              <div className="text-lg font-medium text-blue-deep mb-4">
-                {currentContent.ceo.mission}
-              </div>
-              
-              <div className="text-blue-deep font-semibold">
-                {currentContent.ceo.signature}
-              </div>
-            </div>
+      {/* Main Two-Column Layout */}
+      <div className="max-w-6xl mx-auto px-6 py-16 space-y-24">
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 space-y-24 lg:space-y-0">
+          
+          {/* Left Column */}
+          <div className="space-y-24">
             
-            {/* Right Column - CEO Photo */}
-            <div className="order-1 lg:order-2 mb-8 lg:mb-0 text-center">
-              <div className="inline-block">
+            {/* 1. CEO Message */}
+            <section>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-8 font-serif">
+                  {currentContent.ceo.title}
+                </h2>
+                
+                <div className="relative">
+                  {/* Decorative vertical line */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-deep/20"></div>
+                  
+                  <blockquote className="pl-8 space-y-6">
+                    <div className="text-xl italic text-gray-700 leading-relaxed">
+                      "{currentContent.ceo.content.split('.')[0]}."
+                    </div>
+                    
+                    <div className="text-gray-700 leading-relaxed">
+                      {currentContent.ceo.content.substring(currentContent.ceo.content.indexOf('.') + 1).trim()}
+                    </div>
+                    
+                    <div className="text-lg font-medium text-blue-deep">
+                      {currentContent.ceo.mission}
+                    </div>
+                    
+                    <div className="text-blue-deep font-semibold">
+                      {currentContent.ceo.signature}
+                    </div>
+                  </blockquote>
+                </div>
+              </motion.div>
+            </section>
+
+            {/* 2. Notre Credo */}
+            <section>
+              <motion.div
+                className="text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="text-3xl lg:text-4xl font-bold text-blue-deep mb-8 font-serif leading-tight">
+                  <div>Notre credo :</div>
+                  <div className="text-5xl lg:text-6xl mt-2">PIN</div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-6">
+                  {currentContent.credo.values.map((value, index) => (
+                    <motion.div
+                      key={index}
+                      className="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.2, duration: 0.6 }}
+                      viewport={{ once: true }}
+                    >
+                      <span className="text-4xl font-extrabold text-blue-deep block mb-4 font-mono">
+                        {index + 1}
+                      </span>
+                      <p className="text-base font-semibold text-blue-deep">
+                        {value}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </section>
+
+            {/* 4. Mission / Vision / Location Cards */}
+            <section>
+              <motion.div
+                className="space-y-6"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                {/* Mission Card */}
+                <div className="bg-white rounded-xl shadow-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Target className="text-blue-deep text-2xl h-6 w-6" />
+                    <h3 className="text-lg font-semibold text-blue-deep">{currentContent.mission.title}</h3>
+                  </div>
+                  <ul className="list-disc list-inside marker:text-blue-deep space-y-1 text-sm leading-relaxed text-gray-700">
+                    {currentContent.mission.bullets.map((bullet, index) => (
+                      <li key={index}>{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Vision Card */}
+                <div className="bg-white rounded-xl shadow-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Eye className="text-blue-deep text-2xl h-6 w-6" />
+                    <h3 className="text-lg font-semibold text-blue-deep">{currentContent.vision.title}</h3>
+                  </div>
+                  <ul className="list-disc list-inside marker:text-blue-deep space-y-1 text-sm leading-relaxed text-gray-700">
+                    {currentContent.vision.bullets.map((bullet, index) => (
+                      <li key={index}>{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Location Card with Map */}
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.155446!2d-17.4425914!3d14.6825705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec17295e1775ef1%3A0x1ee2e80b10007d39!2sCentral%20Park%20Dakar!5e0!3m2!1sfr!2ssn!4v1703069584000!5m2!1sfr!2ssn"
+                    loading="lazy"
+                    className="w-full h-32"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Carte Central Park Dakar"
+                  />
+                  
+                  <div className="p-6 flex-1">
+                    <div className="flex items-center gap-3 mb-4">
+                      <MapPin className="text-blue-deep text-2xl h-6 w-6" />
+                      <h3 className="text-lg font-semibold text-blue-deep">{currentContent.location.title}</h3>
+                    </div>
+                    <ul className="list-disc list-inside marker:text-blue-deep space-y-1 text-sm leading-relaxed text-gray-700">
+                      {currentContent.location.bullets.map((bullet, index) => (
+                        <li key={index}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+            </section>
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-24">
+            
+            {/* 1. CEO Photo */}
+            <section className="flex justify-center lg:justify-start">
+              <motion.div
+                className="text-center"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
                 <img 
                   src="dg.webp" 
                   alt="Portrait de M. El Hadj Mor Ndao, Directeur Général"
-                  className="w-40 h-40 mx-auto object-cover object-top rounded-full shadow-lg"
+                  className="w-56 h-56 object-cover object-top rounded-full ring-4 ring-white shadow-lg"
                 />
-              </div>
-            </div>
-          </motion.div>
-        </section>
+              </motion.div>
+            </section>
 
-        {/* 2. Credo Section */}
-        <section>
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-3xl lg:text-4xl font-bold text-blue-deep mb-8 font-serif leading-tight">
-              <div>Notre credo :</div>
-              <div className="text-5xl lg:text-6xl mt-2">PIN</div>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
-              {currentContent.credo.values.map((value, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.2, duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <span className="text-5xl font-extrabold text-blue-deep block mb-4">
-                    {index + 1}
-                  </span>
-                  <p className="text-lg font-semibold text-blue-deep">
-                    {value}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
-
-        {/* 3. Team Section - Carousel */}
-        <section>
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
-              {currentContent.team.title}
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-2 md:-ml-4">
-                {currentContent.team.members.map((member, index) => (
-                  <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full">
-                      <div className="p-6 text-center">
-                        <div className="mb-6">
-                          <img 
-                            src={member.image} 
-                            alt={`Portrait de ${member.name}`}
-                            className="w-36 h-36 mx-auto object-cover object-top rounded-full shadow-md"
-                          />
-                        </div>
-                        
-                        <h3 className="text-lg font-bold text-blue-deep mb-1">
-                          {member.name}
-                        </h3>
-                        <div className="text-blue-deep/70 font-medium text-sm mb-3">
-                          {member.title}
-                        </div>
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                          {member.description}
-                        </p>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex" />
-              <CarouselNext className="hidden md:flex" />
-            </Carousel>
-          </motion.div>
-        </section>
-
-        {/* 4. Key Numbers Section */}
-        <section>
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
-              {currentContent.keyNumbers}
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {keyMetrics.map((metric, index) => (
+            {/* 3. Team Carousel */}
+            <section>
               <motion.div
-                key={index}
-                className="text-center p-6 bg-white rounded-xl hover:shadow-lg transition-shadow"
-                initial={{ opacity: 0, y: 40 }}
+                className="text-center mb-8"
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.15, duration: 0.6 }}
+                transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <div className="mb-4">
-                  <metric.icon className="h-12 w-12 text-blue-deep mx-auto" />
-                </div>
-                <div className="text-2xl lg:text-3xl font-bold text-blue-deep mb-2">
-                  {metric.value}
-                </div>
-                <div className="text-muted-foreground font-medium">
-                  {language === 'fr' ? metric.label_fr : metric.label_en}
-                </div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
+                  {currentContent.team.title}
+                </h2>
               </motion.div>
-            ))}
-          </div>
-        </section>
 
-        {/* Mission, Vision, Location Cards */}
-        <section>
-          <div className="grid gap-8 md:grid-cols-3">
-            
-            {/* Mission Card */}
-            <motion.div
-              className="bg-white rounded-xl shadow-lg p-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <Target className="text-blue-deep text-2xl h-6 w-6" />
-                <h3 className="text-lg font-semibold text-blue-deep">{currentContent.mission.title}</h3>
-              </div>
-              <ul className="list-disc list-inside marker:text-blue-deep space-y-1 text-sm leading-relaxed text-gray-700">
-                {currentContent.mission.bullets.map((bullet, index) => (
-                  <li key={index}>{bullet}</li>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent className="-ml-2 md:-ml-4">
+                    {currentContent.team.members.map((member, index) => (
+                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-full">
+                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full">
+                          <div className="p-6 text-center">
+                            <div className="mb-6">
+                              <img 
+                                src={member.image} 
+                                alt={`Portrait de ${member.name}`}
+                                className="w-36 h-36 mx-auto object-cover object-top rounded-full shadow-md"
+                              />
+                            </div>
+                            
+                            <h3 className="text-lg font-bold text-blue-deep mb-1">
+                              {member.name}
+                            </h3>
+                            <div className="text-blue-deep/70 font-medium text-sm mb-3">
+                              {member.title}
+                            </div>
+                            <p className="text-gray-700 text-sm leading-relaxed">
+                              {member.description}
+                            </p>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </motion.div>
+            </section>
+
+            {/* 5. Key Numbers */}
+            <section>
+              <motion.div
+                className="text-center mb-8"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
+                  {currentContent.keyNumbers}
+                </h2>
+              </motion.div>
+
+              <div className="grid grid-cols-2 gap-6">
+                {keyMetrics.map((metric, index) => (
+                  <motion.div
+                    key={index}
+                    className="text-center p-6 bg-white rounded-xl hover:shadow-lg transition-shadow"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.15, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="mb-4">
+                      <metric.icon className="h-8 w-8 text-blue-deep mx-auto" />
+                    </div>
+                    <div className="text-xl font-bold text-blue-deep mb-2 font-mono">
+                      {metric.value}
+                    </div>
+                    <div className="text-muted-foreground font-medium text-sm">
+                      {language === 'fr' ? metric.label_fr : metric.label_en}
+                    </div>
+                  </motion.div>
                 ))}
-              </ul>
-            </motion.div>
-
-            {/* Vision Card */}
-            <motion.div
-              className="bg-white rounded-xl shadow-lg p-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <Eye className="text-blue-deep text-2xl h-6 w-6" />
-                <h3 className="text-lg font-semibold text-blue-deep">{currentContent.vision.title}</h3>
               </div>
-              <ul className="list-disc list-inside marker:text-blue-deep space-y-1 text-sm leading-relaxed text-gray-700">
-                {currentContent.vision.bullets.map((bullet, index) => (
-                  <li key={index}>{bullet}</li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Location Card with Map */}
-            <motion.div
-              className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.155446!2d-17.4425914!3d14.6825705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec17295e1775ef1%3A0x1ee2e80b10007d39!2sCentral%20Park%20Dakar!5e0!3m2!1sfr!2ssn!4v1703069584000!5m2!1sfr!2ssn"
-                loading="lazy"
-                className="w-full h-40 md:h-[180px]"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Carte Central Park Dakar"
-              />
-              
-              <div className="p-6 flex-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <MapPin className="text-blue-deep text-2xl h-6 w-6" />
-                  <h3 className="text-lg font-semibold text-blue-deep">{currentContent.location.title}</h3>
-                </div>
-                <ul className="list-disc list-inside marker:text-blue-deep space-y-1 text-sm leading-relaxed text-gray-700">
-                  {currentContent.location.bullets.map((bullet, index) => (
-                    <li key={index}>{bullet}</li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-
+            </section>
           </div>
-        </section>
-
+        </div>
       </div>
 
       <Footer />
