@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -13,6 +12,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Building2, Target, TrendingUp, MapPin, Eye } from 'lucide-react';
+import Autoplay from "embla-carousel-autoplay";
 
 const About = () => {
   const { language } = useLanguage();
@@ -369,7 +369,7 @@ const About = () => {
               </motion.div>
             </section>
 
-            {/* 3. Team Carousel - aligned with credo section */}
+            {/* Team Carousel */}
             <section>
               <motion.div
                 className="text-center mb-8"
@@ -388,15 +388,22 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="relative [&:hover_[data-carousel]]:paused"
+                className="relative"
               >
                 <Carousel
+                  plugins={[
+                    Autoplay({
+                      delay: 4000,
+                      stopOnInteraction: true,
+                      stopOnMouseEnter: true,
+                      stopOnFocusIn: true,
+                    }),
+                  ]}
                   opts={{
                     align: "start",
                     loop: true,
                   }}
                   className="w-full"
-                  data-carousel
                 >
                   <CarouselContent className="-ml-2 md:-ml-4">
                     {currentContent.team.members.map((member, index) => (
@@ -405,9 +412,13 @@ const About = () => {
                           <div className="p-6 text-center">
                             <div className="mb-6">
                               <img 
-                                src={member.image} 
+                                src={`/${member.image}`}
                                 alt={`Portrait de ${member.name}`}
                                 className="w-36 h-36 mx-auto object-cover object-top rounded-full shadow-md"
+                                onError={(e) => {
+                                  console.log(`Failed to load image: ${member.image}`);
+                                  e.currentTarget.src = '/placeholder.svg';
+                                }}
                               />
                             </div>
                             
@@ -428,97 +439,6 @@ const About = () => {
                   <CarouselPrevious />
                   <CarouselNext />
                 </Carousel>
-                
-                {/* Autoplay functionality */}
-<script
-  dangerouslySetInnerHTML={{
-    __html: `
-      (function() {
-        function initCarousel() {
-          const carousel = document.querySelector('[data-carousel]');
-          if (!carousel) {
-            // Retry after a short delay if carousel not found
-            setTimeout(initCarousel, 500);
-            return;
-          }
-          
-          let autoplayTimer;
-          let isPaused = false;
-          
-          function startAutoplay() {
-            if (autoplayTimer) clearInterval(autoplayTimer);
-            autoplayTimer = setInterval(() => {
-              if (!isPaused) {
-                const nextButton = carousel.querySelector('[data-carousel-next]');
-                if (nextButton) {
-                  nextButton.click();
-                } else {
-                  // Fallback: manually trigger next slide
-                  const items = carousel.querySelectorAll('[data-carousel-item]');
-                  if (items.length > 0) {
-                    const activeItem = carousel.querySelector('[data-carousel-item]:not([data-carousel-item="active"])') || items[0];
-                    const currentIndex = Array.from(items).indexOf(activeItem);
-                    const nextIndex = (currentIndex + 1) % items.length;
-                    
-                    // Remove active class from all items
-                    items.forEach(item => item.setAttribute('data-carousel-item', 'inactive'));
-                    // Add active class to next item
-                    items[nextIndex].setAttribute('data-carousel-item', 'active');
-                  }
-                }
-              }
-            }, 4000);
-          }
-          
-          function pauseAutoplay() {
-            isPaused = true;
-          }
-          
-          function resumeAutoplay() {
-            isPaused = false;
-          }
-          
-          // Start autoplay
-          startAutoplay();
-          
-          // Pause on hover
-          const carouselContainer = carousel.closest('.relative') || carousel.parentElement;
-          if (carouselContainer) {
-            carouselContainer.addEventListener('mouseenter', pauseAutoplay);
-            carouselContainer.addEventListener('mouseleave', resumeAutoplay);
-            carouselContainer.addEventListener('focusin', pauseAutoplay);
-            carouselContainer.addEventListener('focusout', resumeAutoplay);
-          }
-          
-          // Pause on manual navigation
-          const prevButton = carousel.querySelector('[data-carousel-prev]');
-          const nextButton = carousel.querySelector('[data-carousel-next]');
-          
-          if (prevButton) {
-            prevButton.addEventListener('click', () => {
-              pauseAutoplay();
-              setTimeout(resumeAutoplay, 6000); // Resume after 6 seconds
-            });
-          }
-          
-          if (nextButton) {
-            nextButton.addEventListener('click', () => {
-              pauseAutoplay();
-              setTimeout(resumeAutoplay, 6000); // Resume after 6 seconds
-            });
-          }
-        }
-        
-        // Initialize when DOM is ready
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initCarousel);
-        } else {
-          initCarousel();
-        }
-      })();
-    `
-  }}
-/>
               </motion.div>
             </section>
 
