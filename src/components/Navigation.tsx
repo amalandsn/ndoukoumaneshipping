@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -80,12 +79,12 @@ const Navigation = () => {
           <Link to="/" className="flex items-center space-x-6 flex-shrink-0">
             <img 
               src="/logo.webp"
-              alt="Ndoukouman shipping & Services"
+              alt="Ndoukouman Shipping & Services"
               className="h-28 w-auto object-contain"
             />
             <div className="min-w-0 ml-2">
               <div className="text-xl font-bold font-serif leading-tight" style={{ color: '#0553A5' }}>
-                <div>Ndoukoumane</div>
+                <div>Ndoukouman</div>
                 <div>Shipping & Services</div>
               </div>
               <div className="text-sm" style={{ color: '#0553A5' }}>
@@ -95,7 +94,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6 flex-1 justify-center ml-6">
+          <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center ml-6">
             {items.map((item) => {
               if (item.submenu) {
                 const isActive = isActiveSubmenu(item.submenu);
@@ -151,7 +150,7 @@ const Navigation = () => {
           </div>
           
           {/* Right side - Language Switcher and Quote Button for desktop */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-6">
             <LanguageSwitcher />
             <Button 
               className="text-white text-sm" 
@@ -179,10 +178,10 @@ const Navigation = () => {
                     <div className="flex items-center space-x-2">
                       <img 
                         src="/logo.webp"
-                        alt="Ndoukoumane"
+                        alt="Ndoukouman"
                         className="h-12 w-auto"
                       />
-                      <span className="font-bold" style={{ color: '#0553A5' }}>Ndoukoumane</span>
+                      <span className="font-bold" style={{ color: '#0553A5' }}>Ndoukouman</span>
                     </div>
                     <Button 
                       variant="ghost" 
