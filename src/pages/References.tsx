@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -111,7 +110,52 @@ const References = () => {
       .slice(0, 2);
   }
 
-  const clients = [
+  // New clients for first row
+  const newClients = [
+    {
+      name: "COBRA Energy Drink",
+      sector: language === 'fr' ? "Boissons" : "Beverages",
+      description: language === 'fr' 
+        ? "Partenaire boissons énergétiques."
+        : "Energy drinks partner.",
+      logo: "/COBRA.webp"
+    },
+    {
+      name: "Gulf Union Foods Co.",
+      sector: language === 'fr' ? "Alimentaire" : "Food",
+      description: language === 'fr'
+        ? "Importateur GCC de denrées & condiments."
+        : "GCC importer of food & condiments.",
+      logo: "/Gulf Union Foods Co.webp"
+    },
+    {
+      name: "MTRES FOODS",
+      sector: language === 'fr' ? "Alimentaire Asiatique" : "Asian Food",
+      description: language === 'fr'
+        ? "Spécialiste asiatique des nouilles instantanées et snacks."
+        : "Asian specialist in instant noodles and snacks.",
+      logo: "/MTRES FOODS.webp"
+    },
+    {
+      name: "Ngo Chew Hong (NCH)",
+      sector: language === 'fr' ? "Matières Premières" : "Raw Materials",
+      description: language === 'fr'
+        ? "Leader singapourien des huiles comestibles & matières premières."
+        : "Singaporean leader in edible oils & raw materials.",
+      logo: "/Ngo Chew Hong.webp"
+    },
+    {
+      name: "Original Brand",
+      sector: language === 'fr' ? "Boissons Premium" : "Premium Beverages",
+      description: language === 'fr'
+        ? "Gamme de boissons premium."
+        : "Premium beverage range.",
+      logo: "/ORIGINAL.webp"
+    }
+  ];
+
+  // Existing clients for second row
+  const existingClients = [
     {
       name: "MSC Mediterranean Shipping Company",
       sector: language === 'fr' ? "Transport Maritime" : "Maritime Transport",
@@ -236,8 +280,9 @@ const References = () => {
             {currentContent.clientsTitle}
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {clients.map((client, index) => (
+          {/* First row - New clients */}
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-6 gap-y-4 mb-8">
+            {newClients.map((client, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
@@ -246,12 +291,48 @@ const References = () => {
                 viewport={{ once: true }}
               >
                 <Card className="h-full hover:shadow-lg transition-shadow">
-                  <CardHeader className="text-center">
-                    <div className="text-4xl mb-4">{client.logo}</div>
+                  <CardHeader className="text-center p-4">
+                    <img 
+                      src={client.logo} 
+                      alt={`Logo ${client.name}`}
+                      className="mx-auto mb-3 w-[56px] h-[56px] object-contain"
+                      onError={(e) => {
+                        console.log(`Failed to load logo: ${client.logo}`);
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
                     <CardTitle className="text-lg">{client.name}</CardTitle>
                     <Badge variant="secondary">{client.sector}</Badge>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="p-4 pt-0">
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {client.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Second row - Existing clients */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-4">
+            {existingClients.map((client, index) => (
+              <motion.div
+                key={index + 5}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardHeader className="text-center p-4">
+                    <div className="mx-auto mb-3 w-[56px] h-[56px] flex items-center justify-center text-4xl">
+                      {client.logo}
+                    </div>
+                    <CardTitle className="text-lg">{client.name}</CardTitle>
+                    <Badge variant="secondary">{client.sector}</Badge>
+                  </CardHeader>
+                  <CardContent className="p-4 pt-0">
                     <p className="text-gray-600 text-sm leading-relaxed">
                       {client.description}
                     </p>
