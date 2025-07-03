@@ -24,7 +24,7 @@ const TestimonialsSlider = () => {
         name: "Amadou Diallo",
         company: "Senegal Export Corp",
         role: "Directeur Logistique",
-        content: "Ndoukoumane Shipping & Services nous accompagne depuis 5 ans avec un professionnalisme exemplaire. Leurs équipes réactives et leur maîtrise des procédures douanières nous font gagner un temps précieux.",
+        content: "Ndoukouman shipping & Services nous accompagne depuis 5 ans avec un professionnalisme exemplaire. Leurs équipes réactives et leur maîtrise des procédures douanières nous font gagner un temps précieux.",
         rating: 5,
         image: imageMap["Amadou Diallo"]
       },
@@ -50,7 +50,7 @@ const TestimonialsSlider = () => {
         name: "Amadou Diallo",
         company: "Senegal Export Corp",
         role: "Logistics Director",
-        content: "Ndoukoumane Shipping & Services has been supporting us for 5 years with exemplary professionalism. Their responsive teams and mastery of customs procedures save us precious time.",
+        content: "Ndoukouman shipping & Services has been supporting us for 5 years with exemplary professionalism. Their responsive teams and mastery of customs procedures save us precious time.",
         rating: 5,
         image: imageMap["Amadou Diallo"]
       },

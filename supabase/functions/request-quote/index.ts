@@ -137,7 +137,7 @@ const handler = async (req: Request): Promise<Response> => {
           <p><strong>Volume/Poids :</strong> ${quoteData.volume}</p>
         </div>
         <p>En attendant, n'hésitez pas à nous contacter au <strong>+221 77 402 18 25</strong> pour toute question urgente.</p>
-        <p>Cordialement,<br>L'équipe Ndoukoumane Shipping & Services</p>
+        <p>Cordialement,<br>L'équipe Ndoukouman shipping & Services</p>
       </div>
     ` : `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -153,12 +153,12 @@ const handler = async (req: Request): Promise<Response> => {
           <p><strong>Volume/Weight:</strong> ${quoteData.volume}</p>
         </div>
         <p>In the meantime, feel free to contact us at <strong>+221 77 402 18 25</strong> for any urgent questions.</p>
-        <p>Best regards,<br>The Ndoukoumane Shipping & Services team</p>
+        <p>Best regards,<br>The Ndoukouman shipping & Services team</p>
       </div>
     `;
 
     await resend.emails.send({
-      from: 'Ndoukoumane Shipping <no-reply@send.ndoukoumaneshipping.sn>',
+      from: 'Ndoukouman shipping <no-reply@send.ndoukoumaneshipping.sn>',
       to: [quoteData.email],
       subject: quoteData.language === 'fr' ? 
         `Demande de devis reçue - ${quoteId}` : 

@@ -80,7 +80,7 @@ const Navigation = () => {
           <Link to="/" className="flex items-center space-x-6 flex-shrink-0">
             <img 
               src="/logo.webp"
-              alt="Ndoukoumane Shipping & Services"
+              alt="Ndoukouman shipping & Services"
               className="h-28 w-auto object-contain"
             />
             <div className="min-w-0 ml-2">

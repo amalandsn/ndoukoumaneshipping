@@ -52,7 +52,7 @@ const handler = async (req: Request): Promise<Response> => {
           </div>
           
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 14px;">
-            <p>Ce message a été envoyé depuis le formulaire de contact du site Ndoukoumane Shipping & Services.</p>
+            <p>Ce message a été envoyé depuis le formulaire de contact du site Ndoukouman shipping & Services.</p>
           </div>
         </div>
       `,
@@ -62,7 +62,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation email to user using verified domain
     await resend.emails.send({
-      from: "Ndoukoumane Shipping <noreply@ndoukoumaneshipping.sn>",
+      from: "Ndoukouman shipping <noreply@ndoukoumaneshipping.sn>",
       to: [email],
       subject: "Confirmation de réception de votre message",
       html: `
@@ -86,7 +86,7 @@ const handler = async (req: Request): Promise<Response> => {
           </div>
           
           <p>Cordialement,<br>
-          <strong>L'équipe Ndoukoumane Shipping & Services</strong></p>
+          <strong>L'équipe Ndoukouman shipping & Services</strong></p>
         </div>
       `,
     });

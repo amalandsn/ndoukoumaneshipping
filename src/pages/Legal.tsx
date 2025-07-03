@@ -30,7 +30,7 @@ const Legal = () => {
         title: "Mentions Légales",
         content: `
           <h3>Identification de l'entreprise</h3>
-          <p><strong>Raison sociale :</strong> Ndoukoumane Shipping & Services</p>
+          <p><strong>Raison sociale :</strong> Ndoukouman shipping & Services</p>
           <p><strong>Forme juridique :</strong> Société à Responsabilité Limitée (SARL)</p>
           <p><strong>Capital social :</strong> 4 000 000 000 FCFA</p>
           
@@ -57,7 +57,7 @@ const Legal = () => {
       terms: {
         title: "Conditions d'Utilisation",
         content: `
-          <p>Les présentes conditions générales d'utilisation ont pour objet de définir les modalités et conditions d'utilisation du site web de Ndoukoumane Shipping & Services.</p>
+          <p>Les présentes conditions générales d'utilisation ont pour objet de définir les modalités et conditions d'utilisation du site web de Ndoukouman shipping & Services.</p>
           
           <h3>Accès au site</h3>
           <p>L'accès au site est gratuit. Tous les coûts afférents à l'accès au site, que ce soit les frais matériels, logiciels ou d'accès à internet sont exclusivement à la charge de l'utilisateur.</p>
@@ -80,7 +80,7 @@ const Legal = () => {
         title: "Legal Notices",
         content: `
           <h3>Company Identification</h3>
-          <p><strong>Company name:</strong> Ndoukoumane Shipping & Services</p>
+          <p><strong>Company name:</strong> Ndoukouman shipping & Services</p>
           <p><strong>Legal form:</strong> Limited Liability Company (SARL)</p>
           <p><strong>Share capital:</strong> 4,000,000,000 FCFA</p>
           
@@ -107,7 +107,7 @@ const Legal = () => {
       terms: {
         title: "Terms of Use",
         content: `
-          <p>These general terms of use aim to define the terms and conditions of use of the Ndoukoumane Shipping & Services website.</p>
+          <p>These general terms of use aim to define the terms and conditions of use of the Ndoukouman shipping & Services website.</p>
           
           <h3>Site Access</h3>
           <p>Access to the site is free. All costs related to accessing the site, whether hardware, software or internet access fees are exclusively borne by the user.</p>
