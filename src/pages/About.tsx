@@ -1,10 +1,16 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ChatAssistant from '@/components/ChatAssistant';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/useLanguage';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Building2, Target, TrendingUp, MapPin, Eye } from 'lucide-react';
 
 const About = () => {
@@ -192,9 +198,149 @@ const About = () => {
         </div>
       </section>
 
-      {/* Key Numbers Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+      {/* Global Container for all sections */}
+      <div className="max-w-5xl mx-auto px-6 py-16 space-y-24">
+
+        {/* 1. CEO Message Section */}
+        <section>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="lg:grid lg:grid-cols-2 lg:gap-8 items-center"
+          >
+            {/* Left Column - CEO Text */}
+            <div className="order-2 lg:order-1">
+              <div className="text-2xl italic text-gray-700 mb-6 leading-relaxed">
+                "{currentContent.ceo.content.split('.')[0]}."
+              </div>
+              
+              <div className="text-gray-700 leading-relaxed mb-6">
+                {currentContent.ceo.content.substring(currentContent.ceo.content.indexOf('.') + 1).trim()}
+              </div>
+              
+              <div className="text-lg font-medium text-blue-deep mb-4">
+                {currentContent.ceo.mission}
+              </div>
+              
+              <div className="text-blue-deep font-semibold">
+                {currentContent.ceo.signature}
+              </div>
+            </div>
+            
+            {/* Right Column - CEO Photo */}
+            <div className="order-1 lg:order-2 mb-8 lg:mb-0 text-center">
+              <div className="inline-block">
+                <img 
+                  src="dg.webp" 
+                  alt="Portrait de M. El Hadj Mor Ndao, Directeur Général"
+                  className="w-40 h-40 mx-auto object-cover object-top rounded-full shadow-lg"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* 2. Credo Section */}
+        <section>
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-3xl lg:text-4xl font-bold text-blue-deep mb-8 font-serif leading-tight">
+              <div>Notre credo :</div>
+              <div className="text-5xl lg:text-6xl mt-2">PIN</div>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
+              {currentContent.credo.values.map((value, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-white p-8 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="text-5xl font-extrabold text-blue-deep block mb-4">
+                    {index + 1}
+                  </span>
+                  <p className="text-lg font-semibold text-blue-deep">
+                    {value}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </section>
+
+        {/* 3. Team Section - Carousel */}
+        <section>
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
+              {currentContent.team.title}
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {currentContent.team.members.map((member, index) => (
+                  <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full">
+                      <div className="p-6 text-center">
+                        <div className="mb-6">
+                          <img 
+                            src={member.image} 
+                            alt={`Portrait de ${member.name}`}
+                            className="w-36 h-36 mx-auto object-cover object-top rounded-full shadow-md"
+                          />
+                        </div>
+                        
+                        <h3 className="text-lg font-bold text-blue-deep mb-1">
+                          {member.name}
+                        </h3>
+                        <div className="text-blue-deep/70 font-medium text-sm mb-3">
+                          {member.title}
+                        </div>
+                        <p className="text-gray-700 text-sm leading-relaxed">
+                          {member.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
+            </Carousel>
+          </motion.div>
+        </section>
+
+        {/* 4. Key Numbers Section */}
+        <section>
           <motion.div
             className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
@@ -207,11 +353,11 @@ const About = () => {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {keyMetrics.map((metric, index) => (
               <motion.div
                 key={index}
-                className="text-center p-6 bg-gray-50 rounded-xl hover:shadow-lg transition-shadow"
+                className="text-center p-6 bg-white rounded-xl hover:shadow-lg transition-shadow"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15, duration: 0.6 }}
@@ -229,13 +375,11 @@ const About = () => {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Mission, Vision, Location Cards */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto grid gap-8 md:grid-cols-3">
+        {/* Mission, Vision, Location Cards */}
+        <section>
+          <div className="grid gap-8 md:grid-cols-3">
             
             {/* Mission Card */}
             <motion.div
@@ -306,174 +450,9 @@ const About = () => {
             </motion.div>
 
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CEO Message Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="max-w-6xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="grid lg:grid-cols-5 gap-8 items-center">
-              <div className="lg:col-span-3 order-2 lg:order-1">
-                <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-6 font-serif">
-                  {currentContent.ceo.title}
-                </h2>
-                
-                <div className="text-2xl italic text-gray-700 mb-6 leading-relaxed">
-                  "{currentContent.ceo.content.split('.')[0]}."
-                </div>
-                
-                <div className="text-gray-700 leading-relaxed mb-6">
-                  {currentContent.ceo.content.substring(currentContent.ceo.content.indexOf('.') + 1).trim()}
-                </div>
-                
-                <div className="text-lg font-medium text-blue-deep mb-4">
-                  {currentContent.ceo.mission}
-                </div>
-                
-                <div className="text-blue-deep font-semibold">
-                  {currentContent.ceo.signature}
-                </div>
-              </div>
-              
-              <div className="lg:col-span-2 order-1 lg:order-2">
-                <div className="relative">
-                  <img 
-                    src="dg.webp" 
-                    alt="Portrait de M. El Hadj Mor Ndao, Directeur Général"
-                    className="w-full max-w-sm mx-auto aspect-[3/4] object-cover object-top rounded-xl shadow-lg"
-                  />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-16 bg-blue-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
-              {currentContent.team.title}
-            </h2>
-          </motion.div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-            {currentContent.team.members.map((member, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="aspect-[3/4] overflow-hidden">
-                  <img 
-                    src={member.image} 
-                    alt={`Portrait de ${member.name}`}
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-blue-deep mb-1">
-                    {member.name}
-                  </h3>
-                  <div className="text-blue-deep/70 font-medium text-sm mb-3">
-                    {member.title}
-                  </div>
-                  <p className="text-gray-700 text-sm leading-relaxed">
-                    {member.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Mobile slider version */}
-          <div className="md:hidden">
-            <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-4">
-              {currentContent.team.members.map((member, index) => (
-                <div
-                  key={index}
-                  className="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden snap-start"
-                >
-                  <div className="aspect-[3/4] overflow-hidden">
-                    <img 
-                      src={member.image} 
-                      alt={`Portrait de ${member.name}`}
-                      className="w-full h-full object-cover object-top"
-                    />
-                  </div>
-                  
-                  <div className="p-6">
-                    <h3 className="text-lg font-bold text-blue-deep mb-1">
-                      {member.name}
-                    </h3>
-                    <div className="text-blue-deep/70 font-medium text-sm mb-3">
-                      {member.title}
-                    </div>
-                    <p className="text-gray-700 text-sm leading-relaxed">
-                      {member.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Credo Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-4 font-serif">
-              {currentContent.credo.title}
-            </h2>
-          </motion.div>
-
-          <div className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto">
-            {currentContent.credo.values.map((value, index) => (
-              <motion.div
-                key={index}
-                className="bg-gray-50 p-8 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <span className="text-5xl font-extrabold text-blue-deep block mb-4">
-                  {index + 1}
-                </span>
-                <p className="text-lg font-semibold text-blue-deep">
-                  {value}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </div>
 
       <Footer />
       <ChatAssistant />
