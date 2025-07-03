@@ -35,7 +35,7 @@ const CompanyInfo = ({ content }: CompanyInfoProps) => {
         <img 
           src="/logof.webp"
           alt="Ndoukoumane Shipping & Services"
-          className="h-[72px] w-auto object-contain"
+          className="h-[64px] w-auto object-contain"
         />
         <div className="flex-1 min-w-0">
           <div className="text-xl font-bold font-serif leading-tight text-white">
