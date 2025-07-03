@@ -234,59 +234,10 @@ const Warehouses = () => {
         </div>
       </section>
 
-      {/* Capacities Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
-              {currentContent.capacities.title}
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              {currentContent.capacities.subtitle}
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {currentContent.kpis.map((kpi, index) => (
-              <motion.div
-                key={kpi.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full bg-gradient-to-br from-primary/90 to-primary/80 text-white border-none shadow-xl">
-                  <CardContent className="p-8">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                        <kpi.icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <h3 className="text-xl font-bold">{kpi.title}</h3>
-                    </div>
-                    <div className="text-3xl font-bold text-white mb-3">
-                      {kpi.value}
-                    </div>
-                    <p className="text-white/80">
-                      {kpi.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Warehouses and Logistics Section - Side by Side */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 space-y-12 lg:space-y-0">
             {/* Left Column - Warehouses */}
             <div>
               <motion.div
@@ -304,7 +255,7 @@ const Warehouses = () => {
                 </p>
               </motion.div>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-8">
+              <div className="grid md:grid-cols-2 gap-4 mb-8">
                 {currentContent.warehouses.items.map((item, index) => (
                   <motion.div
                     key={item.name}
@@ -313,11 +264,11 @@ const Warehouses = () => {
                     transition={{ delay: index * 0.1, duration: 0.6 }}
                     viewport={{ once: true }}
                   >
-                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6 text-center">
-                        <Building2 className="h-8 w-8 text-primary mx-auto mb-3" />
-                        <h3 className="text-lg font-semibold text-primary mb-2">{item.name}</h3>
-                        <p className="text-2xl font-bold text-muted-foreground">{item.size}</p>
+                    <Card className="bg-white shadow-md hover:shadow-lg transition-shadow h-auto">
+                      <CardContent className="p-4 text-center">
+                        <Building2 className="h-5 w-5 text-primary mx-auto mb-3" />
+                        <h3 className="text-sm font-semibold text-primary mb-2 leading-tight">{item.name}</h3>
+                        <p className="text-lg font-bold text-muted-foreground">{item.size}</p>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -359,11 +310,60 @@ const Warehouses = () => {
                     className="flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm"
                   >
                     <Truck className="h-5 w-5 text-primary flex-shrink-0" />
-                    <span className="text-muted-foreground">{item}</span>
+                    <span className="text-muted-foreground text-sm">{item}</span>
                   </motion.div>
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Capacities Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
+              {currentContent.capacities.title}
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              {currentContent.capacities.subtitle}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {currentContent.kpis.map((kpi, index) => (
+              <motion.div
+                key={kpi.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full bg-gradient-to-br from-primary/90 to-primary/80 text-white border-none shadow-xl">
+                  <CardContent className="p-4">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                        <kpi.icon className="h-5 w-5 text-primary" />
+                      </div>
+                      <h3 className="text-lg font-bold">{kpi.title}</h3>
+                    </div>
+                    <div className="text-2xl font-bold text-white mb-3">
+                      {kpi.value}
+                    </div>
+                    <p className="text-white/80 text-sm">
+                      {kpi.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
