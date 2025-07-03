@@ -383,61 +383,6 @@ const About = () => {
                     align: "start",
                     loop: true,
                   }}
-                  plugins={[
-                    {
-                      init: (embla) => {
-                        let autoplayTimer: NodeJS.Timeout;
-                        let isPaused = false;
-
-                        const startAutoplay = () => {
-                          if (!isPaused) {
-                            autoplayTimer = setInterval(() => {
-                              if (!isPaused) {
-                                embla.scrollNext();
-                              }
-                            }, 3000);
-                          }
-                        };
-
-                        const stopAutoplay = () => {
-                          clearInterval(autoplayTimer);
-                        };
-
-                        const pauseAutoplay = () => {
-                          isPaused = true;
-                          stopAutoplay();
-                        };
-
-                        const resumeAutoplay = () => {
-                          isPaused = false;
-                          startAutoplay();
-                        };
-
-                        // Start autoplay
-                        startAutoplay();
-
-                        // Pause on hover
-                        const container = embla.containerNode().parentElement;
-                        if (container) {
-                          container.addEventListener('mouseenter', pauseAutoplay);
-                          container.addEventListener('mouseleave', resumeAutoplay);
-                          container.addEventListener('focusin', pauseAutoplay);
-                          container.addEventListener('focusout', resumeAutoplay);
-                        }
-
-                        // Cleanup
-                        embla.on('destroy', () => {
-                          stopAutoplay();
-                          if (container) {
-                            container.removeEventListener('mouseenter', pauseAutoplay);
-                            container.removeEventListener('mouseleave', resumeAutoplay);
-                            container.removeEventListener('focusin', pauseAutoplay);
-                            container.removeEventListener('focusout', resumeAutoplay);
-                          }
-                        });
-                      }
-                    }
-                  ]}
                   className="w-full"
                 >
                   <CarouselContent className="-ml-2 md:-ml-4">
