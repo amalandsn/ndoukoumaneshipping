@@ -3,18 +3,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Separator } from "@/components/ui/separator";
 import { useLanguage } from '@/hooks/useLanguage';
-import CompanyInfo from './footer/CompanyInfo';
+import { MapPin, Phone, Mail } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { useNavigate } from 'react-router-dom';
+import { getQuoteRoute } from '@/lib/routes';
 import ServicesLinks from './footer/ServicesLinks';
 import QuickLinks from './footer/QuickLinks';
 import ContactInfo from './footer/ContactInfo';
 
 const Footer = () => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
 
   const footerContent = {
     fr: {
       company: {
-        description: "+6 années d'expérience dans la consignation et manutention transit avec solution logistique.",
+        description: "plusieurs années d'expérience dans la consignation et manutention transit avec solution logistique.",
         address: "Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar",
         phone: "+221 33 822 29 80",
         urgent: "+221 77 644 96 42",
@@ -44,11 +48,11 @@ const Footer = () => {
         office: "Bureau",
         urgent: "Urgence 24/7"
       },
-      copyright: "© 2024 Ndoukoumane Shipping & Services. Tous droits réservés."
+      copyright: "© 2024 Ndoukouman Shipping & Services. Tous droits réservés."
     },
     en: {
       company: {
-        description: "+6 years of experience in consignment and handling transit with logistics solutions.",
+        description: "several years of experience in consignment and handling transit with logistics solutions.",
         address: "Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar",
         phone: "+221 33 822 29 80",
         urgent: "+221 77 644 96 42",
@@ -78,7 +82,7 @@ const Footer = () => {
         office: "Office",
         urgent: "24/7 Emergency"
       },
-      copyright: "© 2024 Ndoukoumane Shipping & Services. All rights reserved."
+      copyright: "© 2024 Ndoukouman Shipping & Services. All rights reserved."
     }
   };
 
@@ -91,21 +95,75 @@ const Footer = () => {
     }
   };
 
+  const handleQuoteClick = () => {
+    navigate(getQuoteRoute(language));
+  };
+
   return (
     <footer className="bg-blue-deep text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+          {/* Company Section - Logo and Description */}
           <div className="lg:col-span-1">
-            <CompanyInfo content={content} />
+            <div className="mb-6">
+              <img 
+                src="/logof.webp"
+                alt="Ndoukouman Shipping & Services"
+                className="h-16 w-auto mb-4"
+              />
+              <div className="text-xl font-bold font-serif leading-tight text-white mb-2">
+                Ndoukouman Shipping & Services
+              </div>
+              <div className="text-white text-sm mb-4">
+                {language === 'fr' ? 'Services Maritimes' : 'Maritime Services'}
+              </div>
+              <p className="text-white leading-relaxed text-sm">
+                {content.company.description}
+              </p>
+            </div>
+            
+            {/* Contact Info aligned to the right */}
+            <div className="space-y-3">
+              <div className="flex items-start space-x-3">
+                <MapPin className="h-4 w-4 text-white mt-0.5 flex-shrink-0" />
+                <span className="text-white text-sm leading-relaxed">
+                  {content.company.address}
+                </span>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Phone className="h-4 w-4 text-white mt-0.5 flex-shrink-0" />
+                <div className="text-white text-sm leading-relaxed">
+                  <div className="mb-1">{content.contact.office}: {content.company.phone}</div>
+                  <div className="text-white">{content.contact.urgent}: {content.company.urgent}</div>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Mail className="h-4 w-4 text-white mt-0.5 flex-shrink-0" />
+                <span className="text-white text-sm">
+                  {content.company.email}
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Button 
+                className="bg-white text-blue-deep hover:bg-white/90 w-full text-sm"
+                onClick={handleQuoteClick}
+              >
+                {language === 'fr' ? 'Demander un devis' : 'Request a quote'}
+              </Button>
+            </div>
           </div>
+
+          {/* Services Section */}
           <div className="lg:col-span-1">
             <ServicesLinks content={content} onLinkClick={handleLinkClick} />
           </div>
-          <div className="lg:col-span-1">
+
+          {/* Quick Links and Contact */}
+          <div className="lg:col-span-1 space-y-8">
             <QuickLinks content={content} onLinkClick={handleLinkClick} />
-          </div>
-          <div className="lg:col-span-1">
             <ContactInfo content={content} language={language} />
           </div>
         </div>

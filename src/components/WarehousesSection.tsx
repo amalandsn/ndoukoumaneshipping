@@ -14,14 +14,14 @@ const WarehousesSection = () => {
   const content = {
     fr: {
       heroTitle: "Nos entrepôts & infrastructures",
-      heroSubtitle: "Surface totale 50 000 m² • Quai 12 m",
+      heroSubtitle: "Surface totale 9000 m² • Quai 12 m",
       textTitle: "Localisation Stratégique",
       text: "Nos entrepôts sont idéalement situés dans l'enceinte du Port Autonome de Dakar, première infrastructure portuaire de l'Afrique de l'Ouest. Cette position stratégique nous permet d'offrir un accès direct aux navires et une connexion optimale avec les réseaux de transport terrestres. Nos installations comprennent des zones de stockage réfrigérées pour les produits sensibles, des espaces sécurisés avec surveillance 24h/24 et 7j/7, ainsi que des équipements de manutention modernes. Bénéficiant d'une situation géographique exceptionnelle, nos entrepôts facilitent les échanges commerciaux entre l'Europe, l'Amérique et l'Afrique subsaharienne, garantissant efficacité et sécurité pour vos marchandises.",
       button: "Découvrir nos entrepôts",
       kpis: [
         {
           title: "Surface Totale",
-          value: "50 000 m²",
+          value: "9000 m²",
           icon: Warehouse,
           description: "Espaces de stockage sécurisés"
         },
@@ -47,14 +47,14 @@ const WarehousesSection = () => {
     },
     en: {
       heroTitle: "Our warehouses & infrastructure",
-      heroSubtitle: "Total surface 50,000 m² • 12 m draft",
+      heroSubtitle: "Total surface 9,000 m² • 12 m draft",
       textTitle: "Strategic Location",
       text: "Our warehouses are ideally located within the Dakar Autonomous Port, the leading port infrastructure in West Africa. This strategic position allows us to offer direct access to vessels and optimal connection with land transport networks. Our facilities include refrigerated storage areas for sensitive products, secure spaces with 24/7 surveillance, and modern handling equipment. Benefiting from an exceptional geographical location, our warehouses facilitate trade between Europe, America and sub-Saharan Africa, guaranteeing efficiency and security for your goods.",
       button: "Discover our warehouses",
       kpis: [
         {
           title: "Total Surface",
-          value: "50,000 m²",
+          value: "9,000 m²",
           icon: Warehouse,
           description: "Secure storage spaces"
         },

@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import ChatAssistant from '@/components/ChatAssistant';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/hooks/useLanguage';
-import { Warehouse, Anchor, Thermometer, Shield, Star } from 'lucide-react';
+import { Warehouse, Anchor, Thermometer, Shield, Star, Truck, Building2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ const Warehouses = () => {
 
   const content = {
     fr: {
-      title: "Entrepôts logistiques Dakar – Ndoukoumane",
+      title: "Entrepôts logistiques Dakar – Ndoukouman",
       subtitle: "Infrastructures modernes au cœur du Port Autonome de Dakar",
       heroTitle: "Installations Portuaires de Pointe",
       heroSubtitle: "Entrepôts stratégiquement situés pour optimiser vos opérations logistiques",
@@ -28,7 +28,7 @@ const Warehouses = () => {
       kpis: [
         {
           title: "Surface Totale",
-          value: "50 000 m²",
+          value: "9000 m²",
           icon: Warehouse,
           description: "Espaces de stockage sécurisés et modulables"
         },
@@ -51,6 +51,32 @@ const Warehouses = () => {
           description: "Surveillance continue et contrôle d'accès"
         }
       ],
+      warehouses: {
+        title: "Nos entrepôts",
+        subtitle: "Diamniadio – 5 hangars",
+        items: [
+          { name: "Hangar 1", size: "2000 m²" },
+          { name: "Hangar 2", size: "2000 m²" },
+          { name: "Hangar 3", size: "1900 m²" },
+          { name: "Hangar 4", size: "1800 m²" },
+          { name: "Hangar 5", size: "1000 m²" }
+        ],
+        total: "Total : 8700 m² — extensible à 9000 m²"
+      },
+      logistics: {
+        title: "Notre logistique",
+        items: [
+          "59 camions plateaux",
+          "05 bennes",
+          "01 camionnette 10 roues",
+          "01 camionnette grue",
+          "01 camionnette citerne",
+          "01 camion Volvo",
+          "2 camions frigos",
+          "2 chariots élévateurs 4 T",
+          "1 chariot élévateur 10 T"
+        ]
+      },
       gallery: {
         title: "Nos Installations",
         images: [
@@ -69,7 +95,7 @@ const Warehouses = () => {
         ]
       },
       testimonial: {
-        quote: "Ndoukoumane Shipping offre des solutions de stockage exceptionnelles. Leur professionnalisme et la qualité de leurs infrastructures nous permettent d'optimiser notre chaîne logistique au Sénégal.",
+        quote: "Ndoukouman Shipping offre des solutions de stockage exceptionnelles. Leur professionnalisme et la qualité de leurs infrastructures nous permettent d'optimiser notre chaîne logistique au Sénégal.",
         author: "Directeur Logistique",
         company: "Groupe Commercial International"
       },
@@ -84,7 +110,7 @@ const Warehouses = () => {
       }
     },
     en: {
-      title: "Dakar Logistics Warehouses – Ndoukoumane",
+      title: "Dakar Logistics Warehouses – Ndoukouman",
       subtitle: "Modern infrastructure at the heart of Dakar Autonomous Port",
       heroTitle: "State-of-the-Art Port Facilities",
       heroSubtitle: "Warehouses strategically located to optimize your logistics operations",
@@ -95,7 +121,7 @@ const Warehouses = () => {
       kpis: [
         {
           title: "Total Surface",
-          value: "50,000 m²",
+          value: "9,000 m²",
           icon: Warehouse,
           description: "Secure and modular storage spaces"
         },
@@ -118,6 +144,32 @@ const Warehouses = () => {
           description: "Continuous surveillance and access control"
         }
       ],
+      warehouses: {
+        title: "Our warehouses",
+        subtitle: "Diamniadio – 5 hangars",
+        items: [
+          { name: "Hangar 1", size: "2,000 m²" },
+          { name: "Hangar 2", size: "2,000 m²" },
+          { name: "Hangar 3", size: "1,900 m²" },
+          { name: "Hangar 4", size: "1,800 m²" },
+          { name: "Hangar 5", size: "1,000 m²" }
+        ],
+        total: "Total: 8,700 m² — expandable to 9,000 m²"
+      },
+      logistics: {
+        title: "Our logistics",
+        items: [
+          "59 flatbed trucks",
+          "05 dump trucks",
+          "01 10-wheel truck",
+          "01 crane truck",
+          "01 tanker truck",
+          "01 Volvo truck",
+          "2 refrigerated trucks",
+          "2 forklifts 4 T",
+          "1 forklift 10 T"
+        ]
+      },
       gallery: {
         title: "Our Facilities",
         images: [
@@ -136,7 +188,7 @@ const Warehouses = () => {
         ]
       },
       testimonial: {
-        quote: "Ndoukoumane Shipping offers exceptional storage solutions. Their professionalism and quality infrastructure help us optimize our supply chain in Senegal.",
+        quote: "Ndoukouman Shipping offers exceptional storage solutions. Their professionalism and quality infrastructure help us optimize our supply chain in Senegal.",
         author: "Logistics Director",
         company: "International Commercial Group"
       },
@@ -228,6 +280,91 @@ const Warehouses = () => {
                 </Card>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Warehouses Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
+              {currentContent.warehouses.title}
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8">
+              {currentContent.warehouses.subtitle}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {currentContent.warehouses.items.map((item, index) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <Card className="bg-white shadow-md hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6 text-center">
+                    <Building2 className="h-8 w-8 text-primary mx-auto mb-3" />
+                    <h3 className="text-lg font-semibold text-primary mb-2">{item.name}</h3>
+                    <p className="text-2xl font-bold text-muted-foreground">{item.size}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-lg font-semibold text-primary">{currentContent.warehouses.total}</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Logistics Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4 font-serif">
+              {currentContent.logistics.title}
+            </h2>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {currentContent.logistics.items.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg"
+                >
+                  <Truck className="h-5 w-5 text-primary flex-shrink-0" />
+                  <span className="text-muted-foreground">{item}</span>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
