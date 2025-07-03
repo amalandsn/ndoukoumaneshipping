@@ -95,11 +95,19 @@ const Footer = () => {
     <footer className="bg-blue-deep text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          <CompanyInfo content={content} />
-          <ServicesLinks content={content} onLinkClick={handleLinkClick} />
-          <QuickLinks content={content} onLinkClick={handleLinkClick} />
-          <ContactInfo content={content} language={language} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+          <div className="lg:col-span-1">
+            <CompanyInfo content={content} />
+          </div>
+          <div className="lg:col-span-1">
+            <ServicesLinks content={content} onLinkClick={handleLinkClick} />
+          </div>
+          <div className="lg:col-span-1">
+            <QuickLinks content={content} onLinkClick={handleLinkClick} />
+          </div>
+          <div className="lg:col-span-1">
+            <ContactInfo content={content} language={language} />
+          </div>
         </div>
       </div>
 
