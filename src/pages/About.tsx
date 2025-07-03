@@ -430,49 +430,95 @@ const About = () => {
                 </Carousel>
                 
                 {/* Autoplay functionality */}
-                <script
-                  dangerouslySetInnerHTML={{
-                    __html: `
-                      (function() {
-                        const carousel = document.querySelector('[data-carousel]');
-                        if (!carousel) return;
-                        
-                        let autoplayTimer;
-                        let isPaused = false;
-                        
-                        function startAutoplay() {
-                          if (autoplayTimer) clearInterval(autoplayTimer);
-                          autoplayTimer = setInterval(() => {
-                            if (!isPaused) {
-                              const nextButton = carousel.querySelector('[data-carousel-next]');
-                              if (nextButton) nextButton.click();
-                            }
-                          }, 4000);
-                        }
-                        
-                        function pauseAutoplay() {
-                          isPaused = true;
-                        }
-                        
-                        function resumeAutoplay() {
-                          isPaused = false;
-                        }
-                        
-                        // Start autoplay
-                        startAutoplay();
-                        
-                        // Pause on hover
-                        const carouselContainer = carousel.closest('.relative');
-                        if (carouselContainer) {
-                          carouselContainer.addEventListener('mouseenter', pauseAutoplay);
-                          carouselContainer.addEventListener('mouseleave', resumeAutoplay);
-                          carouselContainer.addEventListener('focusin', pauseAutoplay);
-                          carouselContainer.addEventListener('focusout', resumeAutoplay);
-                        }
-                      })();
-                    `
-                  }}
-                />
+<script
+  dangerouslySetInnerHTML={{
+    __html: `
+      (function() {
+        function initCarousel() {
+          const carousel = document.querySelector('[data-carousel]');
+          if (!carousel) {
+            // Retry after a short delay if carousel not found
+            setTimeout(initCarousel, 500);
+            return;
+          }
+          
+          let autoplayTimer;
+          let isPaused = false;
+          
+          function startAutoplay() {
+            if (autoplayTimer) clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(() => {
+              if (!isPaused) {
+                const nextButton = carousel.querySelector('[data-carousel-next]');
+                if (nextButton) {
+                  nextButton.click();
+                } else {
+                  // Fallback: manually trigger next slide
+                  const items = carousel.querySelectorAll('[data-carousel-item]');
+                  if (items.length > 0) {
+                    const activeItem = carousel.querySelector('[data-carousel-item]:not([data-carousel-item="active"])') || items[0];
+                    const currentIndex = Array.from(items).indexOf(activeItem);
+                    const nextIndex = (currentIndex + 1) % items.length;
+                    
+                    // Remove active class from all items
+                    items.forEach(item => item.setAttribute('data-carousel-item', 'inactive'));
+                    // Add active class to next item
+                    items[nextIndex].setAttribute('data-carousel-item', 'active');
+                  }
+                }
+              }
+            }, 4000);
+          }
+          
+          function pauseAutoplay() {
+            isPaused = true;
+          }
+          
+          function resumeAutoplay() {
+            isPaused = false;
+          }
+          
+          // Start autoplay
+          startAutoplay();
+          
+          // Pause on hover
+          const carouselContainer = carousel.closest('.relative') || carousel.parentElement;
+          if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', pauseAutoplay);
+            carouselContainer.addEventListener('mouseleave', resumeAutoplay);
+            carouselContainer.addEventListener('focusin', pauseAutoplay);
+            carouselContainer.addEventListener('focusout', resumeAutoplay);
+          }
+          
+          // Pause on manual navigation
+          const prevButton = carousel.querySelector('[data-carousel-prev]');
+          const nextButton = carousel.querySelector('[data-carousel-next]');
+          
+          if (prevButton) {
+            prevButton.addEventListener('click', () => {
+              pauseAutoplay();
+              setTimeout(resumeAutoplay, 6000); // Resume after 6 seconds
+            });
+          }
+          
+          if (nextButton) {
+            nextButton.addEventListener('click', () => {
+              pauseAutoplay();
+              setTimeout(resumeAutoplay, 6000); // Resume after 6 seconds
+            });
+          }
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initCarousel);
+        } else {
+          initCarousel();
+        }
+      })();
+    `
+  }}
+/>
               </motion.div>
             </section>
 
