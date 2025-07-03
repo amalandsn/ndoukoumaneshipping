@@ -51,7 +51,7 @@ const About = () => {
         signature: "M. El Hadj Mor Ndao – Fondateur & Directeur Général"
       },
       team: {
-        title: "L'équipe de Ndoukouman Shipping",
+        title: "La team Ndoukouman Shipping & Services",
         members: [
           {
             image: "fman.webp",
@@ -116,7 +116,7 @@ const About = () => {
         signature: "M. El Hadj Mor Ndao – Founder & CEO"
       },
       team: {
-        title: "Ndoukouman Shipping Team",
+        title: "The Ndoukouman Shipping & Services Team",
         members: [
           {
             image: "fman.webp",
@@ -214,10 +214,6 @@ const About = () => {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold text-blue-deep mb-8 font-serif">
-                  {currentContent.ceo.title}
-                </h2>
-                
                 <div className="relative">
                   {/* Decorative vertical line */}
                   <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-deep/20"></div>
@@ -344,10 +340,10 @@ const About = () => {
           {/* Right Column */}
           <div className="space-y-24">
             
-            {/* 1. CEO Photo */}
-            <section className="flex justify-center lg:justify-start">
+            {/* 1. CEO Photo - aligned with middle of blockquote */}
+            <section className="flex justify-center lg:justify-start lg:items-center lg:h-auto">
               <motion.div
-                className="text-center"
+                className="text-center lg:mt-16"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -361,7 +357,7 @@ const About = () => {
               </motion.div>
             </section>
 
-            {/* 3. Team Carousel */}
+            {/* 3. Team Carousel - aligned with credo section */}
             <section>
               <motion.div
                 className="text-center mb-8"
@@ -387,6 +383,61 @@ const About = () => {
                     align: "start",
                     loop: true,
                   }}
+                  plugins={[
+                    {
+                      init: (embla) => {
+                        let autoplayTimer: NodeJS.Timeout;
+                        let isPaused = false;
+
+                        const startAutoplay = () => {
+                          if (!isPaused) {
+                            autoplayTimer = setInterval(() => {
+                              if (!isPaused) {
+                                embla.scrollNext();
+                              }
+                            }, 3000);
+                          }
+                        };
+
+                        const stopAutoplay = () => {
+                          clearInterval(autoplayTimer);
+                        };
+
+                        const pauseAutoplay = () => {
+                          isPaused = true;
+                          stopAutoplay();
+                        };
+
+                        const resumeAutoplay = () => {
+                          isPaused = false;
+                          startAutoplay();
+                        };
+
+                        // Start autoplay
+                        startAutoplay();
+
+                        // Pause on hover
+                        const container = embla.containerNode().parentElement;
+                        if (container) {
+                          container.addEventListener('mouseenter', pauseAutoplay);
+                          container.addEventListener('mouseleave', resumeAutoplay);
+                          container.addEventListener('focusin', pauseAutoplay);
+                          container.addEventListener('focusout', resumeAutoplay);
+                        }
+
+                        // Cleanup
+                        embla.on('destroy', () => {
+                          stopAutoplay();
+                          if (container) {
+                            container.removeEventListener('mouseenter', pauseAutoplay);
+                            container.removeEventListener('mouseleave', resumeAutoplay);
+                            container.removeEventListener('focusin', pauseAutoplay);
+                            container.removeEventListener('focusout', resumeAutoplay);
+                          }
+                        });
+                      }
+                    }
+                  ]}
                   className="w-full"
                 >
                   <CarouselContent className="-ml-2 md:-ml-4">
@@ -422,8 +473,8 @@ const About = () => {
               </motion.div>
             </section>
 
-            {/* 5. Key Numbers */}
-            <section>
+            {/* 5. Key Numbers - with additional spacing */}
+            <section className="mt-10">
               <motion.div
                 className="text-center mb-8"
                 initial={{ opacity: 0, y: 30 }}
