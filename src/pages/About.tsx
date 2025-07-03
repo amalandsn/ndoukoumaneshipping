@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -387,58 +388,13 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="relative"
-                onMouseEnter={(e) => {
-                  const carousel = e.currentTarget.querySelector('[data-carousel]');
-                  if (carousel) carousel.setAttribute('data-paused', 'true');
-                }}
-                onMouseLeave={(e) => {
-                  const carousel = e.currentTarget.querySelector('[data-carousel]');
-                  if (carousel) carousel.removeAttribute('data-paused');
-                }}
-                onFocus={(e) => {
-                  const carousel = e.currentTarget.querySelector('[data-carousel]');
-                  if (carousel) carousel.setAttribute('data-paused', 'true');
-                }}
-                onBlur={(e) => {
-                  const carousel = e.currentTarget.querySelector('[data-carousel]');
-                  if (carousel) carousel.removeAttribute('data-paused');
-                }}
+                className="relative [&:hover_[data-carousel]]:paused"
               >
                 <Carousel
                   opts={{
                     align: "start",
                     loop: true,
                   }}
-                  plugins={[
-                    {
-                      init: (embla) => {
-                        let autoplayTimer: NodeJS.Timeout;
-                        
-                        const startAutoplay = () => {
-                          autoplayTimer = setInterval(() => {
-                            const container = embla.containerNode().parentElement?.parentElement;
-                            const isPaused = container?.hasAttribute('data-paused');
-                            if (!isPaused) {
-                              embla.scrollNext();
-                            }
-                          }, 4000);
-                        };
-
-                        const stopAutoplay = () => {
-                          if (autoplayTimer) {
-                            clearInterval(autoplayTimer);
-                          }
-                        };
-
-                        // Start autoplay
-                        startAutoplay();
-
-                        // Cleanup on destroy
-                        embla.on('destroy', stopAutoplay);
-                      }
-                    }
-                  ]}
                   className="w-full"
                   data-carousel
                 >
@@ -472,6 +428,51 @@ const About = () => {
                   <CarouselPrevious />
                   <CarouselNext />
                 </Carousel>
+                
+                {/* Autoplay functionality */}
+                <script
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      (function() {
+                        const carousel = document.querySelector('[data-carousel]');
+                        if (!carousel) return;
+                        
+                        let autoplayTimer;
+                        let isPaused = false;
+                        
+                        function startAutoplay() {
+                          if (autoplayTimer) clearInterval(autoplayTimer);
+                          autoplayTimer = setInterval(() => {
+                            if (!isPaused) {
+                              const nextButton = carousel.querySelector('[data-carousel-next]');
+                              if (nextButton) nextButton.click();
+                            }
+                          }, 4000);
+                        }
+                        
+                        function pauseAutoplay() {
+                          isPaused = true;
+                        }
+                        
+                        function resumeAutoplay() {
+                          isPaused = false;
+                        }
+                        
+                        // Start autoplay
+                        startAutoplay();
+                        
+                        // Pause on hover
+                        const carouselContainer = carousel.closest('.relative');
+                        if (carouselContainer) {
+                          carouselContainer.addEventListener('mouseenter', pauseAutoplay);
+                          carouselContainer.addEventListener('mouseleave', resumeAutoplay);
+                          carouselContainer.addEventListener('focusin', pauseAutoplay);
+                          carouselContainer.addEventListener('focusout', resumeAutoplay);
+                        }
+                      })();
+                    `
+                  }}
+                />
               </motion.div>
             </section>
 
