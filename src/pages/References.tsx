@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -126,7 +127,7 @@ const References = () => {
       description: language === 'fr'
         ? "Importateur GCC de denrées & condiments."
         : "GCC importer of food & condiments.",
-      logo: "/Gulf Union Foods Co.webp"
+      logo: "/Gulf.webp"
     },
     {
       name: "MTRES FOODS",
@@ -134,7 +135,7 @@ const References = () => {
       description: language === 'fr'
         ? "Spécialiste asiatique des nouilles instantanées et snacks."
         : "Asian specialist in instant noodles and snacks.",
-      logo: "/MTRES FOODS.webp"
+      logo: "/MTRES.webp"
     },
     {
       name: "Ngo Chew Hong (NCH)",
@@ -142,7 +143,7 @@ const References = () => {
       description: language === 'fr'
         ? "Leader singapourien des huiles comestibles & matières premières."
         : "Singaporean leader in edible oils & raw materials.",
-      logo: "/Ngo Chew Hong.webp"
+      logo: "/Ngo.webp"
     },
     {
       name: "Original Brand",
