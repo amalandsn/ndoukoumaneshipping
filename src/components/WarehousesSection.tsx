@@ -22,7 +22,49 @@ const WarehousesSection = () => {
       heroTitle: "Nos entrepôts & infrastructures",
       heroSubtitle: "Surface totale 9000 m² • Quai 12 m",
       textTitle: "Hub Logistique de Diamniadio",
-      text: "Implanté au cœur de la zone industrielle de Diamniadio, notre hub logistique combine 5 hangars totalisant plus de 8 700 m² – un atout majeur pour le stockage sous douane, la préparation de commandes et la distribution régionale. Cette capacité d'entreposage est appuyée par une flotte interne dimensionnée pour répondre à tous les besoins : 59 camions plateaux pour le vrac conteneurisé, 5 bennes pour les agrégats, 1 camionnette 10 roues et 1 camionnette grue pour les opérations de levage, 1 camionnette citerne pour le vrac liquide, 1 camion Volvo pour le transport longue distance, 2 camions frigos pour la chaîne du froid, ainsi que 3 chariots élévateurs (deux 4 T et un 10 T) pour un chargement-déchargement rapide et sécurisé. Situés à moins de 25 minutes du Port autonome de Dakar et à proximité immédiate de l'aéroport international Blaise-Diagne, nos entrepôts offrent un accès direct aux grands axes autoroutiers, garantissant des délais d'acheminement optimisés vers l'ensemble du territoire sénégalais et la sous-région. Cette synergie entre surface de stockage, parc roulant diversifié et connectivité multimodale fait de Diamniadio le point névralgique idéal pour vos opérations logistiques.",
+      text: (
+        <div className="space-y-6">
+          <p className="text-gray-700 leading-relaxed text-lg">
+            Implanté au cœur de la zone industrielle de Diamniadio, notre hub logistique regroupe <strong>5 hangars totalisant plus de 8 700 m²</strong>. Cette surface, extensible à 9 000 m², constitue un atout majeur pour le stockage sous douane, la préparation de commandes et la distribution régionale.
+          </p>
+          
+          <div className="space-y-4">
+            <div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">• Capacités d'entreposage</h4>
+              <ul className="ml-4 space-y-1 text-gray-700">
+                <li>- Stockage sec et zones contrôlées pour produits sensibles</li>
+                <li>- Organisation modulable pour optimiser la préparation de commandes</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">• Flotte interne</h4>
+              <ul className="ml-4 space-y-1 text-gray-700">
+                <li>- 59 camions plateaux pour le vrac conteneurisé</li>
+                <li>- 5 bennes pour les agrégats</li>
+                <li>- 1 camionnette 10 roues & 1 camionnette grue pour les opérations de levage</li>
+                <li>- 1 camionnette citerne pour le vrac liquide</li>
+                <li>- 1 camion Volvo pour le transport longue distance</li>
+                <li>- 2 camions frigos pour la chaîne du froid</li>
+                <li>- 3 chariots élévateurs (deux 4 T et un 10 T) pour un chargement-déchargement rapide</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">• Connectivité stratégique</h4>
+              <ul className="ml-4 space-y-1 text-gray-700">
+                <li>- À moins de 25 minutes du Port autonome de Dakar</li>
+                <li>- Proximité immédiate de l'aéroport international Blaise-Diagne</li>
+                <li>- Accès direct aux principaux axes autoroutiers (RN1, Dakar-Bamako, etc.)</li>
+              </ul>
+            </div>
+          </div>
+          
+          <p className="text-gray-700 leading-relaxed text-lg">
+            Cette combinaison d'un vaste espace de stockage, d'un parc roulant diversifié et d'une excellente connectivité fait de Diamniadio le point névralgique idéal pour vos opérations logistiques au Sénégal et dans toute la sous-région.
+          </p>
+        </div>
+      ),
       button: "Découvrir nos entrepôts",
       kpis: [
         {
@@ -55,7 +97,49 @@ const WarehousesSection = () => {
       heroTitle: "Our warehouses & infrastructure",
       heroSubtitle: "Total surface 9,000 m² • 12 m draft",
       textTitle: "Diamniadio Logistics Hub",
-      text: "Located at the heart of the Diamniadio industrial zone, our logistics hub combines 5 hangars totaling more than 8,700 m² – a major asset for bonded storage, order preparation and regional distribution. This storage capacity is supported by an internal fleet sized to meet all needs: 59 flatbed trucks for containerized bulk, 5 dump trucks for aggregates, 1 10-wheel truck and 1 crane truck for lifting operations, 1 tanker truck for liquid bulk, 1 Volvo truck for long-distance transport, 2 refrigerated trucks for the cold chain, as well as 3 forklifts (two 4 T and one 10 T) for fast and secure loading-unloading. Located less than 25 minutes from the Port of Dakar and in immediate proximity to Blaise-Diagne International Airport, our warehouses offer direct access to major highways, guaranteeing optimized delivery times to the entire Senegalese territory and the sub-region. This synergy between storage surface, diversified rolling stock and multimodal connectivity makes Diamniadio the ideal nerve center for your logistics operations.",
+      text: (
+        <div className="space-y-6">
+          <p className="text-gray-700 leading-relaxed text-lg">
+            Located at the heart of the Diamniadio industrial zone, our logistics hub combines <strong>5 hangars totaling more than 8,700 m²</strong>. This surface, expandable to 9,000 m², constitutes a major asset for bonded storage, order preparation and regional distribution.
+          </p>
+          
+          <div className="space-y-4">
+            <div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">• Storage capacities</h4>
+              <ul className="ml-4 space-y-1 text-gray-700">
+                <li>- Dry storage and controlled zones for sensitive products</li>
+                <li>- Modular organization to optimize order preparation</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">• Internal fleet</h4>
+              <ul className="ml-4 space-y-1 text-gray-700">
+                <li>- 59 flatbed trucks for containerized bulk</li>
+                <li>- 5 dump trucks for aggregates</li>
+                <li>- 1 10-wheel truck & 1 crane truck for lifting operations</li>
+                <li>- 1 tanker truck for liquid bulk</li>
+                <li>- 1 Volvo truck for long-distance transport</li>
+                <li>- 2 refrigerated trucks for the cold chain</li>
+                <li>- 3 forklifts (two 4 T and one 10 T) for fast loading-unloading</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">• Strategic connectivity</h4>
+              <ul className="ml-4 space-y-1 text-gray-700">
+                <li>- Less than 25 minutes from the Port of Dakar</li>
+                <li>- Immediate proximity to Blaise-Diagne International Airport</li>
+                <li>- Direct access to major highways (RN1, Dakar-Bamako, etc.)</li>
+              </ul>
+            </div>
+          </div>
+          
+          <p className="text-gray-700 leading-relaxed text-lg">
+            This combination of vast storage space, diversified rolling stock and excellent connectivity makes Diamniadio the ideal nerve center for your logistics operations in Senegal and throughout the sub-region.
+          </p>
+        </div>
+      ),
       button: "Discover our warehouses",
       kpis: [
         {
@@ -126,7 +210,7 @@ const WarehousesSection = () => {
 
       {/* Content Section */}
       <div className="container mx-auto px-4 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-start mb-16">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -136,9 +220,9 @@ const WarehousesSection = () => {
             <h3 className="text-3xl font-bold text-primary mb-6 font-serif">
               {currentContent.textTitle}
             </h3>
-            <p className="text-gray-700 leading-relaxed text-lg mb-8">
+            <div className="mb-8">
               {currentContent.text}
-            </p>
+            </div>
             <Button 
               onClick={handleWarehouseClick}
               className="bg-primary hover:bg-primary/90 text-white px-8 py-3"
