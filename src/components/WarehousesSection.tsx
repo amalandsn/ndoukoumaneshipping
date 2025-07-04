@@ -49,21 +49,23 @@ const WarehousesSection = () => {
                 <li>- 3 chariots élévateurs (deux 4 T et un 10 T) pour un chargement-déchargement rapide</li>
               </ul>
             </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">• Connectivité stratégique</h4>
-              <ul className="ml-4 space-y-1 text-gray-700">
-                <li>- À moins de 25 minutes du Port autonome de Dakar</li>
-                <li>- Proximité immédiate de l'aéroport international Blaise-Diagne</li>
-                <li>- Accès direct aux principaux axes autoroutiers (RN1, Dakar-Bamako, etc.)</li>
-              </ul>
-            </div>
           </div>
-          
-          <p className="text-gray-700 leading-relaxed text-lg">
-            Cette combinaison d'un vaste espace de stockage, d'un parc roulant diversifié et d'une excellente connectivité fait de Diamniadio le point névralgique idéal pour vos opérations logistiques au Sénégal et dans toute la sous-région.
-          </p>
         </div>
+      ),
+      connectivity: (
+        <div>
+          <h4 className="text-lg font-semibold text-gray-800 mb-2">• Connectivité stratégique</h4>
+          <ul className="ml-4 space-y-1 text-gray-700">
+            <li>- À moins de 25 minutes du Port autonome de Dakar</li>
+            <li>- Proximité immédiate de l'aéroport international Blaise-Diagne</li>
+            <li>- Accès direct aux principaux axes autoroutiers (RN1, Dakar-Bamako, etc.)</li>
+          </ul>
+        </div>
+      ),
+      conclusion: (
+        <p className="text-gray-700 leading-relaxed text-lg">
+          Cette combinaison d'un vaste espace de stockage, d'un parc roulant diversifié et d'une excellente connectivité fait de Diamniadio le point névralgique idéal pour vos opérations logistiques au Sénégal et dans toute la sous-région.
+        </p>
       ),
       button: "Découvrir nos entrepôts",
       kpis: [
@@ -124,21 +126,23 @@ const WarehousesSection = () => {
                 <li>- 3 forklifts (two 4 T and one 10 T) for fast loading-unloading</li>
               </ul>
             </div>
-            
-            <div>
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">• Strategic connectivity</h4>
-              <ul className="ml-4 space-y-1 text-gray-700">
-                <li>- Less than 25 minutes from the Port of Dakar</li>
-                <li>- Immediate proximity to Blaise-Diagne International Airport</li>
-                <li>- Direct access to major highways (RN1, Dakar-Bamako, etc.)</li>
-              </ul>
-            </div>
           </div>
-          
-          <p className="text-gray-700 leading-relaxed text-lg">
-            This combination of vast storage space, diversified rolling stock and excellent connectivity makes Diamniadio the ideal nerve center for your logistics operations in Senegal and throughout the sub-region.
-          </p>
         </div>
+      ),
+      connectivity: (
+        <div>
+          <h4 className="text-lg font-semibold text-gray-800 mb-2">• Strategic connectivity</h4>
+          <ul className="ml-4 space-y-1 text-gray-700">
+            <li>- Less than 25 minutes from the Port of Dakar</li>
+            <li>- Immediate proximity to Blaise-Diagne International Airport</li>
+            <li>- Direct access to major highways (RN1, Dakar-Bamako, etc.)</li>
+          </ul>
+        </div>
+      ),
+      conclusion: (
+        <p className="text-gray-700 leading-relaxed text-lg">
+          This combination of vast storage space, diversified rolling stock and excellent connectivity makes Diamniadio the ideal nerve center for your logistics operations in Senegal and throughout the sub-region.
+        </p>
       ),
       button: "Discover our warehouses",
       kpis: [
@@ -265,6 +269,22 @@ const WarehousesSection = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Connectivity Section - moved here after carousel */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <div className="max-w-2xl">
+            {currentContent.connectivity}
+            <div className="mt-6">
+              {currentContent.conclusion}
+            </div>
+          </div>
+        </motion.div>
 
         {/* KPI Slider */}
         <motion.div
