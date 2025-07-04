@@ -6,6 +6,12 @@ import { Warehouse, Anchor, Thermometer, Shield } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const WarehousesSection = () => {
   const { language } = useLanguage();
@@ -15,8 +21,8 @@ const WarehousesSection = () => {
     fr: {
       heroTitle: "Nos entrepôts & infrastructures",
       heroSubtitle: "Surface totale 9000 m² • Quai 12 m",
-      textTitle: "Localisation Stratégique",
-      text: "Nos entrepôts sont idéalement situés dans l'enceinte du Port Autonome de Dakar, première infrastructure portuaire de l'Afrique de l'Ouest. Cette position stratégique nous permet d'offrir un accès direct aux navires et une connexion optimale avec les réseaux de transport terrestres. Nos installations comprennent des zones de stockage réfrigérées pour les produits sensibles, des espaces sécurisés avec surveillance 24h/24 et 7j/7, ainsi que des équipements de manutention modernes. Bénéficiant d'une situation géographique exceptionnelle, nos entrepôts facilitent les échanges commerciaux entre l'Europe, l'Amérique et l'Afrique subsaharienne, garantissant efficacité et sécurité pour vos marchandises.",
+      textTitle: "Hub Logistique de Diamniadio",
+      text: "Implanté au cœur de la zone industrielle de Diamniadio, notre hub logistique combine 5 hangars totalisant plus de 8 700 m² – un atout majeur pour le stockage sous douane, la préparation de commandes et la distribution régionale. Cette capacité d'entreposage est appuyée par une flotte interne dimensionnée pour répondre à tous les besoins : 59 camions plateaux pour le vrac conteneurisé, 5 bennes pour les agrégats, 1 camionnette 10 roues et 1 camionnette grue pour les opérations de levage, 1 camionnette citerne pour le vrac liquide, 1 camion Volvo pour le transport longue distance, 2 camions frigos pour la chaîne du froid, ainsi que 3 chariots élévateurs (deux 4 T et un 10 T) pour un chargement-déchargement rapide et sécurisé. Situés à moins de 25 minutes du Port autonome de Dakar et à proximité immédiate de l'aéroport international Blaise-Diagne, nos entrepôts offrent un accès direct aux grands axes autoroutiers, garantissant des délais d'acheminement optimisés vers l'ensemble du territoire sénégalais et la sous-région. Cette synergie entre surface de stockage, parc roulant diversifié et connectivité multimodale fait de Diamniadio le point névralgique idéal pour vos opérations logistiques.",
       button: "Découvrir nos entrepôts",
       kpis: [
         {
@@ -48,8 +54,8 @@ const WarehousesSection = () => {
     en: {
       heroTitle: "Our warehouses & infrastructure",
       heroSubtitle: "Total surface 9,000 m² • 12 m draft",
-      textTitle: "Strategic Location",
-      text: "Our warehouses are ideally located within the Dakar Autonomous Port, the leading port infrastructure in West Africa. This strategic position allows us to offer direct access to vessels and optimal connection with land transport networks. Our facilities include refrigerated storage areas for sensitive products, secure spaces with 24/7 surveillance, and modern handling equipment. Benefiting from an exceptional geographical location, our warehouses facilitate trade between Europe, America and sub-Saharan Africa, guaranteeing efficiency and security for your goods.",
+      textTitle: "Diamniadio Logistics Hub",
+      text: "Located at the heart of the Diamniadio industrial zone, our logistics hub combines 5 hangars totaling more than 8,700 m² – a major asset for bonded storage, order preparation and regional distribution. This storage capacity is supported by an internal fleet sized to meet all needs: 59 flatbed trucks for containerized bulk, 5 dump trucks for aggregates, 1 10-wheel truck and 1 crane truck for lifting operations, 1 tanker truck for liquid bulk, 1 Volvo truck for long-distance transport, 2 refrigerated trucks for the cold chain, as well as 3 forklifts (two 4 T and one 10 T) for fast and secure loading-unloading. Located less than 25 minutes from the Port of Dakar and in immediate proximity to Blaise-Diagne International Airport, our warehouses offer direct access to major highways, guaranteeing optimized delivery times to the entire Senegalese territory and the sub-region. This synergy between storage surface, diversified rolling stock and multimodal connectivity makes Diamniadio the ideal nerve center for your logistics operations.",
       button: "Discover our warehouses",
       kpis: [
         {
@@ -81,6 +87,14 @@ const WarehousesSection = () => {
   };
 
   const currentContent = content[language];
+
+  const carouselImages = [
+    "/entrepot1.webp",
+    "/entrepot2.webp",
+    "/entrepot3.webp",
+    "/entrepot4.webp",
+    "/entrepot5.webp"
+  ];
 
   const handleWarehouseClick = () => {
     navigate('/entrepots');
@@ -122,7 +136,7 @@ const WarehousesSection = () => {
             <h3 className="text-3xl font-bold text-primary mb-6 font-serif">
               {currentContent.textTitle}
             </h3>
-            <p className="text-muted-foreground leading-relaxed text-lg mb-8">
+            <p className="text-gray-700 leading-relaxed text-lg mb-8">
               {currentContent.text}
             </p>
             <Button 
@@ -139,11 +153,30 @@ const WarehousesSection = () => {
             viewport={{ once: true }}
           >
             <div className="relative rounded-xl overflow-hidden shadow-xl">
-              <img 
-                src="/entrepot1.webp" 
-                alt={currentContent.textTitle}
-                className="w-full h-80 object-cover"
-              />
+              <Carousel
+                className="w-full"
+                plugins={[
+                  Autoplay({
+                    delay: 3000,
+                  }),
+                ]}
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+              >
+                <CarouselContent>
+                  {carouselImages.map((imageSrc, index) => (
+                    <CarouselItem key={index}>
+                      <img 
+                        src={imageSrc} 
+                        alt={`${currentContent.textTitle} ${index + 1}`}
+                        className="w-full h-80 object-cover"
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </div>
           </motion.div>

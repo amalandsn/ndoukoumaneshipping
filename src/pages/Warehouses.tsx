@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -9,6 +10,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { getQuoteRoute } from '@/lib/routes';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const Warehouses = () => {
   const { language } = useLanguage();
@@ -19,7 +26,7 @@ const Warehouses = () => {
       title: "Entrepôts logistiques Dakar – Ndoukouman",
       subtitle: "Infrastructures modernes au cœur du Port Autonome de Dakar",
       heroTitle: "Installations Portuaires de Pointe",
-      heroSubtitle: "Entrepôts stratégiquement situés pour optimiser vos opérations logistiques",
+      heroSubtitle: "Entrepôts stratégiquement situés à Diamniadio pour optimiser vos opérations logistiques",
       capacities: {
         title: "Nos Capacités",
         subtitle: "Des infrastructures adaptées à tous vos besoins de stockage"
@@ -81,15 +88,23 @@ const Warehouses = () => {
         images: [
           {
             src: "/entrepot1.webp",
-            caption: "Vue d'ensemble de nos entrepôts modernes"
+            caption: "Allées intérieures spacieuses dédiées à la préparation de commandes"
           },
           {
-            src: "/hero-manutention.webp",
-            caption: "Équipements de manutention spécialisés"
+            src: "/entrepot2.webp",
+            caption: "Flotte interne de camions plateaux prête pour l'expédition régionale"
           },
           {
-            src: "/livraison.webp",
-            caption: "Zone de chargement et expédition"
+            src: "/entrepot3.webp",
+            caption: "Stockage sous douane : balles textiles conditionnées et empilées"
+          },
+          {
+            src: "/entrepot4.webp",
+            caption: "Façade principale des cinq hangars de Diamniadio"
+          },
+          {
+            src: "/entrepot5.webp",
+            caption: "Stockage sous douane : balles textiles conditionnées et empilées"
           }
         ]
       },
@@ -112,7 +127,7 @@ const Warehouses = () => {
       title: "Dakar Logistics Warehouses – Ndoukouman",
       subtitle: "Modern infrastructure at the heart of Dakar Autonomous Port",
       heroTitle: "State-of-the-Art Port Facilities",
-      heroSubtitle: "Warehouses strategically located to optimize your logistics operations",
+      heroSubtitle: "Warehouses strategically located in Diamniadio to optimize your logistics operations",
       capacities: {
         title: "Our Capabilities",
         subtitle: "Infrastructure adapted to all your storage needs"
@@ -174,15 +189,23 @@ const Warehouses = () => {
         images: [
           {
             src: "/entrepot1.webp",
-            caption: "Overview of our modern warehouses"
+            caption: "Spacious interior aisles dedicated to order preparation"
           },
           {
-            src: "/hero-manutention.webp",
-            caption: "Specialized handling equipment"
+            src: "/entrepot2.webp",
+            caption: "Internal fleet of flatbed trucks ready for regional shipping"
           },
           {
-            src: "/livraison.webp",
-            caption: "Loading and shipping area"
+            src: "/entrepot3.webp",
+            caption: "Bonded storage: conditioned and stacked textile bales"
+          },
+          {
+            src: "/entrepot4.webp",
+            caption: "Main façade of the five Diamniadio hangars"
+          },
+          {
+            src: "/entrepot5.webp",
+            caption: "Bonded storage: conditioned and stacked textile bales"
           }
         ]
       },
@@ -368,7 +391,7 @@ const Warehouses = () => {
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Gallery Section - Carousel */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
@@ -383,31 +406,45 @@ const Warehouses = () => {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {currentContent.gallery.images.map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <Card className="overflow-hidden shadow-xl">
-                  <div className="relative">
-                    <img 
-                      src={image.src} 
-                      alt={image.caption}
-                      className="w-full h-64 object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
-                  </div>
-                  <CardContent className="p-6">
-                    <p className="text-muted-foreground font-medium">{image.caption}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <Carousel
+            className="w-full"
+            plugins={[
+              Autoplay({
+                delay: 3000,
+              }),
+            ]}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+          >
+            <CarouselContent>
+              {currentContent.gallery.images.map((image, index) => (
+                <CarouselItem key={index}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.2, duration: 0.6 }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="overflow-hidden shadow-xl">
+                      <div className="relative">
+                        <img 
+                          src={image.src} 
+                          alt={image.caption}
+                          className="w-full h-64 object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+                      </div>
+                      <CardContent className="p-6">
+                        <p className="text-muted-foreground font-medium">{image.caption}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
 
