@@ -267,24 +267,22 @@ const WarehousesSection = () => {
               </Carousel>
               <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
             </div>
+            
+            {/* Connectivity Section - moved here under carousel */}
+            <motion.div
+              className="mt-8"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              {currentContent.connectivity}
+              <div className="mt-6">
+                {currentContent.conclusion}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
-
-        {/* Connectivity Section - moved here after carousel */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="max-w-2xl">
-            {currentContent.connectivity}
-            <div className="mt-6">
-              {currentContent.conclusion}
-            </div>
-          </div>
-        </motion.div>
 
         {/* KPI Slider */}
         <motion.div
