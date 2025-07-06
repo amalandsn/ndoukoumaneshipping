@@ -56,8 +56,8 @@ const NewsGrid: React.FC<NewsGridProps> = ({ news, isLoading }) => {
       <div className="text-center py-12">
         <p className="text-gray-500">
           {language === 'fr' 
-            ? 'Aucune actualité du Port Autonome de Dakar disponible pour le moment.' 
-            : 'No Port Autonome de Dakar news available at the moment.'}
+            ? 'Aucune actualité du secteur maritime disponible pour le moment.' 
+            : 'No maritime industry news available at the moment.'}
         </p>
       </div>
     );
@@ -81,7 +81,7 @@ const NewsGrid: React.FC<NewsGridProps> = ({ news, isLoading }) => {
               <div className="flex items-start justify-between gap-2 mb-2">
                 <Badge 
                   variant="secondary" 
-                  className="text-xs bg-blue-100 text-blue-800"
+                  className="text-xs bg-green-100 text-green-800"
                 >
                   {item.source}
                 </Badge>

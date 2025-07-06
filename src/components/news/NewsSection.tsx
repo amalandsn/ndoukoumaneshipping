@@ -12,17 +12,17 @@ const NewsSection = () => {
   const { language } = useLanguage();
 
   const { data: news, isLoading, error } = useQuery({
-    queryKey: ['news', 'pad-only'],
+    queryKey: ['news', 'shipping-news'],
     queryFn: async () => {
       const { data, error } = await supabase
         .from('news')
         .select('*')
-        .or('source.ilike.%Port Autonome de Dakar%,source.ilike.%Port de Dakar%')
+        .eq('source', 'Actualités Maritimes')
         .order('published_at', { ascending: false })
         .limit(3);
       
       if (error) {
-        console.error('Error fetching PAD news:', error);
+        console.error('Error fetching shipping news:', error);
         throw error;
       }
       
@@ -43,13 +43,13 @@ const NewsSection = () => {
           <div className="flex items-center justify-center mb-4">
             <Newspaper className="h-8 w-8 text-blue-900 mr-3" />
             <h2 className="text-3xl font-bold text-gray-900">
-              {language === 'fr' ? 'Actualités du Port Autonome de Dakar' : 'Port Autonome de Dakar News'}
+              {language === 'fr' ? 'Actualités du secteur maritime' : 'Maritime Industry News'}
             </h2>
           </div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             {language === 'fr' 
-              ? 'Restez informé des dernières actualités du Port Autonome de Dakar'
-              : 'Stay informed with the latest news from Port Autonome de Dakar'}
+              ? 'Mise à jour chaque lundi matin – sélection de 5 articles francophones traduits'
+              : 'Updated every Monday – 5 curated French-language articles translated'}
           </p>
         </div>
 

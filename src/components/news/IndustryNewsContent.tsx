@@ -26,14 +26,14 @@ interface NewsItem {
 const IndustryNewsContent = () => {
   const { language } = useLanguage();
 
-  const { data: news, isLoading, error, refetch } = useQuery({
+  const { data: news, isLoading, error } = useQuery({
     queryKey: ['industry-news'],
     queryFn: async () => {
-      console.log('Fetching news from database...');
+      console.log('Fetching shipping news from database...');
       const { data, error } = await supabase
         .from('news')
         .select('*')
-        .or('source.ilike.%Port Autonome de Dakar%,source.ilike.%Port de Dakar%')
+        .eq('source', 'Actualités Maritimes')
         .order('published_at', { ascending: false })
         .limit(10);
       
@@ -63,13 +63,13 @@ const IndustryNewsContent = () => {
         <div className="flex items-center justify-center mb-4">
           <Newspaper className="h-8 w-8 text-blue-900 mr-3" />
           <h1 className="text-4xl font-bold text-gray-900">
-            {language === 'fr' ? 'Actualités du Secteur Portuaire' : 'Port Industry News'}
+            {language === 'fr' ? 'Actualités du secteur maritime' : 'Maritime Industry News'}
           </h1>
         </div>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
           {language === 'fr' 
-            ? 'Découvrez les dernières actualités du Port Autonome de Dakar et du secteur maritime sénégalais'
-            : 'Discover the latest news from Port Autonome de Dakar and the Senegalese maritime sector'}
+            ? 'Mise à jour chaque lundi matin – sélection de 5 articles francophones traduits'
+            : 'Updated every Monday – 5 curated French-language articles translated'}
         </p>
       </div>
 
@@ -105,8 +105,8 @@ const IndustryNewsContent = () => {
           </h3>
           <p className="text-gray-500 max-w-md mx-auto mb-6">
             {language === 'fr' 
-              ? 'Cliquez sur le bouton "Synchroniser les actualités" ci-dessus pour récupérer les dernières actualités du Port Autonome de Dakar.' 
-              : 'Click the "Synchronize news" button above to fetch the latest news from Port Autonome de Dakar.'}
+              ? 'Cliquez sur le bouton "Synchroniser les actualités" ci-dessus pour récupérer les dernières actualités du secteur maritime.' 
+              : 'Click the "Sync news" button above to fetch the latest maritime industry news.'}
           </p>
         </div>
       ) : (
@@ -122,7 +122,7 @@ const IndustryNewsContent = () => {
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <Badge 
                       variant="secondary" 
-                      className="text-xs bg-blue-100 text-blue-800"
+                      className="text-xs bg-green-100 text-green-800"
                     >
                       {item.source}
                     </Badge>

@@ -2,43 +2,52 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/hooks/useLanguage';
+import { toast } from '@/hooks/use-toast';
+import { useQueryClient } from '@tanstack/react-query';
 
 const ManualSyncButton = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+  const { language } = useLanguage();
+  const queryClient = useQueryClient();
 
   const handleSync = async () => {
     setIsLoading(true);
     try {
-      console.log('Calling sync function...');
-      const response = await fetch('https://wlockltbwthtkslluzhh.supabase.co/functions/v1/sync-weekly-news', {
+      console.log('Starting manual news sync...');
+      
+      const response = await fetch('/functions/v1/sync-shipping-news', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indsb2NrbHRid3RodGtzbGx1emhoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwODcyODgsImV4cCI6MjA2NTY2MzI4OH0.598qkGLuo8BdMIB77y5cZgnkU2-WLjnENv7p6b_BK68',
           'Content-Type': 'application/json',
         },
       });
 
-      const data = await response.json();
-      console.log('Sync response:', data);
+      const result = await response.json();
+      console.log('Sync result:', result);
 
-      if (data.success) {
+      if (result.success) {
         toast({
-          title: "Synchronisation réussie",
-          description: `${data.synced} articles synchronisés depuis le Port Autonome de Dakar`,
+          title: language === 'fr' ? 'Synchronisation réussie' : 'Sync successful',
+          description: language === 'fr' 
+            ? `${result.synced} articles synchronisés avec succès` 
+            : `${result.synced} articles synced successfully`,
         });
-        // Reload the page to show new articles
-        window.location.reload();
+        
+        // Invalidate and refetch the news queries
+        queryClient.invalidateQueries({ queryKey: ['news'] });
+        queryClient.invalidateQueries({ queryKey: ['industry-news'] });
       } else {
-        throw new Error(data.message || 'Erreur lors de la synchronisation');
+        throw new Error(result.message || 'Sync failed');
       }
     } catch (error) {
       console.error('Sync error:', error);
       toast({
-        title: "Erreur de synchronisation",
-        description: "Impossible de synchroniser les actualités pour le moment",
-        variant: "destructive",
+        title: language === 'fr' ? 'Erreur de synchronisation' : 'Sync error',
+        description: language === 'fr' 
+          ? 'Impossible de synchroniser les actualités' 
+          : 'Failed to sync news',
+        variant: 'destructive',
       });
     } finally {
       setIsLoading(false);
@@ -49,12 +58,13 @@ const ManualSyncButton = () => {
     <Button 
       onClick={handleSync} 
       disabled={isLoading}
-      variant="outline"
-      size="sm"
-      className="mb-6"
+      className="mb-8 bg-blue-900 hover:bg-blue-800"
     >
       <RefreshCw className={`w-4 h-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
-      {isLoading ? 'Synchronisation...' : 'Synchroniser les actualités'}
+      {isLoading 
+        ? (language === 'fr' ? 'Synchronisation...' : 'Syncing...') 
+        : (language === 'fr' ? 'Synchroniser les actualités' : 'Sync news')
+      }
     </Button>
   );
 };
