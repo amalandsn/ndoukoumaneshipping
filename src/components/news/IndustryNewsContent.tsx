@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Clock, Newspaper } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr, enUS } from 'date-fns/locale';
+import ManualSyncButton from './ManualSyncButton';
 
 interface NewsItem {
   id: string;
@@ -25,9 +26,10 @@ interface NewsItem {
 const IndustryNewsContent = () => {
   const { language } = useLanguage();
 
-  const { data: news, isLoading, error } = useQuery({
+  const { data: news, isLoading, error, refetch } = useQuery({
     queryKey: ['industry-news'],
     queryFn: async () => {
+      console.log('Fetching news from database...');
       const { data, error } = await supabase
         .from('news')
         .select('*')
@@ -40,6 +42,7 @@ const IndustryNewsContent = () => {
         throw error;
       }
       
+      console.log('Fetched news articles:', data?.length || 0);
       return data;
     },
     staleTime: 5 * 60 * 1000, // 5 minutes
@@ -70,6 +73,10 @@ const IndustryNewsContent = () => {
         </p>
       </div>
 
+      <div className="flex justify-center">
+        <ManualSyncButton />
+      </div>
+
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, i) => (
@@ -96,10 +103,10 @@ const IndustryNewsContent = () => {
               ? 'Aucune actualité disponible' 
               : 'No news available'}
           </h3>
-          <p className="text-gray-500 max-w-md mx-auto">
+          <p className="text-gray-500 max-w-md mx-auto mb-6">
             {language === 'fr' 
-              ? 'Les actualités du Port Autonome de Dakar seront synchronisées automatiquement chaque lundi matin.' 
-              : 'Port Autonome de Dakar news will be automatically synchronized every Monday morning.'}
+              ? 'Cliquez sur le bouton "Synchroniser les actualités" ci-dessus pour récupérer les dernières actualités du Port Autonome de Dakar.' 
+              : 'Click the "Synchronize news" button above to fetch the latest news from Port Autonome de Dakar.'}
           </p>
         </div>
       ) : (

@@ -25,11 +25,11 @@ serve(async (req) => {
     console.log('Starting PAD news sync...');
     
     const [padEspace, padDirect] = await Promise.all([
-      scrapePADEspaceMedia(),     // PAD espace-media (2 articles)
-      scrapePADDirect(),          // PAD direct site (1 article)
+      scrapePADEspaceMedia(),     // PAD espace-media (3 articles)
+      scrapePADDirect(),          // PAD direct site (2 articles)
     ]);
     
-    // Combiner les sources PAD pour un total de 3 articles maximum
+    // Combiner les sources PAD pour un total de 5 articles maximum
     const rows = [...padEspace, ...padDirect];
     console.log(`Total PAD articles to sync: ${rows.length} (PAD espace: ${padEspace.length}, PAD direct: ${padDirect.length})`);
     
@@ -51,7 +51,8 @@ serve(async (req) => {
         synced: rows.length,
         pad_espace_articles: padEspace.length,
         pad_direct_articles: padDirect.length,
-        message: 'PAD news sync completed successfully'
+        message: 'PAD news sync completed successfully',
+        articles: rows.map(r => ({ title: r.title_fr, url: r.url }))
       }),
       {
         status: 200,
@@ -63,7 +64,8 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({ 
         success: false, 
-        message: e.message 
+        message: e.message,
+        error: e.toString()
       }),
       { 
         status: 500,
