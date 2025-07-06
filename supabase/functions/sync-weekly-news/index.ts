@@ -24,6 +24,22 @@ serve(async (req) => {
   try {
     console.log('Starting PAD news sync...');
     
+    // Nettoyer les anciens articles (plus de 30 jours)
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    
+    const { error: deleteError } = await sb
+      .from("news")
+      .delete()
+      .or('source.ilike.%Port Autonome de Dakar%,source.ilike.%Port de Dakar%')
+      .lt('published_at', thirtyDaysAgo.toISOString());
+    
+    if (deleteError) {
+      console.error('Error deleting old articles:', deleteError);
+    } else {
+      console.log('Old articles cleaned up');
+    }
+    
     const [padEspace, padDirect] = await Promise.all([
       scrapePADEspaceMedia(),     // PAD espace-media (3 articles)
       scrapePADDirect(),          // PAD direct site (2 articles)
@@ -33,7 +49,8 @@ serve(async (req) => {
     const rows = [...padEspace, ...padDirect];
     console.log(`Total PAD articles to sync: ${rows.length} (PAD espace: ${padEspace.length}, PAD direct: ${padDirect.length})`);
     
-    if (rows.length) {
+    if (rows.length > 0) {
+      // Insérer les nouveaux articles
       const { error } = await sb.from("news").upsert(rows, { 
         onConflict: "slug",
         ignoreDuplicates: false 
@@ -43,6 +60,8 @@ serve(async (req) => {
         throw error;
       }
       console.log(`Successfully synced ${rows.length} PAD articles`);
+    } else {
+      console.log('No articles found to sync');
     }
     
     return new Response(
@@ -51,7 +70,7 @@ serve(async (req) => {
         synced: rows.length,
         pad_espace_articles: padEspace.length,
         pad_direct_articles: padDirect.length,
-        message: 'PAD news sync completed successfully',
+        message: `PAD news sync completed successfully - ${rows.length} articles synced`,
         articles: rows.map(r => ({ title: r.title_fr, url: r.url }))
       }),
       {
