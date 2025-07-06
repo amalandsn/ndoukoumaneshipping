@@ -8,7 +8,6 @@ import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Clock, Newspaper } from 'lucide-react';
 import { format } from 'date-fns';
 import { fr, enUS } from 'date-fns/locale';
-import ManualSyncButton from './ManualSyncButton';
 
 interface NewsItem {
   id: string;
@@ -66,15 +65,6 @@ const IndustryNewsContent = () => {
             {language === 'fr' ? 'Actualités du secteur maritime' : 'Maritime Industry News'}
           </h1>
         </div>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          {language === 'fr' 
-            ? 'Mise à jour chaque lundi matin – sélection de 5 articles francophones traduits'
-            : 'Updated every Monday – 5 curated French-language articles translated'}
-        </p>
-      </div>
-
-      <div className="flex justify-center">
-        <ManualSyncButton />
       </div>
 
       {isLoading ? (
@@ -105,16 +95,20 @@ const IndustryNewsContent = () => {
           </h3>
           <p className="text-gray-500 max-w-md mx-auto mb-6">
             {language === 'fr' 
-              ? 'Cliquez sur le bouton "Synchroniser les actualités" ci-dessus pour récupérer les dernières actualités du secteur maritime.' 
-              : 'Click the "Sync news" button above to fetch the latest maritime industry news.'}
+              ? 'Les actualités seront mises à jour automatiquement.' 
+              : 'News will be updated automatically.'}
           </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sortedNews.map((item) => {
-            // Display French by default, English only if explicitly requested and available
-            const displayTitle = language === 'en' && item.title_en ? item.title_en : (item.title_fr || item.title_en);
-            const displayExcerpt = language === 'en' && item.excerpt_en ? item.excerpt_en : (item.excerpt_fr || item.excerpt_en);
+            // Prioriser le français sur la page française, anglais sur la page anglaise
+            const displayTitle = language === 'fr' 
+              ? (item.title_fr || item.title_en) 
+              : (item.title_en || item.title_fr);
+            const displayExcerpt = language === 'fr' 
+              ? (item.excerpt_fr || item.excerpt_en) 
+              : (item.excerpt_en || item.excerpt_fr);
             
             return (
               <Card key={item.id} className="hover:shadow-lg transition-shadow duration-200 h-full flex flex-col">
@@ -158,16 +152,6 @@ const IndustryNewsContent = () => {
               </Card>
             );
           })}
-        </div>
-      )}
-
-      {sortedNews && sortedNews.length > 0 && (
-        <div className="mt-12 text-center">
-          <p className="text-sm text-gray-500">
-            {language === 'fr' 
-              ? 'Les actualités sont mises à jour automatiquement chaque lundi matin' 
-              : 'News are automatically updated every Monday morning'}
-          </p>
         </div>
       )}
     </div>

@@ -46,11 +46,6 @@ const NewsSection = () => {
               {language === 'fr' ? 'Actualités du secteur maritime' : 'Maritime Industry News'}
             </h2>
           </div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {language === 'fr' 
-              ? 'Mise à jour chaque lundi matin – sélection de 5 articles francophones traduits'
-              : 'Updated every Monday – 5 curated French-language articles translated'}
-          </p>
         </div>
 
         <NewsGrid news={news || []} isLoading={isLoading} />

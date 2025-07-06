@@ -71,9 +71,13 @@ const NewsGrid: React.FC<NewsGridProps> = ({ news, isLoading }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {sortedNews.map((item) => {
-        // Display French by default, English only if explicitly requested and available
-        const displayTitle = language === 'en' && item.title_en ? item.title_en : (item.title_fr || item.title_en);
-        const displayExcerpt = language === 'en' && item.excerpt_en ? item.excerpt_en : (item.excerpt_fr || item.excerpt_en);
+        // Prioriser le français sur la page française, anglais sur la page anglaise
+        const displayTitle = language === 'fr' 
+          ? (item.title_fr || item.title_en) 
+          : (item.title_en || item.title_fr);
+        const displayExcerpt = language === 'fr' 
+          ? (item.excerpt_fr || item.excerpt_en) 
+          : (item.excerpt_en || item.excerpt_fr);
         
         return (
           <Card key={item.id} className="hover:shadow-lg transition-shadow duration-200">
