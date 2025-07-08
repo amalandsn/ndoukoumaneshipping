@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -97,7 +98,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav className="bg-white shadow-lg sticky top-0 z-[60]">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-3 mx-0">
           {/* Logo */}
@@ -118,8 +119,8 @@ const Navigation = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center ml-6">
+          {/* Desktop Navigation - Hidden on tablet */}
+          <div className="hidden xl:flex items-center space-x-8 flex-1 justify-center ml-6">
             {items.map(item => {
               if (item.submenu) {
                 const isActive = isActiveSubmenu(item.submenu);
@@ -136,7 +137,7 @@ const Navigation = () => {
                         backgroundColor: '#0553A5'
                       }}></span>}
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-white shadow-lg border rounded-md p-1 z-50">
+                    <DropdownMenuContent className="bg-white shadow-lg border rounded-md p-1 z-[70]">
                       {item.submenu.map(subItem => (
                         <DropdownMenuItem key={subItem.href} asChild>
                           <Link to={subItem.href} className="block px-4 py-2 text-sm hover:bg-muted rounded-sm cursor-pointer" style={{
@@ -165,7 +166,7 @@ const Navigation = () => {
           </div>
           
           {/* Right side - Language Switcher and Quote Button for desktop */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden xl:flex items-center space-x-8">
             <LanguageSwitcher />
             <Button className="text-white text-sm" style={{
               backgroundColor: '#0553A5'
@@ -175,19 +176,19 @@ const Navigation = () => {
             </Button>
           </div>
 
-          {/* Mobile Navigation */}
-          <div className="lg:hidden flex items-center space-x-4">
+          {/* Mobile & Tablet Navigation */}
+          <div className="xl:hidden flex items-center space-x-4">
             <LanguageSwitcher />
             
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="sm" className="z-50">
+                <Button variant="ghost" size="sm" className="z-[70]">
                   <Menu className="h-6 w-6" style={{
                     color: '#0553A5'
                   }} />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-80 z-[60]">
+              <SheetContent side="right" className="w-80 z-[80]">
                 <div className="flex flex-col space-y-6 mt-8">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">

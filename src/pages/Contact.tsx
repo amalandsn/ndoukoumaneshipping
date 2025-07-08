@@ -285,7 +285,7 @@ const Contact = () => {
                       </h3>
                       <p className="text-gray-600">+221 33 822 29 80</p>
                       <p className="text-primary font-medium">
-                        {currentContent.info.emergency}: +221 77 644 96 42
+                        {currentContent.info.emergency}: +221 77 644 96 42 / +221 77 637 84 97
                       </p>
                     </div>
                   </div>

@@ -21,7 +21,7 @@ const Footer = () => {
         description: "plusieurs années d'expérience dans la consignation et manutention transit avec solution logistique.",
         address: "Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar",
         phone: "+221 33 822 29 80",
-        urgent: "+221 77 644 96 42",
+        urgent: "+221 77 644 96 42 / +221 77 637 84 97",
         email: "contact@ndoukoumaneshipping.com"
       },
       services: {
@@ -55,7 +55,7 @@ const Footer = () => {
         description: "several years of experience in consignment and handling transit with logistics solutions.",
         address: "Central Park ex 4 c Avenue Malick Sy Bureau 3008 Dakar",
         phone: "+221 33 822 29 80",
-        urgent: "+221 77 644 96 42",
+        urgent: "+221 77 644 96 42 / +221 77 637 84 97",
         email: "contact@ndoukoumaneshipping.com"
       },
       services: {
