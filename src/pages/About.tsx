@@ -63,7 +63,7 @@ const About = () => {
             image: "as.webp",
             name: "M. Abdourahmane Sall",
             title: "Directeur d'exploitation",
-            description: "Fort de plus de dix ans d'expérience dans la gestion des opérations portuaires et logistiques, M. Sall supervise l'optimisation des flux, la sécurité des sites et la satisfaction client au quotidien."
+            description: "Fort de plus de quarante ans d'expérience dans la gestion des opérations portuaires et logistiques, M. Sall supervise l'optimisation des flux, la sécurité des sites et la satisfaction client au quotidien."
           },
           {
             image: "cds.webp",
@@ -134,7 +134,7 @@ const About = () => {
             image: "as.webp",
             name: "Mr. Abdourahmane Sall",
             title: "Operations Director",
-            description: "With over ten years of experience in port and logistics operations management, Mr. Sall supervises flow optimization, site security, and daily customer satisfaction."
+            description: "With over forty years of experience in port and logistics operations management, Mr. Sall supervises flow optimization, site security, and daily customer satisfaction."
           },
           {
             image: "cds.webp",
