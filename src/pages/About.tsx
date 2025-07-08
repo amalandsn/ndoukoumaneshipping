@@ -82,6 +82,18 @@ const About = () => {
             name: "M. Khadim Bamba Ndiaye",
             title: "Responsable Manutention",
             description: "Supervise les opérations de quai et garantit la sécurité des chargements."
+          },
+          {
+            image: "fact.webp",
+            name: "Mme Maguette Samb",
+            title: "Spécialiste Facturation",
+            description: "Émet des factures précises, suit les coûts et optimise la trésorerie clients."
+          },
+          {
+            image: "fact.webp",
+            name: "Mme Aissata Diallo",
+            title: "Gestionnaire Comptes d’Escale",
+            description: "Coordonne formalités portuaires et relations armateurs pour des escales fluides."
           }
         ]
       },
@@ -154,11 +166,23 @@ const About = () => {
             title: "Transit Manager",
             description: "Expert in express customs clearance: masters LC BCEAO and Dakar–Bamako–Niamey corridors."
           },
-        {
+          {
             image: "manu.webp",
             name: "Mr. Khadim Bamba Ndiaye",
             title: "Stevedoring Supervisor",
             description: "Oversees quay operations and ensures safe cargo handling."
+          },
+          {
+            image: "fact.webp",
+            name: "Ms Maguette Samb",
+            title: "Billing Specialist",
+            description: "Issues accurate invoices, monitors costs, and optimises client cash flow."
+          },
+          {
+            image: "fact.webp",
+            name: "Ms Aissata Diallo",
+            title: "Port Call Coordinator",
+            description: "Coordinates port formalities and liaises with shipowners for smooth port calls."
           }
         ]
       },
