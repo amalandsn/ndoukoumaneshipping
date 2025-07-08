@@ -45,10 +45,10 @@ const About = () => {
         ]
       },
       ceo: {
-        title: "Mot du Directeur Général",
+        title: "Mot du Président Directeur Général",
         content: "Ndoukoumane est un groupe créé en 2018 et 100 % sénégalais, fondé par moi-même, El Hadj Mor Ndao, opérateur économique à Dakar. Agréé dans les activités portuaires – manutention, transit, gestion de stock, tierce détention, logistique terrestre, aérienne et maritime, ainsi que consignataire de navires – nous ambitionnons de fluidifier l'acheminement des marchandises entre le port de Dakar et toute la sous-région.",
         mission: "Notre mission : contribuer au positionnement du port de Dakar comme hub de transbordement et d'éclatement pour l'Afrique de l'Ouest.",
-        signature: "M. El Hadj Mor Ndao – Fondateur & Directeur Général"
+        signature: "M. El Hadj Mor Ndao – Fondateur & Président Directeur Général"
       },
       team: {
         title: "La team Ndoukouman Shipping & Services",
