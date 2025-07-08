@@ -17,19 +17,20 @@
     <meta name="twitter:site" content="@ndoukoumane" />
     <meta name="twitter:image" content="Ndoukoumane" />
 
-    <!-- Critical resource preloads for better LCP -->
+    <!-- Préchargement critique optimisé -->
     <link rel="preload" as="image" href="/hero-consignation.webp" fetchpriority="high" />
+    <link rel="preload" as="style" href="/src/index.css" />
     
-    <!-- DNS prefetch for external resources -->
+    <!-- Optimisations DNS critiques -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Preload critical CSS (if any) -->
-    <link rel="preload" as="style" href="/src/index.css" />
+    <!-- Optimisations des ressources -->
+    <link rel="modulepreload" href="/src/main.tsx" />
   </head>
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx" defer></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

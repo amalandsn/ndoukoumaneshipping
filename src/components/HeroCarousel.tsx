@@ -46,12 +46,13 @@ const slides: Slide[] = [
   },
 ];
 
+// Animations simplifiées pour de meilleures performances
 const fx = {
-  enter: (d: number) => ({ opacity: 0, scale: 1, x: d > 0 ? 60 : -60 }),
-  center:              { opacity: 1, scale: 1.05, x: 0 },
-  exit:  (d: number) => ({ opacity: 0, scale: 1.1, x: d > 0 ? -60 : 60 }),
+  enter: { opacity: 0, x: 0 },
+  center: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 0 },
 };
-const TRANS = { duration: 1, ease: [0.4, 0, 0.2, 1] as const };
+const TRANS = { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const };
 
 export default function HeroCarousel() {
   const [lang, setLang] = useState(document.documentElement.lang);
@@ -66,7 +67,7 @@ export default function HeroCarousel() {
 
   const [[idx, dir], set] = useState<[number, number]>([0, 0]);
   useEffect(() => {
-    const id = setInterval(() => set(([i]) => [(i + 1) % slides.length, 1]), 7000);
+    const id = setInterval(() => set(([i]) => [(i + 1) % slides.length, 1]), 8000);
     return () => clearInterval(id);
   }, []);
   const paginate = (d: number) => set(([i]) => [(i + d + slides.length) % slides.length, d]);
@@ -82,25 +83,9 @@ export default function HeroCarousel() {
     navigate('/contact');
   };
 
-  // Preload first image for better LCP
-  useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = slides[0].src;
-    link.setAttribute('fetchpriority', 'high');
-    document.head.appendChild(link);
-
-    return () => {
-      if (document.head.contains(link)) {
-        document.head.removeChild(link);
-      }
-    };
-  }, []);
-
   return (
     <section className="relative w-screen h-screen overflow-hidden">
-      <AnimatePresence initial={false} custom={dir}>
+      <AnimatePresence initial={false} custom={dir} mode="wait">
         <motion.div
           key={idx}
           custom={dir}
@@ -109,9 +94,9 @@ export default function HeroCarousel() {
           animate="center"
           exit="exit"
           transition={TRANS}
-          className="absolute inset-0 w-full h-full kenburns"
+          className="absolute inset-0 w-full h-full"
         >
-          <motion.img
+          <img
             src={src}
             onError={(e) => (e.currentTarget.src = fallback)}
             alt={alt}

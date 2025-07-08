@@ -3,21 +3,25 @@ import { useEffect } from 'react';
 
 const PerformanceOptimizer = () => {
   useEffect(() => {
-    // Add performance hints for hero images
-    const prefetchHints = [
+    // Préchargement immédiat des images critiques
+    const criticalImages = [
+      '/hero-consignation.webp',
       '/hero-manutention.webp',
       '/hero-transit.webp'
     ];
 
-    prefetchHints.forEach(href => {
+    criticalImages.forEach((href, index) => {
       const link = document.createElement('link');
-      link.rel = 'prefetch';
+      link.rel = index === 0 ? 'preload' : 'prefetch';
       link.href = href;
       link.as = 'image';
+      if (index === 0) {
+        link.setAttribute('fetchpriority', 'high');
+      }
       document.head.appendChild(link);
     });
 
-    // Add resource hints for better performance
+    // Optimisations DNS et ressources
     const resourceHints = [
       { rel: 'dns-prefetch', href: '//fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' }
@@ -33,10 +37,14 @@ const PerformanceOptimizer = () => {
       document.head.appendChild(link);
     });
 
-    // Cleanup function
+    // Optimisation du défilement
+    if (CSS.supports('scroll-behavior', 'smooth')) {
+      document.documentElement.style.scrollBehavior = 'smooth';
+    }
+
+    // Cleanup
     return () => {
-      // Remove prefetch links when component unmounts
-      prefetchHints.forEach(href => {
+      criticalImages.forEach(href => {
         const existingLink = document.querySelector(`link[href="${href}"]`);
         if (existingLink && document.head.contains(existingLink)) {
           document.head.removeChild(existingLink);
@@ -45,7 +53,7 @@ const PerformanceOptimizer = () => {
     };
   }, []);
 
-  return null; // This component doesn't render anything visible
+  return null;
 };
 
 export default PerformanceOptimizer;
