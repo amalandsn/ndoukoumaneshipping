@@ -76,6 +76,12 @@ const About = () => {
             name: "M. Omar F. Dramé",
             title: "Responsable Transit",
             description: "Expert en dédouanement express : maîtrise LC BCEAO et corridors Dakar–Bamako–Niamey."
+          },
+         {
+            image: "manu.webp",
+            name: "M. Khadim Bamba Ndiaye",
+            title: "Responsable Manutention",
+            description: "Supervise les opérations de quai et garantit la sécurité des chargements."
           }
         ]
       },
@@ -147,6 +153,12 @@ const About = () => {
             name: "Mr. Omar F. Dramé",
             title: "Transit Manager",
             description: "Expert in express customs clearance: masters LC BCEAO and Dakar–Bamako–Niamey corridors."
+          },
+        {
+            image: "manu.webp",
+            name: "Mr. Khadim Bamba Ndiaye",
+            title: "Stevedoring Supervisor",
+            description: "Oversees quay operations and ensures safe cargo handling."
           }
         ]
       },
