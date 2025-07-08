@@ -78,6 +78,10 @@ export default function HeroCarousel() {
     navigate(getQuoteRoute(locale));
   };
 
+  const handleCallClick = () => {
+    navigate('/contact');
+  };
+
   // Preload first image for better LCP
   useEffect(() => {
     const link = document.createElement('link');
@@ -137,13 +141,13 @@ export default function HeroCarousel() {
           >
             {isFR ? "Demander un devis" : "Request a quote"}
           </button>
-          <a
-            href="tel:+221774021825"
+          <button
+            onClick={handleCallClick}
             className="bg-primary text-white py-3 px-6 rounded-lg shadow-lg hover:bg-primary/90 transition flex items-center justify-center gap-2 font-semibold"
           >
             <Phone className="h-4 w-4" />
             {isFR ? "Appelez 24/7" : "Call Us 24/7"}
-          </a>
+          </button>
         </div>
       </div>
 

@@ -16,7 +16,7 @@ const CTASection = () => {
   };
 
   const handleCallClick = () => {
-    window.location.href = 'tel:+221774021825';
+    navigate('/contact');
   };
 
   const handleEmailClick = () => {
