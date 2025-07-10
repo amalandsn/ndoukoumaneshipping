@@ -24,7 +24,7 @@ const About = () => {
         title: "Notre Mission",
         bullets: [
           "Solutions logistiques 360° – maritime, aérien, routier",
-          "Ponctualité & traçabilité en temps réel",
+          "Ponctualité & traçabilité en temps réel", 
           "Excellence opérationnelle certifiée"
         ]
       },
@@ -92,7 +92,7 @@ const About = () => {
           {
             image: "fact.webp",
             name: "Mme Aissata Diallo",
-            title: "Gestionnaire Comptes d’Escale",
+            title: "Gestionnaire Comptes d'Escale",
             description: "Coordonne formalités portuaires et relations armateurs pour des escales fluides."
           }
         ]
@@ -231,9 +231,23 @@ const About = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="py-20 bg-blue-deep text-white">
-        <div className="container mx-auto px-4">
+      {/* Hero Section with Background Image */}
+      <section className="relative py-20 text-white overflow-hidden">
+        {/* Background Image with Blur and Opacity */}
+        <div className="absolute inset-0">
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(/banabout.webp)',
+              filter: 'blur(3px)',
+            }}
+          />
+          {/* Blue overlay with 90% opacity */}
+          <div className="absolute inset-0 bg-blue-deep opacity-90" />
+        </div>
+        
+        {/* Content */}
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
