@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -242,8 +243,8 @@ const About = () => {
               filter: 'blur(3px)',
             }}
           />
-          {/* Blue overlay with 90% opacity */}
-          <div className="absolute inset-0 bg-blue-deep opacity-90" />
+          {/* Blue overlay with 65% opacity */}
+          <div className="absolute inset-0 bg-blue-deep opacity-65" />
         </div>
         
         {/* Content */}
