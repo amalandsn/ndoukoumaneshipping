@@ -79,7 +79,7 @@ const About = () => {
           },
          {
             image: "manu.webp",
-            name: "M. Khadim Bamba Ndiaye",
+            name: "M. Khadim Saliou Ndiaye",
             title: "Responsable Manutention",
             description: "Supervise les opérations de quai et garantit la sécurité des chargements."
           },
@@ -168,7 +168,7 @@ const About = () => {
           },
           {
             image: "manu.webp",
-            name: "Mr. Khadim Bamba Ndiaye",
+            name: "Mr. Khadim Saliou Ndiaye",
             title: "Stevedoring Supervisor",
             description: "Oversees quay operations and ensures safe cargo handling."
           },
